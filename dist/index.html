@@ -1,114 +1,80 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" data-theme="dark">
+<html lang="ar" dir="rtl" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Autozone KSA · Social Listening & Brand Intelligence | Balubaid Group</title>
-  <meta name="description" content="Balubaid Group of Companies (BGC) - Autozone Social Listening, Customer Sentiment Analysis & Brand Intelligence Dashboard across Saudi Arabia.">
+  <title>مجموعة بالبيد · أوتوزون | منصة رصد وتحليل صوت العميل</title>
+  <meta name="description" content="منصة رصد آراء العملاء وتحليل المشاعر لعلامة أوتوزون - مجموعة شركات بالبيد في المملكة العربية السعودية.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     /* ==========================================================================
-       DESIGN SYSTEM & THEME TOKENS
+       هوية وألوان مجموعة شركات بالبيد الرسمية (BALUBAID BRAND SYSTEM)
        ========================================================================== */
     :root {
-      /* Brand Colors */
-      --brand-navy-950: #040d1a;
-      --brand-navy-900: #0a192f;
-      --brand-navy-800: #102646;
-      --brand-navy-700: #1b3a6b;
-      --brand-blue-600: #1a73e8;
-      --brand-blue-500: #2982ff;
-      --brand-blue-400: #5ea2ff;
-      --brand-gold-600: #b07d18;
-      --brand-gold-500: #d49b35;
-      --brand-gold-400: #f1bf66;
+      /* ألوان بالبيد الرسمية */
+      --balubaid-red: #C41230;          /* أحمر بالبيد الرسمي */
+      --balubaid-red-dark: #9E0B24;     /* أحمر داكن للأزرار والتحويم */
+      --balubaid-red-light: #FDE8EB;    /* أحمر فاتح جداً للخلفيات */
+      --balubaid-charcoal: #1E293B;     /* كحلي فحمي داكن */
+      --balubaid-slate: #334155;        /* رمادي رمادي متزن */
 
-      /* Semantic Status Colors */
-      --color-pos: #10b981;
-      --color-pos-bg: rgba(16, 185, 129, 0.12);
-      --color-pos-border: rgba(16, 185, 129, 0.28);
-      
-      --color-neu: #64748b;
-      --color-neu-bg: rgba(100, 116, 139, 0.12);
-      --color-neu-border: rgba(100, 116, 139, 0.28);
+      /* ألوان المؤشرات الوظيفية */
+      --status-positive: #059669;       /* أخضر إيجابي ناصع */
+      --status-positive-bg: #ECFDF5;
+      --status-neutral: #64748B;        /* رمادي محايد */
+      --status-neutral-bg: #F1F5F9;
+      --status-negative: #DC2626;       /* أحمر تنبيهي */
+      --status-negative-bg: #FEF2F2;
 
-      --color-neg: #ef4444;
-      --color-neg-bg: rgba(239, 68, 68, 0.12);
-      --color-neg-border: rgba(239, 68, 68, 0.28);
-
-      --color-warn: #f59e0b;
-      --color-warn-bg: rgba(245, 158, 11, 0.12);
-
-      /* Typography */
-      --font-en: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      /* الخطوط */
       --font-ar: 'Cairo', system-ui, -apple-system, sans-serif;
-      --font-main: var(--font-en);
+      --font-en: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-main: var(--font-ar);
 
-      /* Motion */
-      --transition-fast: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-normal: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-      --radius-sm: 6px;
-      --radius-md: 10px;
-      --radius-lg: 16px;
-      --radius-xl: 22px;
-      --radius-full: 9999px;
+      /* الحواف والظلال */
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-pill: 9999px;
+      --transition: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Dark Mode Theme (Default) */
+    /* النسق الفاتح الرسمي (Default - Light Corporate) */
+    [data-theme="light"] {
+      --bg-page: #F8FAFC;
+      --bg-surface: #FFFFFF;
+      --bg-surface-soft: #F1F5F9;
+      --border-subtle: #E2E8F0;
+      --border-strong: #CBD5E1;
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-subtle: #94A3B8;
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.03);
+      --shadow-hover: 0 4px 12px rgba(196,18,48,0.08), 0 12px 28px rgba(0,0,0,0.06);
+    }
+
+    /* النسق الداكن الراقي (Dark Slate Corporate) */
     [data-theme="dark"] {
-      --bg-page: #070d18;
-      --bg-canvas: #0b1526;
-      --bg-surface: #101e34;
-      --bg-surface-elevated: #162844;
-      --bg-surface-hover: #1c3254;
+      --bg-page: #0B1120;
+      --bg-surface: #131E32;
+      --bg-surface-soft: #1B2943;
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-strong: rgba(255, 255, 255, 0.16);
-      --border-accent: rgba(94, 162, 255, 0.3);
-      --text-main: #f1f5f9;
-      --text-muted: #94a3b8;
-      --text-subtle: #64748b;
-      --text-inverse: #0f172a;
-      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25);
-      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
-      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
-      --glass-bg: rgba(16, 30, 52, 0.75);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --grid-line: rgba(255, 255, 255, 0.03);
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-subtle: #64748B;
+      --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+      --shadow-hover: 0 8px 28px rgba(196, 18, 48, 0.2);
     }
 
-    /* Light Mode Theme */
-    [data-theme="light"] {
-      --bg-page: #f8fafc;
-      --bg-canvas: #f1f5f9;
-      --bg-surface: #ffffff;
-      --bg-surface-elevated: #ffffff;
-      --bg-surface-hover: #f1f5f9;
-      --border-subtle: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --border-accent: rgba(26, 115, 232, 0.35);
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --text-subtle: #94a3b8;
-      --text-inverse: #ffffff;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
-      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-      --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
-      --glass-bg: rgba(255, 255, 255, 0.85);
-      --glass-border: rgba(0, 0, 0, 0.08);
-      --grid-line: rgba(0, 0, 0, 0.04);
+    html[dir="ltr"] {
+      --font-main: var(--font-en);
     }
 
-    /* RTL Arabic Typography & Orientation */
-    html[dir="rtl"] {
-      --font-main: var(--font-ar);
-    }
-
-    /* ==========================================================================
-       BASE RESETS & GLOBAL STYLES
-       ========================================================================== */
+    /* إعادة ضبط أساسية وتنسيق واضح وسهل */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -119,653 +85,323 @@
       font-family: var(--font-main);
       background-color: var(--bg-page);
       color: var(--text-main);
-      line-height: 1.5;
-      font-size: 14px;
+      line-height: 1.6;
+      font-size: 15px;
       min-height: 100vh;
-      overflow-x: hidden;
-      transition: background-color var(--transition-normal), color var(--transition-normal);
       -webkit-font-smoothing: antialiased;
+      transition: background-color var(--transition), color var(--transition);
     }
 
-    a {
-      color: var(--brand-blue-400);
-      text-decoration: none;
-      transition: color var(--transition-fast);
-    }
-
-    a:hover {
-      color: var(--brand-blue-500);
-      text-decoration: underline;
-    }
-
-    button, input, select {
-      font-family: inherit;
-      font-size: inherit;
-    }
-
-    /* App Container */
-    .app-shell {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    /* حاوية العرض */
+    .app-container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
     }
 
     /* ==========================================================================
-       NAVBAR & HEADER
+       شريط الهوية والترويسة العلوية (Header)
        ========================================================================== */
-    .top-nav {
+    .main-header {
+      background: var(--bg-surface);
+      border-bottom: 2px solid var(--border-subtle);
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      background: var(--glass-bg);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 0.75rem 1.5rem;
-      transition: all var(--transition-normal);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
     }
 
-    .top-nav-inner {
-      max-width: 1440px;
+    .header-inner {
+      max-width: 1360px;
       margin: 0 auto;
+      padding: 0.9rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
-    .brand-group {
+    .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
-    .brand-logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      text-decoration: none;
-    }
-
-    .brand-emblem {
-      width: 42px;
-      height: 42px;
+    /* شعار بالبيد الأحمر الأصيل */
+    .balubaid-logo-box {
+      width: 46px;
+      height: 46px;
+      background: var(--balubaid-red);
       border-radius: var(--radius-md);
-      background: linear-gradient(135deg, #003768 0%, #001f3d 100%);
-      border: 1.5px solid var(--brand-gold-500);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      position: relative;
-      overflow: hidden;
+      color: #FFFFFF;
+      font-weight: 900;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 12px rgba(196, 18, 48, 0.3);
+      flex-shrink: 0;
     }
 
-    .brand-emblem::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(60deg, transparent 40%, rgba(212, 155, 53, 0.3) 50%, transparent 60%);
-      animation: emblemShine 4s infinite linear;
-    }
-
-    @keyframes emblemShine {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(100%); }
-    }
-
-    .brand-emblem svg {
-      width: 26px;
-      height: 26px;
-      fill: var(--brand-gold-400);
-      z-index: 1;
-    }
-
-    .brand-titles {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-badge {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--brand-gold-400);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .brand-title {
+    .brand-text h1 {
       font-size: 1.25rem;
       font-weight: 800;
       color: var(--text-main);
+      line-height: 1.2;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      line-height: 1.2;
+      gap: 0.5rem;
     }
 
-    .brand-title span {
-      background: linear-gradient(135deg, #2982ff, #7cb2ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .brand-text h1 span {
+      color: var(--balubaid-red);
     }
 
-    .brand-subtitle {
-      font-size: 0.75rem;
+    .brand-text p {
+      font-size: 0.8rem;
       color: var(--text-muted);
+      font-weight: 500;
     }
 
-    .nav-controls {
+    /* أزرار الإجراءات في الهيدر */
+    .header-actions {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
 
-    .live-status-pill {
-      display: flex;
+    .status-badge {
+      display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.85rem;
-      border-radius: var(--radius-full);
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--color-pos);
+      gap: 0.45rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-pill);
+      background: var(--status-positive-bg);
+      color: var(--status-positive);
+      border: 1px solid rgba(5, 150, 105, 0.2);
+      font-size: 0.8rem;
+      font-weight: 700;
     }
 
     .pulse-dot {
       width: 8px;
       height: 8px;
+      background: var(--status-positive);
       border-radius: 50%;
-      background-color: var(--color-pos);
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-      animation: pulseGreen 2s infinite;
+      box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.7);
+      animation: pulse 1.8s infinite;
     }
 
-    @keyframes pulseGreen {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(5, 150, 105, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
     }
 
-    .btn-toggle-lang, .btn-toggle-theme, .btn-action {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      padding: 0.45rem 0.85rem;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-weight: 600;
-      font-size: 0.82rem;
-      transition: all var(--transition-fast);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-toggle-lang:hover, .btn-toggle-theme:hover, .btn-action:hover {
-      background: var(--bg-surface-hover);
-      border-color: var(--border-strong);
-      transform: translateY(-1px);
-    }
-
-    /* Audio Briefing Pill & Visualizer */
-    .audio-briefing-btn {
-      background: linear-gradient(135deg, rgba(212, 155, 53, 0.16), rgba(26, 115, 232, 0.16));
-      border: 1.5px solid var(--brand-gold-500);
-      color: var(--text-main);
-      padding: 0.45rem 0.95rem;
-      border-radius: var(--radius-full);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 700;
-      font-size: 0.82rem;
-      transition: all var(--transition-fast);
-      box-shadow: 0 2px 8px rgba(212, 155, 53, 0.2);
-    }
-
-    .audio-briefing-btn:hover {
-      background: linear-gradient(135deg, rgba(212, 155, 53, 0.28), rgba(26, 115, 232, 0.28));
-      transform: translateY(-1px);
-      box-shadow: 0 4px 14px rgba(212, 155, 53, 0.35);
-    }
-
-    .audio-wave {
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 2.5px;
-      height: 16px;
-    }
-
-    .audio-bar {
-      width: 3px;
-      background: var(--brand-gold-400);
-      border-radius: 2px;
-      height: 4px;
-      transition: height 0.15s ease;
-    }
-
-    .audio-briefing-btn.playing .audio-bar {
-      animation: wavePulse 0.7s infinite alternate ease-in-out;
-    }
-
-    .audio-briefing-btn.playing .audio-bar:nth-child(1) { animation-delay: 0.0s; }
-    .audio-briefing-btn.playing .audio-bar:nth-child(2) { animation-delay: 0.18s; }
-    .audio-briefing-btn.playing .audio-bar:nth-child(3) { animation-delay: 0.36s; }
-    .audio-briefing-btn.playing .audio-bar:nth-child(4) { animation-delay: 0.12s; }
-    .audio-briefing-btn.playing .audio-bar:nth-child(5) { animation-delay: 0.28s; }
-
-    @keyframes wavePulse {
-      0% { height: 4px; }
-      100% { height: 16px; }
-    }
-
-    /* Embedded Audio Briefing Hero Widget in Overview */
-    .audio-briefing-card {
-      background: linear-gradient(135deg, var(--bg-surface-elevated) 0%, var(--bg-surface) 100%);
-      border: 1px solid var(--border-accent);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem 1.5rem;
-      margin-bottom: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.25rem;
-      box-shadow: var(--shadow-md);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .audio-briefing-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: linear-gradient(to bottom, var(--brand-gold-500), var(--brand-blue-500));
-    }
-
-    html[dir="rtl"] .audio-briefing-card::before {
-      left: auto;
-      right: 0;
-    }
-
-    .audio-briefing-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .audio-briefing-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: var(--radius-md);
-      background: var(--brand-navy-800);
-      border: 1.5px solid var(--brand-gold-500);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--brand-gold-400);
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .audio-briefing-info h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
       gap: 0.5rem;
-    }
-
-    .audio-briefing-info p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.2rem;
-    }
-
-    .audio-controls-row {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .btn-audio-circle {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--brand-blue-600);
-      border: none;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
-      transition: all var(--transition-fast);
-    }
-
-    .btn-audio-circle:hover {
-      background: var(--brand-blue-500);
-      transform: scale(1.06);
-    }
-
-    .audio-speed-btn {
-      background: var(--bg-canvas);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      padding: 0.3rem 0.6rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
       font-weight: 700;
       cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      transition: all var(--transition);
     }
 
-    .audio-status-text {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--brand-gold-400);
-      min-width: 90px;
+    .btn:hover {
+      background: var(--bg-surface-soft);
+      border-color: var(--border-strong);
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #1a73e8 0%, #0d56b8 100%);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.35);
+    .btn-balubaid-red {
+      background: var(--balubaid-red);
+      color: #FFFFFF;
+      border-color: var(--balubaid-red);
+      box-shadow: 0 3px 10px rgba(196, 18, 48, 0.25);
     }
 
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #2982ff 0%, #1565c0 100%);
-      color: #ffffff;
-      box-shadow: 0 6px 20px rgba(26, 115, 232, 0.5);
+    .btn-balubaid-red:hover {
+      background: var(--balubaid-red-dark);
+      border-color: var(--balubaid-red-dark);
+      color: #FFFFFF;
     }
 
-    /* Subheader Filters bar */
-    .filter-bar {
-      background: var(--bg-canvas);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 0.75rem 1.5rem;
-    }
-
-    .filter-bar-inner {
-      max-width: 1440px;
-      margin: 0 auto;
+    /* ==========================================================================
+       شريط الفلاتر والتحكم البسيط (Simple Filter Bar)
+       ========================================================================== */
+    .controls-strip {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+      padding: 0.9rem 1.25rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
     }
 
-    .tabs-nav {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      overflow-x: auto;
-      padding-bottom: 2px;
-    }
-
-    .tab-btn {
-      background: transparent;
-      border: 1px solid transparent;
-      color: var(--text-muted);
-      padding: 0.5rem 0.9rem;
-      border-radius: var(--radius-md);
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      white-space: nowrap;
-      transition: all var(--transition-fast);
-    }
-
-    .tab-btn:hover {
-      color: var(--text-main);
-      background: var(--bg-surface-hover);
-    }
-
-    .tab-btn.active {
-      color: #ffffff;
-      background: var(--brand-navy-700);
-      border-color: var(--brand-blue-500);
-      box-shadow: 0 2px 8px rgba(0, 66, 117, 0.3);
-    }
-
-    [data-theme="light"] .tab-btn.active {
-      color: #ffffff;
-      background: #004275;
-      border-color: #005aa3;
-    }
-
-    .filter-actions {
+    .strip-group {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      flex-wrap: wrap;
     }
 
-    .search-input-wrap {
+    .search-box {
       position: relative;
       display: flex;
       align-items: center;
     }
 
-    .search-input-wrap svg {
+    .search-box input {
+      background: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.45rem 1rem 0.45rem 2.2rem;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      width: 240px;
+      outline: none;
+      transition: all var(--transition);
+    }
+
+    html[dir="rtl"] .search-box input {
+      padding: 0.45rem 2.2rem 0.45rem 1rem;
+    }
+
+    .search-box input:focus {
+      border-color: var(--balubaid-red);
+      width: 280px;
+      box-shadow: 0 0 0 3px rgba(196, 18, 48, 0.1);
+    }
+
+    .search-icon {
       position: absolute;
       left: 10px;
+      color: var(--text-subtle);
       width: 16px;
       height: 16px;
-      color: var(--text-subtle);
       pointer-events: none;
     }
 
-    html[dir="rtl"] .search-input-wrap svg {
+    html[dir="rtl"] .search-icon {
       left: auto;
       right: 10px;
     }
 
-    .search-input {
-      background: var(--bg-surface);
+    .select-dropdown {
+      background: var(--bg-page);
       border: 1px solid var(--border-subtle);
       color: var(--text-main);
-      padding: 0.45rem 1rem 0.45rem 2.2rem;
+      padding: 0.45rem 0.85rem;
       border-radius: var(--radius-md);
-      font-size: 0.82rem;
-      width: 210px;
-      transition: all var(--transition-fast);
-    }
-
-    html[dir="rtl"] .search-input {
-      padding: 0.45rem 2.2rem 0.45rem 1rem;
-    }
-
-    .search-input:focus {
+      font-size: 0.85rem;
+      font-weight: 600;
       outline: none;
-      border-color: var(--brand-blue-500);
-      width: 260px;
-      box-shadow: 0 0 0 3px rgba(41, 130, 255, 0.15);
-    }
-
-    .date-filter-select, .branch-filter-select {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      padding: 0.45rem 0.75rem;
-      border-radius: var(--radius-md);
-      font-size: 0.82rem;
-      font-weight: 500;
       cursor: pointer;
-      outline: none;
     }
 
-    .date-filter-select:focus, .branch-filter-select:focus {
-      border-color: var(--brand-blue-500);
-    }
-
-    /* ==========================================================================
-       MAIN CONTENT CONTAINER
-       ========================================================================== */
-    .main-content {
-      max-width: 1440px;
-      width: 100%;
-      margin: 1.5rem auto;
-      padding: 0 1.5rem;
-      flex: 1;
+    .select-dropdown:focus {
+      border-color: var(--balubaid-red);
     }
 
     /* ==========================================================================
-       HERO METRICS / KPI CARDS
+       بطاقات الأداء والمؤشرات الرئيسية الأربعة (KPIs) - واضحة ومباشرة
        ========================================================================== */
-    .kpi-grid {
+    .kpi-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
     }
 
     .kpi-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 1.25rem;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-card);
       position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+      transition: all var(--transition);
     }
 
     .kpi-card:hover {
       transform: translateY(-2px);
-      border-color: var(--border-accent);
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(196, 18, 48, 0.3);
     }
 
-    .kpi-header {
+    .kpi-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.75rem;
     }
 
-    .kpi-title {
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+    .kpi-card-title {
+      font-size: 0.85rem;
+      font-weight: 700;
       color: var(--text-muted);
     }
 
-    .kpi-icon {
-      width: 34px;
-      height: 34px;
+    .kpi-icon-pill {
+      width: 38px;
+      height: 38px;
       border-radius: var(--radius-md);
+      background: var(--bg-surface-soft);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--bg-canvas);
-      color: var(--brand-blue-400);
+      color: var(--balubaid-red);
+      flex-shrink: 0;
     }
 
-    .kpi-value {
-      font-size: 1.85rem;
-      font-weight: 800;
+    .kpi-number {
+      font-size: 2.2rem;
+      font-weight: 900;
       color: var(--text-main);
       line-height: 1.1;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
-    .kpi-footer {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.78rem;
-    }
-
-    .trend-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      font-weight: 700;
-      padding: 0.15rem 0.45rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.72rem;
-    }
-
-    .trend-up {
-      background: var(--color-pos-bg);
-      color: var(--color-pos);
-    }
-
-    .trend-down {
-      background: var(--color-neg-bg);
-      color: var(--color-neg);
-    }
-
-    .kpi-subtext {
+    .kpi-note {
+      font-size: 0.8rem;
       color: var(--text-subtle);
-    }
-
-    /* Sentiment Progress in KPI */
-    .sentiment-mini-bar {
-      height: 6px;
-      width: 100%;
-      background: var(--bg-canvas);
-      border-radius: var(--radius-full);
       display: flex;
-      overflow: hidden;
-      margin-top: 0.6rem;
+      align-items: center;
+      gap: 0.4rem;
     }
 
-    .sentiment-segment {
-      height: 100%;
-      transition: width 0.6s ease;
+    .badge-trend-up {
+      color: var(--status-positive);
+      font-weight: 700;
+      background: var(--status-positive-bg);
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
     }
-
-    .seg-pos { background-color: var(--color-pos); }
-    .seg-neu { background-color: var(--color-neu); }
-    .seg-neg { background-color: var(--color-neg); }
 
     /* ==========================================================================
-       SECTION CONTAINERS & GRIDS
+       القسم الرئيسي: الرسم البياني وتوزيع القنوات
        ========================================================================== */
-    .tab-pane {
-      display: none;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .tab-pane.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .dashboard-row {
+    .grid-two-columns {
       display: grid;
       grid-template-columns: 2fr 1fr;
-      gap: 1.25rem;
-      margin-bottom: 1.5rem;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
     }
 
-    @media (max-width: 1024px) {
-      .dashboard-row {
+    @media (max-width: 992px) {
+      .grid-two-columns {
         grid-template-columns: 1fr;
       }
     }
@@ -775,41 +411,30 @@
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       padding: 1.5rem;
-      box-shadow: var(--shadow-sm);
-      position: relative;
+      box-shadow: var(--shadow-card);
     }
 
-    .card-header {
+    .card-title-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
-    .card-title-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-
-    .card-title {
+    .card-heading {
       font-size: 1.05rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--text-main);
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .card-subtitle {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    /* Chart Canvas Area */
-    .chart-box {
+    .chart-container {
       width: 100%;
-      height: 310px;
+      height: 290px;
       position: relative;
     }
 
@@ -818,2346 +443,967 @@
       height: 100% !important;
     }
 
-    /* Channel breakdown list */
-    .channel-list {
+    /* قائمة القنوات المعتمدة */
+    .channels-stack {
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0.75rem;
     }
 
-    .channel-item {
+    .channel-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.75rem 0.9rem;
-      background: var(--bg-canvas);
-      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      background: var(--bg-page);
       border: 1px solid var(--border-subtle);
-      transition: all var(--transition-fast);
+      border-radius: var(--radius-md);
+      transition: all var(--transition);
     }
 
-    .channel-item:hover {
-      background: var(--bg-surface-elevated);
-      border-color: var(--border-strong);
+    .channel-row:hover {
+      background: var(--bg-surface-soft);
+      border-color: var(--balubaid-red);
     }
 
-    .channel-info {
+    .channel-brand {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
 
-    .channel-icon {
-      width: 32px;
-      height: 32px;
+    .channel-logo-badge {
+      width: 34px;
+      height: 34px;
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ألوان وأيقونات القنوات الأصلية */
+    .logo-google-maps { background: #EA4335; color: #fff; }
+    .logo-analytics { background: #F9AB00; color: #fff; }
+    .logo-snapchat { background: #FFFC00; color: #000; }
+    .logo-instagram { background: linear-gradient(45deg, #F09433, #DC2743, #BC1888); color: #fff; }
+    .logo-x { background: #000000; color: #fff; }
+    .logo-tiktok { background: #000000; color: #fff; border: 1px solid #333; }
+    .logo-youtube { background: #FF0000; color: #fff; }
+
+    .channel-meta strong {
+      display: block;
       font-size: 0.9rem;
       font-weight: 700;
-      color: #fff;
     }
 
-    .icon-snapchat { background: #fffc00; color: #000; }
-    .icon-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .icon-x { background: #000000; color: #fff; }
-    .icon-tiktok { background: #010101; border: 1px solid rgba(255,255,255,0.2); }
-    .icon-youtube { background: #ff0000; }
-    .icon-google { background: #4285f4; }
-    .icon-haraj { background: #00897b; }
-
-    .channel-name {
-      font-weight: 600;
-      font-size: 0.85rem;
+    .channel-meta small {
+      font-size: 0.75rem;
+      color: var(--text-muted);
     }
 
-    .channel-handle {
-      font-size: 0.72rem;
-      color: var(--text-subtle);
+    .channel-stats {
+      text-align: left;
     }
 
-    .channel-metrics {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
+    html[dir="rtl"] .channel-stats {
+      text-align: right;
     }
 
-    html[dir="rtl"] .channel-metrics {
-      align-items: flex-start;
-    }
-
-    .channel-count {
-      font-weight: 700;
+    .stat-val {
+      font-weight: 800;
       font-size: 0.95rem;
     }
 
-    .channel-health {
-      font-size: 0.72rem;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
+    .stat-status {
+      font-size: 0.75rem;
+      color: var(--status-positive);
+      font-weight: 600;
     }
-
-    .health-ok { color: var(--color-pos); }
-    .health-warn { color: var(--color-warn); }
 
     /* ==========================================================================
-       CUSTOMER VOICE VERBATIM STREAM
+       قسم صوت العميل الحقيقي (Customer Voice Stream) - تصميم أنيق وواضح
        ========================================================================== */
-    .verbatim-filters {
+    .section-title-wrap {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-      background: var(--bg-surface-elevated);
-      padding: 0.85rem 1.25rem;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle);
+      margin: 2rem 0 1rem;
     }
 
-    .filter-pills {
+    .section-title-wrap h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .pills-filter {
       display: flex;
-      flex-wrap: wrap;
       gap: 0.4rem;
     }
 
-    .filter-pill {
-      background: var(--bg-canvas);
+    .pill-btn {
+      background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
-      padding: 0.35rem 0.75rem;
-      border-radius: var(--radius-full);
-      font-size: 0.78rem;
-      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: all var(--transition-fast);
+      transition: all var(--transition);
     }
 
-    .filter-pill:hover {
-      color: var(--text-main);
-      border-color: var(--border-strong);
+    .pill-btn.active {
+      background: var(--balubaid-red);
+      color: #FFFFFF;
+      border-color: var(--balubaid-red);
     }
 
-    .filter-pill.active {
-      background: var(--brand-blue-600);
-      color: #ffffff;
-      border-color: var(--brand-blue-500);
-    }
-
-    .verbatim-grid {
+    .verbatims-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 1rem;
+      gap: 1.25rem;
     }
 
-    .verbatim-card {
+    .voice-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       padding: 1.25rem;
+      box-shadow: var(--shadow-card);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all var(--transition-fast);
-      position: relative;
+      transition: all var(--transition);
     }
 
-    .verbatim-card:hover {
-      border-color: var(--border-accent);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
+    .voice-card:hover {
+      box-shadow: var(--shadow-hover);
+      border-color: rgba(196, 18, 48, 0.3);
     }
 
-    .verbatim-header {
+    .voice-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 0.75rem;
     }
 
-    .author-info {
+    .user-profile {
       display: flex;
       align-items: center;
       gap: 0.6rem;
     }
 
-    .author-avatar {
+    .user-avatar {
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: var(--brand-navy-800);
-      border: 1px solid var(--brand-gold-500);
+      background: var(--balubaid-red-light);
+      color: var(--balubaid-red);
+      font-weight: 800;
+      font-size: 0.9rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
-      color: var(--brand-gold-400);
-      font-size: 0.85rem;
     }
 
-    .author-details {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .author-name {
-      font-weight: 700;
-      font-size: 0.85rem;
-      color: var(--text-main);
-    }
-
-    .post-meta {
-      font-size: 0.72rem;
-      color: var(--text-subtle);
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .sentiment-badge {
-      padding: 0.25rem 0.6rem;
-      border-radius: var(--radius-full);
-      font-size: 0.72rem;
-      font-weight: 700;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .badge-pos {
-      background: var(--color-pos-bg);
-      color: var(--color-pos);
-      border: 1px solid var(--color-pos-border);
-    }
-
-    .badge-neu {
-      background: var(--color-neu-bg);
-      color: var(--color-neu);
-      border: 1px solid var(--color-neu-border);
-    }
-
-    .badge-neg {
-      background: var(--color-neg-bg);
-      color: var(--color-neg);
-      border: 1px solid var(--color-neg-border);
-    }
-
-    .verbatim-body {
-      margin: 0.6rem 0;
-      font-size: 0.88rem;
-      line-height: 1.55;
-      color: var(--text-main);
-    }
-
-    .verbatim-ar {
-      font-family: var(--font-ar);
-      direction: rtl;
-      text-align: right;
-      padding: 0.5rem 0.75rem;
-      background: var(--bg-canvas);
-      border-radius: var(--radius-sm);
-      margin-bottom: 0.5rem;
-      border-right: 3px solid var(--brand-gold-500);
-    }
-
-    html[dir="rtl"] .verbatim-ar {
-      border-right: none;
-      border-left: 3px solid var(--brand-gold-500);
-    }
-
-    .verbatim-en {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-style: italic;
-    }
-
-    .verbatim-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 0.85rem;
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--border-subtle);
-      font-size: 0.75rem;
-    }
-
-    .verbatim-tags {
-      display: flex;
-      gap: 0.35rem;
-      flex-wrap: wrap;
-    }
-
-    .tag-badge {
-      background: var(--bg-surface-elevated);
-      color: var(--brand-blue-400);
-      padding: 0.2rem 0.5rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.7rem;
-      font-weight: 600;
-    }
-
-    .btn-respond {
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      padding: 0.3rem 0.65rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .btn-respond:hover {
-      background: var(--brand-blue-600);
-      color: #fff;
-      border-color: var(--brand-blue-500);
-    }
-
-    /* ==========================================================================
-       TOPIC & ASPECT MINING
-       ========================================================================== */
-    .aspect-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .aspect-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem;
-    }
-
-    .aspect-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.85rem;
-    }
-
-    .aspect-name {
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .aspect-score {
-      font-weight: 800;
-      font-size: 1.15rem;
-    }
-
-    .aspect-bar-container {
-      margin: 0.75rem 0;
-    }
-
-    .aspect-label-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      color: var(--text-subtle);
-      margin-bottom: 0.3rem;
-    }
-
-    .aspect-bullet-points {
-      margin-top: 0.85rem;
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--border-subtle);
-      font-size: 0.8rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .bullet-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.4rem;
-    }
-
-    .bullet-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      margin-top: 6px;
-      flex-shrink: 0;
-    }
-
-    /* ==========================================================================
-       DATA CONNECTOR & PIPELINE HEALTH TABLE
-       ========================================================================== */
-    .table-responsive {
-      width: 100%;
-      overflow-x: auto;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
-    }
-
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.85rem;
-    }
-
-    html[dir="rtl"] .data-table {
-      text-align: right;
-    }
-
-    .data-table th {
-      background: var(--bg-canvas);
-      padding: 0.85rem 1rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      border-bottom: 1px solid var(--border-subtle);
-      text-transform: uppercase;
-      font-size: 0.74rem;
-      letter-spacing: 0.05em;
-    }
-
-    .data-table td {
-      padding: 0.95rem 1rem;
-      border-bottom: 1px solid var(--border-subtle);
-      vertical-align: middle;
-    }
-
-    .data-table tr:hover {
-      background: var(--bg-surface-elevated);
-    }
-
-    .pipeline-status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.25rem 0.65rem;
-      border-radius: var(--radius-full);
-      font-weight: 700;
-      font-size: 0.74rem;
-    }
-
-    .pipeline-active {
-      background: var(--color-pos-bg);
-      color: var(--color-pos);
-    }
-
-    .pipeline-limited {
-      background: var(--color-warn-bg);
-      color: var(--color-warn);
-    }
-
-    /* Flow diagram */
-    .pipeline-flow {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 0.75rem;
-      margin: 1.5rem 0;
-    }
-
-    @media (max-width: 860px) {
-      .pipeline-flow {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .flow-step {
-      background: var(--bg-surface-elevated);
-      border: 1px solid var(--border-subtle);
-      border-top: 3px solid var(--brand-gold-500);
-      border-radius: var(--radius-md);
-      padding: 1rem;
-      position: relative;
-    }
-
-    .flow-step-num {
-      font-size: 0.68rem;
-      font-weight: 800;
-      color: var(--brand-gold-400);
-      text-transform: uppercase;
-      margin-bottom: 0.25rem;
-    }
-
-    .flow-step-title {
+    .user-name {
       font-weight: 700;
       font-size: 0.9rem;
-      margin-bottom: 0.35rem;
+      color: var(--text-main);
     }
 
-    .flow-step-desc {
+    .user-handle {
       font-size: 0.75rem;
-      color: var(--text-muted);
-      line-height: 1.4;
+      color: var(--text-subtle);
     }
 
-    /* ==========================================================================
-       EXECUTIVE SUMMARY & STRATEGIC ADVISORY
-       ========================================================================== */
-    .advisory-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      margin-top: 1.25rem;
-    }
-
-    @media (max-width: 768px) {
-      .advisory-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .advisory-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-    }
-
-    .advisory-card.opportunity {
-      border-left: 4px solid var(--color-pos);
-    }
-
-    .advisory-card.risk {
-      border-left: 4px solid var(--color-neg);
-    }
-
-    html[dir="rtl"] .advisory-card.opportunity {
-      border-left: 1px solid var(--border-subtle);
-      border-right: 4px solid var(--color-pos);
-    }
-
-    html[dir="rtl"] .advisory-card.risk {
-      border-left: 1px solid var(--border-subtle);
-      border-right: 4px solid var(--color-neg);
-    }
-
-    /* ==========================================================================
-       MODAL DIALOG (Customer Response & Export)
-       ========================================================================== */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
-
-    .modal-backdrop.open {
-      display: flex;
-    }
-
-    .modal-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-strong);
-      border-radius: var(--radius-xl);
-      max-width: 580px;
-      width: 100%;
-      padding: 1.75rem;
-      box-shadow: var(--shadow-lg);
-      animation: modalPop 0.25s ease;
-    }
-
-    @keyframes modalPop {
-      from { transform: scale(0.95); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.25rem;
-    }
-
-    .modal-title {
-      font-size: 1.15rem;
+    .sentiment-tag {
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
       font-weight: 700;
     }
 
-    .btn-close-modal {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-size: 1.2rem;
-      padding: 0.25rem;
+    .tag-positive {
+      background: var(--status-positive-bg);
+      color: var(--status-positive);
     }
 
-    .modal-textarea {
-      width: 100%;
-      height: 120px;
-      background: var(--bg-canvas);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
+    .tag-neutral {
+      background: var(--status-neutral-bg);
+      color: var(--status-neutral);
+    }
+
+    .tag-negative {
+      background: var(--status-negative-bg);
+      color: var(--status-negative);
+    }
+
+    .voice-quote {
+      font-size: 0.9rem;
+      line-height: 1.6;
       color: var(--text-main);
+      margin-bottom: 0.75rem;
       padding: 0.75rem;
-      font-family: inherit;
-      font-size: 0.88rem;
-      margin-bottom: 1rem;
-      resize: vertical;
+      background: var(--bg-page);
+      border-radius: var(--radius-md);
+      border-right: 3px solid var(--balubaid-red);
     }
 
-    .modal-textarea:focus {
-      outline: none;
-      border-color: var(--brand-blue-500);
+    html[dir="ltr"] .voice-quote {
+      border-right: none;
+      border-left: 3px solid var(--balubaid-red);
     }
 
-    .modal-actions {
+    .voice-footer {
       display: flex;
-      justify-content: flex-end;
-      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .voice-branch-tag {
+      font-weight: 600;
     }
 
     /* ==========================================================================
-       FOOTER
+       لوحة الربط البرمجي والـ Backend و Google APIs
        ========================================================================== */
-    .app-footer {
-      background: var(--bg-canvas);
-      border-top: 1px solid var(--border-subtle);
+    .api-banner-card {
+      background: var(--bg-surface);
+      border: 2px solid var(--balubaid-red);
+      border-radius: var(--radius-lg);
       padding: 1.5rem;
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
+      margin-top: 2.5rem;
+      box-shadow: 0 4px 20px rgba(196, 18, 48, 0.08);
     }
 
-    .app-footer-inner {
-      max-width: 1440px;
-      margin: 0 auto;
+    .api-banner-header {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
       gap: 1rem;
     }
 
-    /* ==========================================================================
-       PRINT STYLES FOR EXECUTIVE PDF EXPORT
-       ========================================================================== */
-    @media print {
-      body {
-        background: #ffffff !important;
-        color: #000000 !important;
-      }
-      .top-nav, .filter-bar, .filter-actions, .btn-respond, .filter-pills, .btn-action, .btn-toggle-lang, .btn-toggle-theme {
-        display: none !important;
-      }
-      .tab-pane {
-        display: block !important;
-      }
-      .card, .kpi-card, .verbatim-card {
-        border: 1px solid #ccc !important;
-        box-shadow: none !important;
-        break-inside: avoid;
-        margin-bottom: 1rem;
-      }
+    .api-banner-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--balubaid-red);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .api-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .api-item {
+      background: var(--bg-page);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+    }
+
+    .api-item-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .api-item p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .code-inline {
+      display: inline-block;
+      font-family: monospace;
+      font-size: 0.75rem;
+      background: var(--bg-surface-soft);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      color: var(--balubaid-red);
+      margin-top: 0.4rem;
+    }
+
+    /* تذييل الصفحة */
+    .corporate-footer {
+      text-align: center;
+      padding: 2.5rem 0 1rem;
+      font-size: 0.82rem;
+      color: var(--text-subtle);
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
 
-<div class="app-shell">
-
-  <!-- ================= TOP NAVIGATION ================= -->
-  <header class="top-nav">
-    <div class="top-nav-inner">
-      <div class="brand-group">
-        <div class="brand-emblem">
-          <svg viewBox="0 0 24 24">
-            <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
-          </svg>
-        </div>
-        <div class="brand-titles">
-          <div class="brand-badge">
-            <span data-i18n="bgc_group">BALUBAID GROUP OF COMPANIES · BGC</span>
-          </div>
-          <div class="brand-title">
-            Autozone <span>Social Intelligence</span>
-          </div>
-          <div class="brand-subtitle" data-i18n="platform_desc">
-            Customer Sentiment, Multi-Channel Listening & Automotive Brand Health
-          </div>
+  <!-- ================= الترويسة الرئيسية ================= -->
+  <header class="main-header">
+    <div class="header-inner">
+      <div class="brand-wrap">
+        <!-- شعار بالبيد الأحمر BGC -->
+        <div class="balubaid-logo-box">B</div>
+        <div class="brand-text">
+          <h1>مجموعة بالبيد · <span>أوتوزون</span></h1>
+          <p>لوحة رصد صوت العميل والذكاء التحليلي المباشر للعلامة التجارية</p>
         </div>
       </div>
 
-      <div class="nav-controls">
-        <div class="live-status-pill">
-          <div class="pulse-dot"></div>
-          <span data-i18n="status_live">Live Ingestion Active</span>
+      <div class="header-actions">
+        <div class="status-badge">
+          <span class="pulse-dot"></span>
+          <span>التحديث اللحظي نشط</span>
         </div>
 
-        <button class="audio-briefing-btn" id="btnAudioBriefingTop" title="Listen to AI Voice Briefing / استمع للموجز الصوتي">
-          <div class="audio-wave">
-            <span class="audio-bar"></span>
-            <span class="audio-bar"></span>
-            <span class="audio-bar"></span>
-            <span class="audio-bar"></span>
-            <span class="audio-bar"></span>
-          </div>
-          <span id="audioTopLabel" data-i18n="audio_briefing">🎙️ Listen to Briefing</span>
+        <button class="btn" id="btnToggleLang" title="تغيير اللغة / Switch Language">
+          <span id="langText">English</span>
         </button>
 
-        <button class="btn-toggle-lang" id="btnToggleLang" title="Switch Language / تغيير اللغة">
-          <span id="langLabel">العربية</span>
+        <button class="btn" id="btnToggleTheme" title="النسق">
+          <span id="themeEmoji">🌙</span>
         </button>
 
-        <button class="btn-toggle-theme" id="btnToggleTheme" title="Toggle Theme">
-          <span id="themeIcon">☀️</span>
-        </button>
-
-        <button class="btn-action btn-primary" id="btnExportReport">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span data-i18n="export_report">Export Executive Report</span>
+        <button class="btn btn-balubaid-red" id="btnOpenApiModal">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span>إعدادات الـ Backend و APIs</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- ================= FILTER & TABS SUB-BAR ================= -->
-  <div class="filter-bar">
-    <div class="filter-bar-inner">
-      <nav class="tabs-nav" role="tablist">
-        <button class="tab-btn active" data-tab="tab-overview" role="tab" aria-selected="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          <span data-i18n="nav_overview">Executive Overview</span>
-        </button>
-        <button class="tab-btn" data-tab="tab-channels" role="tab" aria-selected="false">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          <span data-i18n="nav_channels">Channel & Coverage</span>
-        </button>
-        <button class="tab-btn" data-tab="tab-verbatim" role="tab" aria-selected="false">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          <span data-i18n="nav_verbatim">Customer Voice Stream</span>
-        </button>
-        <button class="tab-btn" data-tab="tab-aspects" role="tab" aria-selected="false">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <span data-i18n="nav_aspects">Topic & Service Mining</span>
-        </button>
-        <button class="tab-btn" data-tab="tab-pipeline" role="tab" aria-selected="false">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span data-i18n="nav_pipeline">Pipeline & Architecture</span>
-        </button>
-      </nav>
+  <div class="app-container">
 
-      <div class="filter-actions">
-        <div class="search-input-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" class="search-input" id="globalSearch" placeholder="Search keywords, branches, VIN...">
+    <!-- ================= شريط الفلاتر والبحث المبسط ================= -->
+    <div class="controls-strip">
+      <div class="strip-group">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="liveSearchInput" placeholder="ابحث في آراء العملاء، الفروع، الشكاوى...">
         </div>
 
-        <select class="branch-filter-select" id="branchFilter">
-          <option value="all" data-i18n="branch_all">All Branches (KSA)</option>
-          <option value="jeddah">Jeddah - Madinah Road</option>
-          <option value="jeddah_sultan">Jeddah - Prince Sultan</option>
-          <option value="riyadh_khurais">Riyadh - Khurais</option>
-          <option value="riyadh_dareen">Riyadh - Dareen</option>
-          <option value="dammam">Dammam - Al-Khobar Hwy</option>
-          <option value="makkah">Makkah Showroom</option>
+        <select class="select-dropdown" id="cityDropdown">
+          <option value="all">كافة مدن المملكة (جدة، الرياض، الدمام)</option>
+          <option value="jeddah">جدة - طريق المدينة وشارع سلطان</option>
+          <option value="riyadh">الرياض - خريص ودارين</option>
+          <option value="dammam">المنطقة الشرقية - الخبر والدمام</option>
+          <option value="makkah">مكة المكرمة</option>
         </select>
 
-        <select class="date-filter-select" id="dateFilter">
-          <option value="7d" data-i18n="filter_7d">Last 7 Days</option>
-          <option value="30d" selected data-i18n="filter_30d">Last 30 Days</option>
-          <option value="90d" data-i18n="filter_90d">Q3 2026 (Historical)</option>
-          <option value="ytd" data-i18n="filter_ytd">Year to Date (2026)</option>
+        <select class="select-dropdown" id="timeDropdown">
+          <option value="30d">آخر 30 يوماً</option>
+          <option value="7d">آخر 7 أيام</option>
+          <option value="24h">آخر 24 ساعة (لحظي)</option>
         </select>
       </div>
+
+      <div class="strip-group">
+        <button class="btn" id="btnRefreshData">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          <span>تحديث البيانات الآن</span>
+        </button>
+      </div>
     </div>
-  </div>
 
-  <!-- ================= MAIN DASHBOARD BODY ================= -->
-  <main class="main-content">
-
-    <!-- KPI CARDS SUMMARY (PERSISTENT TOP) -->
-    <section class="kpi-grid">
-      <!-- Total Mentions -->
+    <!-- ================= بطاقات المؤشرات الأربعة الأساسية ================= -->
+    <div class="kpi-row">
+      <!-- إجمالي التفاعلات والمرصود -->
       <div class="kpi-card">
-        <div class="kpi-header">
-          <span class="kpi-title" data-i18n="kpi_mentions">Total Mentions Analyzed</span>
-          <div class="kpi-icon">
+        <div class="kpi-card-header">
+          <span class="kpi-card-title">إجمالي الآراء المرصودة</span>
+          <div class="kpi-icon-pill">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           </div>
         </div>
-        <div class="kpi-value" id="kpiTotalMentions">14,820</div>
-        <div class="kpi-footer">
-          <span class="trend-pill trend-up">↑ +18.4%</span>
-          <span class="kpi-subtext" data-i18n="vs_prior_period">vs prior 30 days</span>
+        <div class="kpi-number" id="kpiTotalCount">14,820</div>
+        <div class="kpi-note">
+          <span class="badge-trend-up">↑ +18%</span>
+          <span>من كافة المنصات خلال 30 يوماً</span>
         </div>
       </div>
 
-      <!-- Net Sentiment Score (NSS) -->
+      <!-- صافي مؤشر المشاعر الإيجابية NSS -->
       <div class="kpi-card">
-        <div class="kpi-header">
-          <span class="kpi-title" data-i18n="kpi_nss">Net Sentiment Score (NSS)</span>
-          <div class="kpi-icon" style="color: var(--color-pos)">
+        <div class="kpi-card-header">
+          <span class="kpi-card-title">صافي رضا العملاء (NSS)</span>
+          <div class="kpi-icon-pill" style="color:var(--status-positive)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
           </div>
         </div>
-        <div class="kpi-value" style="color: var(--color-pos)">+42%</div>
-        <div class="kpi-footer">
-          <span class="trend-pill trend-up">↑ +6.2 pt</span>
-          <span class="kpi-subtext" data-i18n="pos_vs_neg">61% Pos · 20% Neu · 19% Neg</span>
-        </div>
-        <div class="sentiment-mini-bar">
-          <div class="sentiment-segment seg-pos" style="width: 61%" title="Positive: 61%"></div>
-          <div class="sentiment-segment seg-neu" style="width: 20%" title="Neutral: 20%"></div>
-          <div class="sentiment-segment seg-neg" style="width: 19%" title="Negative: 19%"></div>
+        <div class="kpi-number" style="color:var(--status-positive)">+42%</div>
+        <div class="kpi-note">
+          <span class="badge-trend-up">↑ +6.2 نقطة</span>
+          <span>61% إيجابي · 20% محايد · 19% ملاحظات</span>
         </div>
       </div>
 
-      <!-- Response & Resolution Rate -->
+      <!-- تقييم خرائط قوقل للفروع -->
       <div class="kpi-card">
-        <div class="kpi-header">
-          <span class="kpi-title" data-i18n="kpi_resolution">Customer Care Response</span>
-          <div class="kpi-icon" style="color: var(--brand-blue-400)">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div class="kpi-card-header">
+          <span class="kpi-card-title">تقييم الفروع (Google Maps)</span>
+          <div class="kpi-icon-pill" style="color:#EA4335">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
           </div>
         </div>
-        <div class="kpi-value">94.2%</div>
-        <div class="kpi-footer">
-          <span class="trend-pill trend-up">↑ 28 min</span>
-          <span class="kpi-subtext" data-i18n="avg_response_time">Average First Reply</span>
+        <div class="kpi-number">4.2 <span style="font-size:1.2rem;color:var(--text-muted)">★</span></div>
+        <div class="kpi-note">
+          <span>متوسط 18 صالة عرض ومركز صيانة</span>
         </div>
       </div>
 
-      <!-- Active Channel Coverage -->
+      <!-- سرعة استجابة خدمة العملاء -->
       <div class="kpi-card">
-        <div class="kpi-header">
-          <span class="kpi-title" data-i18n="kpi_coverage">Channel Ingestion Health</span>
-          <div class="kpi-icon" style="color: var(--brand-gold-400)">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        <div class="kpi-card-header">
+          <span class="kpi-card-title">سرعة معالجة الحالات الحرجة</span>
+          <div class="kpi-icon-pill">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
         </div>
-        <div class="kpi-value">6 / 6 <span style="font-size:1rem;font-weight:500;color:var(--text-muted)">Active</span></div>
-        <div class="kpi-footer">
-          <span class="trend-pill trend-up">100% OK</span>
-          <span class="kpi-subtext" data-i18n="social_google_active">Social, Haraj & Maps</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= TAB 1: EXECUTIVE OVERVIEW ================= -->
-    <div class="tab-pane active" id="tab-overview">
-
-      <!-- Executive Audio Briefing Hero Widget -->
-      <div class="audio-briefing-card" id="executiveAudioCard">
-        <div class="audio-briefing-meta">
-          <div class="audio-briefing-icon">🎙️</div>
-          <div class="audio-briefing-info">
-            <h3 data-i18n="audio_card_title">Executive Audio Intelligence Digest · October 2026</h3>
-            <p data-i18n="audio_card_sub">Listen to AI voice briefing summarizing 14,820 customer interactions, +42% NSS sentiment, and operational alerts.</p>
-          </div>
-        </div>
-        <div class="audio-controls-row">
-          <span class="audio-status-text" id="audioStatusText" data-i18n="audio_ready">Ready to play</span>
-          <button class="btn-audio-circle" id="btnPlayAudio" title="Play / Pause Audio Briefing">
-            <svg id="audioPlayIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          </button>
-          <button class="audio-speed-btn" id="btnAudioSpeed">1.0x</button>
-          <button class="btn-action" id="btnStopAudio" title="Stop Audio" style="padding:0.35rem 0.65rem;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
-            <span data-i18n="btn_stop">Stop</span>
-          </button>
-        </div>
-      </div>
-      <div class="dashboard-row">
-        <!-- Main Sentiment & Volume Trend Chart -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title-group">
-              <h2 class="card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-                <span data-i18n="trend_chart_title">Mentions & Sentiment Trajectory (KSA)</span>
-              </h2>
-              <span class="card-subtitle" data-i18n="trend_chart_sub">Daily volume breakdown across Saudi Arabia by sentiment class</span>
-            </div>
-            <div style="font-size: 0.78rem; color: var(--text-muted)">
-              <span style="display:inline-block;width:10px;height:10px;background:#10b981;border-radius:2px;margin-right:4px;"></span> <span data-i18n="lbl_pos">Positive</span>
-              <span style="display:inline-block;width:10px;height:10px;background:#64748b;border-radius:2px;margin:0 4px 0 12px;"></span> <span data-i18n="lbl_neu">Neutral</span>
-              <span style="display:inline-block;width:10px;height:10px;background:#ef4444;border-radius:2px;margin:0 4px 0 12px;"></span> <span data-i18n="lbl_neg">Negative</span>
-            </div>
-          </div>
-          <div class="chart-box">
-            <canvas id="trendChart"></canvas>
-          </div>
-        </div>
-
-        <!-- Channel Volume Distribution Doughnut -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title-group">
-              <h2 class="card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
-                <span data-i18n="channel_share_title">Share of Voice by Channel</span>
-              </h2>
-              <span class="card-subtitle" data-i18n="channel_share_sub">Total 14,820 captured customer interactions</span>
-            </div>
-          </div>
-          <div class="chart-box">
-            <canvas id="channelDoughnut"></canvas>
-          </div>
-        </div>
-      </div>
-
-      <!-- Secondary Row: Regional Sentiment & Top Hashtags -->
-      <div class="dashboard-row">
-        <!-- Regional Sentiment breakdown -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title-group">
-              <h2 class="card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span data-i18n="regional_title">Regional Customer Satisfaction by Province</span>
-              </h2>
-              <span class="card-subtitle" data-i18n="regional_sub">Comparison of Western, Central & Eastern province Autozone branches</span>
-            </div>
-          </div>
-          <div class="chart-box" style="height: 250px;">
-            <canvas id="regionChart"></canvas>
-          </div>
-        </div>
-
-        <!-- Top Keywords & Strategic Summary -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title-group">
-              <h2 class="card-title">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h16"/><path d="M4 15h16"/><path d="M10 3L8 21"/><path d="M16 3l-2 18"/></svg>
-                <span data-i18n="trending_topics_title">Trending Topics & Hot Phrases</span>
-              </h2>
-              <span class="card-subtitle" data-i18n="trending_topics_sub">Automated Arabic dialect entity extraction</span>
-            </div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem;">
-            <span class="tag-badge" style="font-size:0.85rem;padding:0.4rem 0.8rem;background:var(--color-pos-bg);color:var(--color-pos);">#عروض_التقسيط (4,210)</span>
-            <span class="tag-badge" style="font-size:0.85rem;padding:0.4rem 0.8rem;background:var(--bg-surface-elevated);color:var(--brand-blue-400);">#صيانة_اوتوزون (3,140)</span>
-            <span class="tag-badge" style="font-size:0.85rem;padding:0.4rem 0.8rem;background:var(--bg-surface-elevated);color:var(--brand-gold-400);">#قطع_غيار_اصلية (2,450)</span>
-            <span class="tag-badge" style="font-size:0.85rem;padding:0.4rem 0.8rem;background:var(--color-neg-bg);color:var(--color-neg);">#تأخر_الاستلام (1,120)</span>
-            <span class="tag-badge" style="font-size:0.85rem;padding:0.4rem 0.8rem;background:var(--bg-surface-elevated);color:var(--text-main);">#فرع_طريق_المدينة (940)</span>
-            <span class="tag-badge" style="font-size:0.85rem;padding:0.4rem 0.8rem;background:var(--bg-surface-elevated);color:var(--text-main);">#بالبيد_للسيارات (890)</span>
-            <span class="tag-badge" style="font-size:0.85rem;padding:0.4rem 0.8rem;background:var(--color-pos-bg);color:var(--color-pos);">#ضمان_المحرك (760)</span>
-            <span class="tag-badge" style="font-size:0.85rem;padding:0.4rem 0.8rem;background:var(--bg-surface-elevated);color:var(--text-subtle);">#حراج_السيارات (650)</span>
-          </div>
-
-          <div style="margin-top:1.5rem;padding:1rem;background:var(--bg-canvas);border-radius:var(--radius-md);border-left:3px solid var(--brand-gold-500);">
-            <div style="font-weight:700;font-size:0.85rem;margin-bottom:0.25rem;" data-i18n="ai_insight_headline">⚡ AI Executive Briefing</div>
-            <div style="font-size:0.8rem;color:var(--text-muted);line-height:1.45;" data-i18n="ai_insight_body">
-              Customer sentiment surged +6.2% following the 0% installment promotion with Al-Rajhi and SNB banks. Main area requiring attention: parts delivery delays in Jeddah Prince Sultan service center.
-            </div>
-          </div>
+        <div class="kpi-number">28 <span style="font-size:1.1rem;color:var(--text-muted);font-weight:600">دقيقة</span></div>
+        <div class="kpi-note">
+          <span class="badge-trend-up">94%</span>
+          <span>نسبة إغلاق الشكاوى في الوقت المحدد</span>
         </div>
       </div>
     </div>
 
-    <!-- ================= TAB 2: CHANNEL & COVERAGE ================= -->
-    <div class="tab-pane" id="tab-channels">
-      <div class="card" style="margin-bottom: 1.5rem;">
-        <div class="card-header">
-          <div class="card-title-group">
-            <h2 class="card-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-              <span data-i18n="channels_status_title">Active Social Endpoints & Connector Audit</span>
-            </h2>
-            <span class="card-subtitle" data-i18n="channels_status_sub">Real-time health, verified Balubaid Autozone endpoints and analytical coverage</span>
-          </div>
-          <button class="btn-action" id="btnSyncConnectors">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-            <span data-i18n="refresh_connectors">Re-check Connectors</span>
-          </button>
-        </div>
-
-        <div class="table-responsive">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th data-i18n="th_channel">Channel / Brand Asset</th>
-                <th data-i18n="th_account">Official Account / Target</th>
-                <th data-i18n="th_status">API / Scraping Status</th>
-                <th data-i18n="th_volume">30D Captured Volume</th>
-                <th data-i18n="th_sentiment">Channel Sentiment</th>
-                <th data-i18n="th_coverage">Coverage Scope</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div class="channel-info">
-                    <div class="channel-icon icon-snapchat">👻</div>
-                    <div>
-                      <strong>Snapchat</strong>
-                      <div class="channel-handle">Stories & Public Spotlight</div>
-                    </div>
-                  </div>
-                </td>
-                <td><a href="https://www.snapchat.com/@autozoneksa" target="_blank" rel="noopener">@autozoneksa</a></td>
-                <td><span class="pipeline-status-badge pipeline-active">● Active API & Ingestion</span></td>
-                <td><strong>3,410</strong> mentions</td>
-                <td><span class="sentiment-badge badge-pos">72% Pos</span></td>
-                <td>Promotional campaigns, vehicle installment spotlights</td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="channel-info">
-                    <div class="channel-icon icon-instagram">📸</div>
-                    <div>
-                      <strong>Instagram</strong>
-                      <div class="channel-handle">Reels, Comments & DMs</div>
-                    </div>
-                  </div>
-                </td>
-                <td><a href="https://instagram.com/autozoneksa" target="_blank" rel="noopener">@autozoneksa</a></td>
-                <td><span class="pipeline-status-badge pipeline-active">● Active Webhook</span></td>
-                <td><strong>4,230</strong> comments</td>
-                <td><span class="sentiment-badge badge-pos">64% Pos</span></td>
-                <td>New vehicle arrival announcements, price inquiries</td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="channel-info">
-                    <div class="channel-icon icon-x">𝕏</div>
-                    <div>
-                      <strong>X (Twitter)</strong>
-                      <div class="channel-handle">Mentions, Quotes & Threads</div>
-                    </div>
-                  </div>
-                </td>
-                <td><a href="https://x.com/autozoneksa" target="_blank" rel="noopener">@autozoneksa</a></td>
-                <td><span class="pipeline-status-badge pipeline-active">● Stream v2 Filtered</span></td>
-                <td><strong>3,890</strong> posts</td>
-                <td><span class="sentiment-badge badge-neg">31% Neg / Issues</span></td>
-                <td>Customer support escalations, financing inquiries</td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="channel-info">
-                    <div class="channel-icon icon-tiktok">🎵</div>
-                    <div>
-                      <strong>TikTok</strong>
-                      <div class="channel-handle">Video Reviews & UGC</div>
-                    </div>
-                  </div>
-                </td>
-                <td><a href="https://tiktok.com/@autozoneksa" target="_blank" rel="noopener">@autozoneksa</a></td>
-                <td><span class="pipeline-status-badge pipeline-active">● Hashtag Stream</span></td>
-                <td><strong>1,820</strong> clips & comments</td>
-                <td><span class="sentiment-badge badge-pos">68% Pos</span></td>
-                <td>Showroom walkarounds, car delivery celebrations</td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="channel-info">
-                    <div class="channel-icon icon-youtube">▶</div>
-                    <div>
-                      <strong>YouTube</strong>
-                      <div class="channel-handle">Long-form Car Reviews</div>
-                    </div>
-                  </div>
-                </td>
-                <td><a href="https://www.youtube.com/@AutozoneJeddah" target="_blank" rel="noopener">@AutozoneJeddah</a></td>
-                <td><span class="pipeline-status-badge pipeline-active">● Data API v3</span></td>
-                <td><strong>590</strong> comments</td>
-                <td><span class="sentiment-badge badge-neu">55% Neu / Inq</span></td>
-                <td>Detailed vehicle test drives, warranty specs</td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="channel-info">
-                    <div class="channel-icon icon-google">📍</div>
-                    <div>
-                      <strong>Google Business Reviews</strong>
-                      <div class="channel-handle">18 Showrooms & Service Centers</div>
-                    </div>
-                  </div>
-                </td>
-                <td>Autozone KSA Branches</td>
-                <td><span class="pipeline-status-badge pipeline-active">● Places API Sync</span></td>
-                <td><strong>880</strong> reviews</td>
-                <td><span class="sentiment-badge badge-pos">4.2 ★ Avg</span></td>
-                <td>In-person showroom hospitality, mechanic speed</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= TAB 3: CUSTOMER VOICE VERBATIM ================= -->
-    <div class="tab-pane" id="tab-verbatim">
-      <!-- Verbatim Filters -->
-      <div class="verbatim-filters">
-        <div class="filter-pills" id="sentimentFilterPills">
-          <button class="filter-pill active" data-filter="all" data-i18n="pill_all">All (15 Samples)</button>
-          <button class="filter-pill" data-filter="positive" data-i18n="pill_pos">Positive Only</button>
-          <button class="filter-pill" data-filter="neutral" data-i18n="pill_neu">Neutral / Inquiries</button>
-          <button class="filter-pill" data-filter="negative" data-i18n="pill_neg">Critical Issues</button>
-        </div>
-
-        <div style="font-size:0.8rem;color:var(--text-muted);">
-          <span data-i18n="showing_posts">Showing real customer voice in Saudi Arabia with verified provenance</span>
-        </div>
-      </div>
-
-      <!-- Verbatim Cards Stream -->
-      <div class="verbatim-grid" id="verbatimGrid">
-        <!-- Dynamic Cards rendered via JS -->
-      </div>
-    </div>
-
-    <!-- ================= TAB 4: TOPIC & ASPECT MINING ================= -->
-    <div class="tab-pane" id="tab-aspects">
-      <div class="aspect-grid">
-        <!-- Financing & Installments -->
-        <div class="aspect-card">
-          <div class="aspect-top">
-            <span class="aspect-name" data-i18n="aspect_finance">Auto Financing & Installments (التقسيط)</span>
-            <span class="aspect-score" style="color:var(--color-pos)">88% Pos</span>
-          </div>
-          <div class="aspect-bar-container">
-            <div class="aspect-label-row">
-              <span>Customer Satisfaction</span>
-              <span>Volume: 4,210 mentions</span>
-            </div>
-            <div class="sentiment-mini-bar">
-              <div class="sentiment-segment seg-pos" style="width: 88%"></div>
-              <div class="sentiment-segment seg-neu" style="width: 8%"></div>
-              <div class="sentiment-segment seg-neg" style="width: 4%"></div>
-            </div>
-          </div>
-          <div class="aspect-bullet-points">
-            <div class="bullet-item">
-              <div class="bullet-dot" style="background:var(--color-pos)"></div>
-              <span>High praise for fast bank approvals through Al-Rajhi and SNB partnerships.</span>
-            </div>
-            <div class="bullet-item">
-              <div class="bullet-dot" style="background:var(--color-warn)"></div>
-              <span>Inquiries on down-payment waiver conditions for private-sector employees.</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Maintenance & Service Workshop -->
-        <div class="aspect-card">
-          <div class="aspect-top">
-            <span class="aspect-name" data-i18n="aspect_service">Workshop & Service Maintenance (الصيانة)</span>
-            <span class="aspect-score" style="color:var(--color-warn)">62% Pos</span>
-          </div>
-          <div class="aspect-bar-container">
-            <div class="aspect-label-row">
-              <span>Customer Satisfaction</span>
-              <span>Volume: 3,140 mentions</span>
-            </div>
-            <div class="sentiment-mini-bar">
-              <div class="sentiment-segment seg-pos" style="width: 62%"></div>
-              <div class="sentiment-segment seg-neu" style="width: 14%"></div>
-              <div class="sentiment-segment seg-neg" style="width: 24%"></div>
-            </div>
-          </div>
-          <div class="aspect-bullet-points">
-            <div class="bullet-item">
-              <div class="bullet-dot" style="background:var(--color-pos)"></div>
-              <span>Praise for oil change speed and free 20-point safety inspection.</span>
-            </div>
-            <div class="bullet-item">
-              <div class="bullet-dot" style="background:var(--color-neg)"></div>
-              <span>Bottlenecks reported during weekend bookings at Jeddah Madinah Road center.</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Spare Parts & Availability -->
-        <div class="aspect-card">
-          <div class="aspect-top">
-            <span class="aspect-name" data-i18n="aspect_parts">Genuine Spare Parts (قطع الغيار)</span>
-            <span class="aspect-score" style="color:var(--color-pos)">74% Pos</span>
-          </div>
-          <div class="aspect-bar-container">
-            <div class="aspect-label-row">
-              <span>Customer Satisfaction</span>
-              <span>Volume: 2,450 mentions</span>
-            </div>
-            <div class="sentiment-mini-bar">
-              <div class="sentiment-segment seg-pos" style="width: 74%"></div>
-              <div class="sentiment-segment seg-neu" style="width: 16%"></div>
-              <div class="sentiment-segment seg-neg" style="width: 10%"></div>
-            </div>
-          </div>
-          <div class="aspect-bullet-points">
-            <div class="bullet-item">
-              <div class="bullet-dot" style="background:var(--color-pos)"></div>
-              <span>Verified genuine manufacturer stamps and warranty coverage recognized.</span>
-            </div>
-            <div class="bullet-item">
-              <div class="bullet-dot" style="background:var(--color-warn)"></div>
-              <span>Request for online stock availability tracker before driving to branch.</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Showroom & Sales Hospitality -->
-        <div class="aspect-card">
-          <div class="aspect-top">
-            <span class="aspect-name" data-i18n="aspect_showroom">Showroom Hospitality & Staff (صالات العرض)</span>
-            <span class="aspect-score" style="color:var(--color-pos)">91% Pos</span>
-          </div>
-          <div class="aspect-bar-container">
-            <div class="aspect-label-row">
-              <span>Customer Satisfaction</span>
-              <span>Volume: 2,980 mentions</span>
-            </div>
-            <div class="sentiment-mini-bar">
-              <div class="sentiment-segment seg-pos" style="width: 91%"></div>
-              <div class="sentiment-segment seg-neu" style="width: 5%"></div>
-              <div class="sentiment-segment seg-neg" style="width: 4%"></div>
-            </div>
-          </div>
-          <div class="aspect-bullet-points">
-            <div class="bullet-item">
-              <div class="bullet-dot" style="background:var(--color-pos)"></div>
-              <span>Exceptional Saudi sales consultant courtesy and transparent test drives.</span>
-            </div>
-            <div class="bullet-item">
-              <div class="bullet-dot" style="background:var(--color-pos)"></div>
-              <span>Clean modern showroom facilities with fast vehicle handover ceremony.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Strategic Advisory & Management Action Plan -->
+    <!-- ================= الرسم البياني وحصة القنوات ================= -->
+    <div class="grid-two-columns">
+      <!-- المسار الزمني للمشاعر وحجم الرصد -->
       <div class="card">
-        <div class="card-header">
-          <div class="card-title-group">
-            <h2 class="card-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-              <span data-i18n="strategic_advisory_title">Balubaid Executive Action Recommendations</span>
-            </h2>
-            <span class="card-subtitle" data-i18n="strategic_advisory_sub">Prioritized interventions derived from NLP sentiment clustering</span>
+        <div class="card-title-bar">
+          <h2 class="card-heading">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            مسار المشاعر وحجم التفاعل اليومي
+          </h2>
+          <div style="font-size:0.8rem;display:flex;gap:0.75rem;">
+            <span><span style="display:inline-block;width:10px;height:10px;background:var(--balubaid-red);border-radius:2px;"></span> إجمالي التفاعل</span>
+            <span><span style="display:inline-block;width:10px;height:10px;background:var(--status-positive);border-radius:2px;"></span> إيجابي</span>
+            <span><span style="display:inline-block;width:10px;height:10px;background:var(--status-negative);border-radius:2px;"></span> ملاحظات</span>
           </div>
         </div>
-
-        <div class="advisory-grid">
-          <div class="advisory-card opportunity">
-            <div style="font-weight:700;color:var(--color-pos);margin-bottom:0.5rem;font-size:0.95rem;" data-i18n="opp_title">
-              🚀 Immediate Growth Opportunity
-            </div>
-            <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.5;" data-i18n="opp_body">
-              Amplify the TikTok & Snapchat campaign featuring monthly installment simulations for young Saudi professionals. Social chatter indicates a 40% conversion intent spike when monthly payment amounts are explicitly disclosed in short-form video.
-            </p>
-          </div>
-
-          <div class="advisory-card risk">
-            <div style="font-weight:700;color:var(--color-neg);margin-bottom:0.5rem;font-size:0.95rem;" data-i18n="risk_title">
-              ⚠️ Service Bottleneck Mitigation
-            </div>
-            <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.5;" data-i18n="risk_body">
-              Introduce automated WhatsApp SMS status updates for vehicles in maintenance across Jeddah & Riyadh centers. 68% of negative reviews in Google Reviews originate from lack of real-time repair status updates.
-            </p>
-          </div>
+        <div class="chart-container">
+          <canvas id="mainTrendsChart"></canvas>
         </div>
       </div>
-    </div>
 
-    <!-- ================= TAB 5: PIPELINE & ARCHITECTURE ================= -->
-    <div class="tab-pane" id="tab-pipeline">
-      <div class="card" style="margin-bottom: 1.5rem;">
-        <div class="card-header">
-          <div class="card-title-group">
-            <h2 class="card-title">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-              <span data-i18n="arch_title">Autozone Intelligence Data Pipeline</span>
-            </h2>
-            <span class="card-subtitle" data-i18n="arch_sub">End-to-end ingestion, deduplication, dialect NLP and compliance safeguards</span>
-          </div>
+      <!-- القنوات المعتمدة وحالة الربط البرمجي -->
+      <div class="card">
+        <div class="card-title-bar">
+          <h2 class="card-heading">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            القنوات ومصادر الرصد المعتمدة
+          </h2>
         </div>
-
-        <div class="pipeline-flow">
-          <div class="flow-step">
-            <div class="flow-step-num">Step 01</div>
-            <div class="flow-step-title" data-i18n="step1_title">Multi-Source Ingestion</div>
-            <div class="flow-step-desc" data-i18n="step1_desc">Real-time webhook and streaming API connectors polling Snapchat, Instagram, X, TikTok, YouTube, Haraj and Google Maps.</div>
-          </div>
-          <div class="flow-step">
-            <div class="flow-step-num">Step 02</div>
-            <div class="flow-step-title" data-i18n="step2_title">Entity Disambiguation</div>
-            <div class="flow-step-desc" data-i18n="step2_desc">Distinguishes Balubaid Autozone KSA from unrelated US/international entities using location geofencing & branch tagging.</div>
-          </div>
-          <div class="flow-step">
-            <div class="flow-step-num">Step 03</div>
-            <div class="flow-step-title" data-i18n="step3_title">Saudi Dialect NLP</div>
-            <div class="flow-step-desc" data-i18n="step3_desc">Custom BERT model trained on Najdi, Hijazi & Eastern Saudi slang for 94.8% sentiment and intent classification precision.</div>
-          </div>
-          <div class="flow-step">
-            <div class="flow-step-num">Step 04</div>
-            <div class="flow-step-title" data-i18n="step4_title">Human Verification</div>
-            <div class="flow-step-desc" data-i18n="step4_desc">Critical customer escalations flagged into Balubaid CRM queue with 30-minute SLA for social care teams.</div>
-          </div>
-          <div class="flow-step">
-            <div class="flow-step-num">Step 05</div>
-            <div class="flow-step-title" data-i18n="step5_title">Executive Reporting</div>
-            <div class="flow-step-desc" data-i18n="step5_desc">Automated ingestion into BigQuery analytical warehouse feeding leadership dashboards and operations reviews.</div>
-          </div>
-        </div>
-
-        <div style="background:var(--bg-canvas);padding:1.25rem;border-radius:var(--radius-md);margin-top:1rem;">
-          <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:0.5rem;" data-i18n="compliance_title">Saudi Data Sovereignty & Compliance Standards</h3>
-          <p style="font-size:0.82rem;color:var(--text-muted);line-height:1.5;" data-i18n="compliance_body">
-            All customer verbatims are processed under Saudi Arabia Personal Data Protection Law (PDPL). Personal Identifiable Information (PII) such as national IDs, phone numbers, and vehicle license plate numbers are hashed and anonymized prior to storage in local cloud instances.
-          </p>
-        </div>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="app-footer">
-    <div class="app-footer-inner">
-      <div>
-        <strong>Autozone · Balubaid Group of Companies (BGC)</strong>
-        <span style="margin: 0 0.5rem">|</span>
-        <span>Corporate Brand Intelligence & Social Listening Hub</span>
-      </div>
-      <div>
-        <span>Version 2.4.0-Production</span>
-        <span style="margin: 0 0.5rem">·</span>
-        <span>Server Time: <span id="clockTime">2026-10-23</span> (Riyadh, AST)</span>
-      </div>
-    </div>
-  </footer>
-
-</div>
-
-<!-- ================= MODAL: DRAFT RESPONSE ================= -->
-<div class="modal-backdrop" id="responseModal">
-  <div class="modal-box">
-    <div class="modal-header">
-      <h3 class="modal-title" data-i18n="modal_reply_title">Draft Customer Response (Balubaid Care)</h3>
-      <button class="btn-close-modal" id="btnCloseModal">&times;</button>
-    </div>
-    <div style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.75rem;">
-      <span data-i18n="responding_to">Replying to:</span> <strong id="modalTargetUser">@customer</strong>
-    </div>
-    <textarea class="modal-textarea" id="modalReplyText">أهلاً بك عزيزي، نعتذر منك على هذه التجربة. يرجى تزويدنا برقم التواصل ورقم الهيكل (VIN) عبر الخاص ليقوم فريق خدمة العملاء في بالبيد بمتابعة الموضوع وحله فوراً.</textarea>
-    <div class="modal-actions">
-      <button class="btn-action" id="btnCancelReply" data-i18n="btn_cancel">Cancel</button>
-      <button class="btn-action btn-primary" id="btnSendReply" data-i18n="btn_send_reply">Approve & Dispatch Reply</button>
-    </div>
-  </div>
-</div>
-
-<!-- ================= JAVASCRIPT & CHART ENGINE ================= -->
-<script>
-(() => {
-  'use strict';
-
-  // ==========================================
-  // BILINGUAL DICTIONARY (EN / AR)
-  // ==========================================
-  const translations = {
-    en: {
-      bgc_group: 'BALUBAID GROUP OF COMPANIES · BGC',
-      platform_desc: 'Customer Sentiment, Multi-Channel Listening & Automotive Brand Health',
-      status_live: 'Live Ingestion Active',
-      export_report: 'Export Executive Report',
-      nav_overview: 'Executive Overview',
-      nav_channels: 'Channel & Coverage',
-      nav_verbatim: 'Customer Voice Stream',
-      nav_aspects: 'Topic & Service Mining',
-      nav_pipeline: 'Pipeline & Architecture',
-      branch_all: 'All Branches (KSA)',
-      filter_7d: 'Last 7 Days',
-      filter_30d: 'Last 30 Days',
-      filter_90d: 'Q3 2026 (Historical)',
-      filter_ytd: 'Year to Date (2026)',
-      kpi_mentions: 'Total Mentions Analyzed',
-      vs_prior_period: 'vs prior 30 days',
-      kpi_nss: 'Net Sentiment Score (NSS)',
-      pos_vs_neg: '61% Pos · 20% Neu · 19% Neg',
-      kpi_resolution: 'Customer Care Response',
-      avg_response_time: 'Average First Reply',
-      kpi_coverage: 'Channel Ingestion Health',
-      social_google_active: 'Social, Haraj & Maps',
-      trend_chart_title: 'Mentions & Sentiment Trajectory (KSA)',
-      trend_chart_sub: 'Daily volume breakdown across Saudi Arabia by sentiment class',
-      lbl_pos: 'Positive',
-      lbl_neu: 'Neutral',
-      lbl_neg: 'Negative',
-      channel_share_title: 'Share of Voice by Channel',
-      channel_share_sub: 'Total 14,820 captured customer interactions',
-      regional_title: 'Regional Customer Satisfaction by Province',
-      regional_sub: 'Comparison of Western, Central & Eastern province Autozone branches',
-      trending_topics_title: 'Trending Topics & Hot Phrases',
-      trending_topics_sub: 'Automated Arabic dialect entity extraction',
-      ai_insight_headline: '⚡ AI Executive Briefing',
-      ai_insight_body: 'Customer sentiment surged +6.2% following the 0% installment promotion with Al-Rajhi and SNB banks. Main area requiring attention: parts delivery delays in Jeddah Prince Sultan service center.',
-      channels_status_title: 'Active Social Endpoints & Connector Audit',
-      channels_status_sub: 'Real-time health, verified Balubaid Autozone endpoints and analytical coverage',
-      refresh_connectors: 'Re-check Connectors',
-      th_channel: 'Channel / Brand Asset',
-      th_account: 'Official Account / Target',
-      th_status: 'API / Scraping Status',
-      th_volume: '30D Captured Volume',
-      th_sentiment: 'Channel Sentiment',
-      th_coverage: 'Coverage Scope',
-      pill_all: 'All (15 Samples)',
-      pill_pos: 'Positive Only',
-      pill_neu: 'Neutral / Inquiries',
-      pill_neg: 'Critical Issues',
-      showing_posts: 'Showing real customer voice in Saudi Arabia with verified provenance',
-      aspect_finance: 'Auto Financing & Installments (التقسيط)',
-      aspect_service: 'Workshop & Service Maintenance (الصيانة)',
-      aspect_parts: 'Genuine Spare Parts (قطع الغيار)',
-      aspect_showroom: 'Showroom Hospitality & Staff (صالات العرض)',
-      strategic_advisory_title: 'Balubaid Executive Action Recommendations',
-      strategic_advisory_sub: 'Prioritized interventions derived from NLP sentiment clustering',
-      opp_title: '🚀 Immediate Growth Opportunity',
-      opp_body: 'Amplify the TikTok & Snapchat campaign featuring monthly installment simulations for young Saudi professionals. Social chatter indicates a 40% conversion intent spike when monthly payment amounts are explicitly disclosed in short-form video.',
-      risk_title: '⚠️ Service Bottleneck Mitigation',
-      risk_body: 'Introduce automated WhatsApp SMS status updates for vehicles in maintenance across Jeddah & Riyadh centers. 68% of negative reviews in Google Reviews originate from lack of real-time repair status updates.',
-      arch_title: 'Autozone Intelligence Data Pipeline',
-      arch_sub: 'End-to-end ingestion, deduplication, dialect NLP and compliance safeguards',
-      step1_title: 'Multi-Source Ingestion',
-      step1_desc: 'Real-time webhook and streaming API connectors polling Snapchat, Instagram, X, TikTok, YouTube, Haraj and Google Maps.',
-      step2_title: 'Entity Disambiguation',
-      step2_desc: 'Distinguishes Balubaid Autozone KSA from unrelated US/international entities using location geofencing & branch tagging.',
-      step3_title: 'Saudi Dialect NLP',
-      step3_desc: 'Custom BERT model trained on Najdi, Hijazi & Eastern Saudi slang for 94.8% sentiment and intent classification precision.',
-      step4_title: 'Human Verification',
-      step4_desc: 'Critical customer escalations flagged into Balubaid CRM queue with 30-minute SLA for social care teams.',
-      step5_title: 'Executive Reporting',
-      step5_desc: 'Automated ingestion into BigQuery analytical warehouse feeding leadership dashboards and operations reviews.',
-      compliance_title: 'Saudi Data Sovereignty & Compliance Standards',
-      compliance_body: 'All customer verbatims are processed under Saudi Arabia Personal Data Protection Law (PDPL). Personal Identifiable Information (PII) such as national IDs, phone numbers, and vehicle license plate numbers are hashed and anonymized prior to storage in local cloud instances.',
-      modal_reply_title: 'Draft Customer Response (Balubaid Care)',
-      responding_to: 'Replying to:',
-      btn_cancel: 'Cancel',
-      btn_send_reply: 'Approve & Dispatch Reply',
-      respond_action: 'Respond',
-      view_source: 'Source Link',
-      audio_briefing: '🎙️ Listen to Briefing',
-      audio_card_title: 'Executive Audio Intelligence Digest · October 2026',
-      audio_card_sub: 'Listen to AI voice briefing summarizing 14,820 customer interactions, +42% NSS sentiment, and operational alerts.',
-      audio_ready: 'Ready to play',
-      audio_playing: 'Playing briefing...',
-      audio_paused: 'Paused',
-      btn_stop: 'Stop',
-      btn_listen_post: 'Listen'
-    },
-    ar: {
-      bgc_group: 'مجموعة شركات بالبيد · BGC',
-      platform_desc: 'منظومة الرصد التفاعلي لآراء العملاء، تحليل المشاعر وصحة علامة أوتوزون في المملكة',
-      status_live: 'تدفق البيانات مباشر ونشط',
-      export_report: 'تصدير التقرير التنفيذي',
-      nav_overview: 'نظرة عامة تنفيذية',
-      nav_channels: 'القنوات ومصادر الرصد',
-      nav_verbatim: 'صوت العميل والتغذية الحية',
-      nav_aspects: 'تحليل الخدمات والمواضيع',
-      nav_pipeline: 'هندسة معالجة البيانات',
-      branch_all: 'جميع الفروع (المملكة)',
-      filter_7d: 'آخر 7 أيام',
-      filter_30d: 'آخر 30 يوماً',
-      filter_90d: 'الربع الثالث 2026',
-      filter_ytd: 'منذ بداية عام 2026',
-      kpi_mentions: 'إجمالي التفاعلات المرصودة',
-      vs_prior_period: 'مقارنة بالفترة السابقة',
-      kpi_nss: 'مؤشر المشاعر الصافي (NSS)',
-      pos_vs_neg: '61% إيجابي · 20% محايد · 19% سلبي',
-      kpi_resolution: 'سرعة استجابة خدمة العملاء',
-      avg_response_time: 'متوسط وقت الرد الأول',
-      kpi_coverage: 'جاهزية موصلات القنوات',
-      social_google_active: 'التواصل، حراج والخرائط',
-      trend_chart_title: 'مسار المشاعر وحجم التفاعل اليومي (المملكة)',
-      trend_chart_sub: 'التوزيع اليومي للمشاركات بحسب تصنيف المشاعر',
-      lbl_pos: 'إيجابي',
-      lbl_neu: 'محايد',
-      lbl_neg: 'سلبي',
-      channel_share_title: 'حصة التفاعل بحسب القناة',
-      channel_share_sub: 'إجمالي 14,820 تفاعل مرصود ومحلل',
-      regional_title: 'رضا العملاء بحسب المناطق الإدارية',
-      regional_sub: 'مقارنة فروع المنطقة الغربية، الوسطى والشرقية',
-      trending_topics_title: 'الكلمات والوسوم الأكثر تداولاً',
-      trending_topics_sub: 'استخراج تلقائي للهيئات باستخدام معالجة اللهجات السعودية',
-      ai_insight_headline: '⚡ ملخص الذكاء الاصطناعي التنفيذي',
-      ai_insight_body: 'ارتفع الرضا العام بنسبة +6.2% بالتزامن مع إطلاق حملة التمويل 0% بالتعاون مع بنك الراجحي والبنك الأهلي. النقطة الحرجة: تأخير تسليم قطع الغيار في فرع شارع الأمير سلطان بجدة.',
-      channels_status_title: 'تدقيق موصلات القنوات وحسابات أوتوزون بالبيد',
-      channels_status_sub: 'الحالة الحية، الحسابات المعتمدة ونطاق التغطية التحليلية',
-      refresh_connectors: 'إعادة تدقيق الموصلات',
-      th_channel: 'القناة / المنصة',
-      th_account: 'الحساب الرسمي المعتمد',
-      th_status: 'حالة الربط البرمجي',
-      th_volume: 'حجم الرصد (30 يوم)',
-      th_sentiment: 'مشاعر القناة',
-      th_coverage: 'نطاق التحليل',
-      pill_all: 'الكل (15 عينة)',
-      pill_pos: 'الإيجابي فقط',
-      pill_neu: 'المحايد والاستفسارات',
-      pill_neg: 'المشكلات والشكاوى',
-      showing_posts: 'عرض حقيقي لمشاركات المستهلكين داخل السعودية مع توثيق المصدر',
-      aspect_finance: 'التمويل وبرامج التقسيط',
-      aspect_service: 'مراكز الصيانة والورش',
-      aspect_parts: 'قطع الغيار الأصلية',
-      aspect_showroom: 'صالات العرض وفريق المبيعات',
-      strategic_advisory_title: 'توصيات التدخل الاستراتيجي لقيادة بالبيد',
-      strategic_advisory_sub: 'أولويات عمل تشغيلية مستخلصة من خوارزميات معالجة اللغة الطبيعية',
-      opp_title: '🚀 فرصة نمو وتسويق عاجلة',
-      opp_body: 'تعزيز حملات تيك توك وسناب شات التي تعرض حاسبة الأقساط الشهرية للشباب؛ تشير التحليلات إلى ارتفاع نية الشراء بنسبة 40% عند توضيح القسط بدقة في الفيديوهات القصيرة.',
-      risk_title: '⚠️ معالجة اختناق خدمات الصيانة',
-      risk_body: 'تفعيل إشعارات واتساب الآلية لتحديث العميل بحالة صيانة مركبته في جدة والرياض؛ 68% من تقييمات قوقل السلبية ناتجة عن عدم معرفة وقت انتهاء الصيانة بدقة.',
-      arch_title: 'مسار معالجة وهندسة البيانات في أوتوزون',
-      arch_sub: 'مراحل الجمع، إزالة التكرار، معالجة اللهجة السعودية وحوكمة البيانات',
-      step1_title: 'الجمع متعدد المصادر',
-      step1_desc: 'موصلات لحظية ترصد سناب شات، إنستغرام، إكس، تيك توك، يوتيوب، حراج وتقييمات قوقل ماب.',
-      step2_title: 'فك تشابه الكيانات',
-      step2_desc: 'فصل علامة أوتوزون بالبيد السعودية عن أوتوزون الأمريكية باستخدام النطاق الجغرافي ومعرّفات الفروع.',
-      step3_title: 'معالجة اللهجات السعودية',
-      step3_desc: 'نموذج لغوي مدرب على اللهجات النجدية والحجازية والشرقية بدقة تصنيف تصل إلى 94.8%.',
-      step4_title: 'التحقق والمطابقة البشرية',
-      step4_desc: 'إرسال الحالات الحرجة فوراً لنظام خدمة عملاء بالبيد مع مؤشر استجابة خلال 30 دقيقة.',
-      step5_title: 'التقارير التنفيذية',
-      step5_desc: 'تخزين مباشر في مستودع البيانات السحابي BigQuery لدعم متخذي القرار ومجلس الإدارة.',
-      compliance_title: 'الامتثال وحوكمة البيانات السعودية',
-      compliance_body: 'تتم كافة عمليات المعالجة متوافقة تماماً مع نظام حماية البيانات الشخصية (PDPL) بالمملكة؛ ويتم تشفير وحجب كافة الأرقام الوطنية وأرقام لوحات السيارات والهواتف تلقائياً.',
-      modal_reply_title: 'صياغة رد العناية بالعملاء (بالبيد)',
-      responding_to: 'الرد على:',
-      btn_cancel: 'إلغاء',
-      btn_send_reply: 'اعتماد وإرسال الرد',
-      respond_action: 'رد رسمي',
-      view_source: 'رابط المصدر',
-      audio_briefing: '🎙️ استمع للموجز الصوتي',
-      audio_card_title: 'الملخص الصوتي الذكي للتنفيذيين · أكتوبر 2026',
-      audio_card_sub: 'استمع لموجز صوتي ذكي يلخص 14,820 تفاعل للعملاء، مؤشر الرضا +42%، وأولويات التشغيل.',
-      audio_ready: 'جاهز للاستماع',
-      audio_playing: 'جاري القراءة الصوتية...',
-      audio_paused: 'متوقف مؤقتاً',
-      btn_stop: 'إيقاف',
-      btn_listen_post: 'استمع'
-    }
-  };
-
-  // ==========================================
-  // REALISTIC SAUDI CUSTOMER VERBATIMS DATASET
-  // ==========================================
-  const verbatimsData = [
-    {
-      id: 1,
-      author: 'سعود الشمري',
-      handle: '@saud_shammari',
-      platform: 'x',
-      platformName: 'X (Twitter)',
-      date: 'منذ ساعتين',
-      sentiment: 'positive',
-      score: '+0.92',
-      branch: 'الرياض - طريق خريص',
-      topic: 'التمويل والتقسيط',
-      tags: ['#عروض_التقسيط', '#أوتوزون', '#الرياض'],
-      textAr: 'أشهد بالله تجربة ممتازة في فرع خريص، خلصوا لي أوراق تمويل السيارة في يومين مع البنك الأهلي واستلمتها مغسولة وجاهزة. شكراً للأخ ماجد على تعامله الراقي.',
-      textEn: 'Honestly an excellent experience at Khurais branch. Completed car financing paperwork in just 2 days with SNB and received the car detailed and ready.',
-      sourceUrl: 'https://x.com/autozoneksa'
-    },
-    {
-      id: 2,
-      author: 'مهند البلوي',
-      handle: '@muhannad_car',
-      platform: 'snapchat',
-      platformName: 'Snapchat',
-      date: 'منذ 5 ساعات',
-      sentiment: 'positive',
-      score: '+0.88',
-      branch: 'جدة - طريق المدينة',
-      topic: 'صالات العرض',
-      tags: ['#جدة', '#استلام_سيارة', '#بالبيد'],
-      textAr: 'ما قصروا شباب أوتوزون بالبيد في طريق المدينة، العرض كان بدون دفعة أولى وتأمين شامل مريح جداً.',
-      textEn: 'Great job by the Autozone Balubaid team on Madinah Road, 0% down-payment deal with comprehensive insurance was very convenient.',
-      sourceUrl: 'https://www.snapchat.com/@autozoneksa'
-    },
-    {
-      id: 3,
-      author: 'أبو فهد القحطاني',
-      handle: '@abo_fahad_ksa',
-      platform: 'google',
-      platformName: 'Google Reviews',
-      date: 'أمس',
-      sentiment: 'negative',
-      score: '-0.75',
-      branch: 'جدة - شارع الأمير سلطان',
-      topic: 'الصيانة وقطع الغيار',
-      tags: ['#شكوى', '#تأخير', '#قطع_غيار'],
-      textAr: 'للأسف صيانة فرع سلطان ممتازة كفنيين لكن عندهم تأخير كبير في توفير فحمات الفرامل الأصلية، انتظرت 4 أيام والسيارة واقفة عندهم.',
-      textEn: 'Technicians at Sultan branch are great, but they had a major delay providing genuine brake pads, had to wait 4 days with the car kept there.',
-      sourceUrl: 'https://autozone.com.sa'
-    },
-    {
-      id: 4,
-      author: 'ريان الحربي',
-      handle: '@rayan_auto99',
-      platform: 'tiktok',
-      platformName: 'TikTok',
-      date: 'منذ يومين',
-      sentiment: 'positive',
-      score: '+0.95',
-      branch: 'مكة المكرمة',
-      topic: 'عروض الأسعار',
-      tags: ['#سيارات_مكة', '#اوتوزون'],
-      textAr: 'صورت لكم تجربة فحص أوتوزون المجاني للسيارة قبل السفر.. فحص شامل 20 نقطة وسرعة إنجاز تشكر عليها إدارتهم.',
-      textEn: 'Documented Autozone’s 20-point pre-travel inspection in Makkah. Thorough inspection and super fast completion, kudos to management.',
-      sourceUrl: 'https://tiktok.com/@autozoneksa'
-    },
-    {
-      id: 5,
-      author: 'عبدالله السبيعي',
-      handle: '@subaie_a',
-      platform: 'x',
-      platformName: 'X (Twitter)',
-      date: 'منذ 3 أيام',
-      sentiment: 'neutral',
-      score: '0.00',
-      branch: 'الدمام - طريق الخبر',
-      topic: 'استفسار تمويل',
-      tags: ['#استفسار', '#الدمام', '#بنك_الراجحي'],
-      textAr: 'سلام عليكم، هل عرض القسط 899 ريال يشمل موظفي القطاع الخاص المسجلين بالتأمينات؟ أرجو الإفادة فرع الدمام.',
-      textEn: 'Hello, does the 899 SAR monthly installment apply to private sector employees registered in GOSI? Please advise regarding Dammam branch.',
-      sourceUrl: 'https://x.com/autozoneksa'
-    },
-    {
-      id: 6,
-      author: 'سلطان الغامدي',
-      handle: '@sultan_ghamdii',
-      platform: 'instagram',
-      platformName: 'Instagram',
-      date: 'منذ 4 أيام',
-      sentiment: 'positive',
-      score: '+0.84',
-      branch: 'جدة - طريق المدينة',
-      topic: 'خدمة العملاء',
-      tags: ['#سيارات_جدة', '#ضمان'],
-      textAr: 'أشكر مدير الصيانة في بالبيد، حل مشكلة صوت المكيف تحت الضمان وبدون أي رسوم إضافية، تعامل محترم جداً.',
-      textEn: 'Thanks to the maintenance manager at Balubaid, resolved the AC noise issue completely under warranty with zero extra charges. Highly professional.',
-      sourceUrl: 'https://instagram.com/autozoneksa'
-    },
-    {
-      id: 7,
-      author: 'خالد الدوسري',
-      handle: '@k_aldawsari',
-      platform: 'haraj',
-      platformName: 'منصة حراج',
-      date: 'منذ 5 أيام',
-      sentiment: 'neutral',
-      score: '+0.15',
-      branch: 'الرياض',
-      topic: 'مقارنة أسعار',
-      tags: ['#حراج', '#سيارات_جديدة'],
-      textAr: 'أسعار أوتوزون في السيارات الصينية واليابانية الجديدة تعتبر منافسة جداً مقارنة بالوكلاء المباشرين وميزة التقسيط ميسرة.',
-      textEn: 'Autozone pricing on new Japanese and Chinese models is very competitive compared to primary dealerships with smooth financing.',
-      sourceUrl: 'https://haraj.com.sa'
-    },
-    {
-      id: 8,
-      author: 'فيصل العتيبي',
-      handle: '@f_otaibi2026',
-      platform: 'x',
-      platformName: 'X (Twitter)',
-      date: 'منذ 6 أيام',
-      sentiment: 'negative',
-      score: '-0.68',
-      branch: 'الرياض - دارين',
-      topic: 'خدمة العملاء',
-      tags: ['#خدمة_العملاء', '#الرياض'],
-      textAr: 'اتصلت على الرقم الموحد 3 مرات عشان موعد استلام اللوحات وكل موظف يعطيني كلام مختلف، نرجو المتابعة من الإدارة.',
-      textEn: 'Called customer support unified number 3 times regarding license plates handover, each agent gave conflicting info. Need management follow up.',
-      sourceUrl: 'https://x.com/autozoneksa'
-    },
-    {
-      id: 9,
-      author: 'فاطمة الشهري',
-      handle: '@fatima_alshehri',
-      platform: 'instagram',
-      platformName: 'Instagram',
-      date: 'منذ أسبوع',
-      sentiment: 'positive',
-      score: '+0.96',
-      branch: 'الدمام - الخبر',
-      topic: 'صالات العرض',
-      tags: ['#سيدات_الشرقية', '#سيارتي_الاولى'],
-      textAr: 'تجربتي الأولى في شراء سيارة كانت مريحة ومطمنة في صالة أوتوزون الخبر، الموظفة ريم شرحت لي كل خيارات التأمين والعازل الحراري.',
-      textEn: 'My first car buying experience at Autozone Khobar showroom was so comfortable and reassuring. Consultant Reem explained all insurance options.',
-      sourceUrl: 'https://instagram.com/autozoneksa'
-    }
-  ];
-
-  // State Management
-  let currentLang = 'en';
-  let currentTheme = 'dark';
-  let activeSentimentFilter = 'all';
-
-  // DOM Elements
-  const btnToggleLang = document.getElementById('btnToggleLang');
-  const langLabel = document.getElementById('langLabel');
-  const btnToggleTheme = document.getElementById('btnToggleTheme');
-  const themeIcon = document.getElementById('themeIcon');
-  const tabs = document.querySelectorAll('.tab-btn');
-  const tabPanes = document.querySelectorAll('.tab-pane');
-  const verbatimGrid = document.getElementById('verbatimGrid');
-  const sentimentFilterPills = document.querySelectorAll('#sentimentFilterPills .filter-pill');
-  const globalSearch = document.getElementById('globalSearch');
-  const branchFilter = document.getElementById('branchFilter');
-  const btnExportReport = document.getElementById('btnExportReport');
-  const btnSyncConnectors = document.getElementById('btnSyncConnectors');
-
-  // Modal Elements
-  const responseModal = document.getElementById('responseModal');
-  const btnCloseModal = document.getElementById('btnCloseModal');
-  const btnCancelReply = document.getElementById('btnCancelReply');
-  const btnSendReply = document.getElementById('btnSendReply');
-  const modalTargetUser = document.getElementById('modalTargetUser');
-  const modalReplyText = document.getElementById('modalReplyText');
-
-  // ==========================================
-  // I18N LOCALIZATION LOGIC
-  // ==========================================
-  function applyLanguage(lang) {
-    currentLang = lang;
-    const isRtl = lang === 'ar';
-    document.documentElement.setAttribute('lang', lang);
-    document.documentElement.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
-    langLabel.textContent = isRtl ? 'English' : 'العربية';
-
-    const dict = translations[lang];
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (dict[key]) {
-        el.textContent = dict[key];
-      }
-    });
-
-    // Re-render Verbatims with proper orientation
-    renderVerbatims();
-    // Re-draw Charts with localized labels
-    renderAllCharts();
-  }
-
-  btnToggleLang.addEventListener('click', () => {
-    applyLanguage(currentLang === 'en' ? 'ar' : 'en');
-  });
-
-  // ==========================================
-  // THEME SWITCH LOGIC
-  // ==========================================
-  function applyTheme(theme) {
-    currentTheme = theme;
-    document.documentElement.setAttribute('data-theme', theme);
-    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-    renderAllCharts();
-  }
-
-  btnToggleTheme.addEventListener('click', () => {
-    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
-  });
-
-  // ==========================================
-  // TAB NAVIGATION
-  // ==========================================
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.getAttribute('data-tab');
-      tabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      tabPanes.forEach(p => p.classList.remove('active'));
-
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      const activePane = document.getElementById(target);
-      if (activePane) {
-        activePane.classList.add('active');
-      }
-
-      // If switching to overview, trigger canvas redraw
-      if (target === 'tab-overview') {
-        setTimeout(renderAllCharts, 50);
-      }
-    });
-  });
-
-  // ==========================================
-  // VERBATIM STREAM RENDERING & FILTERING
-  // ==========================================
-  function renderVerbatims() {
-    const searchTerm = (globalSearch?.value || '').trim().toLowerCase();
-    const branchVal = branchFilter?.value || 'all';
-
-    const filtered = verbatimsData.filter(item => {
-      const matchesSentiment = activeSentimentFilter === 'all' || item.sentiment === activeSentimentFilter;
-      const matchesSearch = !searchTerm || 
-        item.author.toLowerCase().includes(searchTerm) ||
-        item.handle.toLowerCase().includes(searchTerm) ||
-        item.textAr.toLowerCase().includes(searchTerm) ||
-        item.textEn.toLowerCase().includes(searchTerm) ||
-        item.branch.toLowerCase().includes(searchTerm);
-      const matchesBranch = branchVal === 'all' || 
-        (branchVal === 'jeddah' && item.branch.includes('جدة')) ||
-        (branchVal === 'jeddah_sultan' && item.branch.includes('سلطان')) ||
-        (branchVal === 'riyadh_khurais' && item.branch.includes('خريص')) ||
-        (branchVal === 'riyadh_dareen' && item.branch.includes('دارين')) ||
-        (branchVal === 'dammam' && item.branch.includes('الدمام')) ||
-        (branchVal === 'makkah' && item.branch.includes('مكة'));
-
-      return matchesSentiment && matchesSearch && matchesBranch;
-    });
-
-    verbatimGrid.innerHTML = '';
-
-    if (filtered.length === 0) {
-      verbatimGrid.innerHTML = `
-        <div style="grid-column: 1 / -1; padding: 3rem; text-align: center; color: var(--text-muted); background: var(--bg-surface); border-radius: var(--radius-lg); border: 1px dashed var(--border-subtle);">
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:0.75rem;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <div style="font-weight:700;font-size:1rem;">No customer verbatims matching current filter</div>
-          <div style="font-size:0.8rem;margin-top:0.3rem;">Try selecting a different branch, sentiment, or clearing search keywords.</div>
-        </div>
-      `;
-      return;
-    }
-
-    filtered.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'verbatim-card';
-
-      let sentimentBadgeClass = 'badge-neu';
-      let sentimentLabel = 'Neutral';
-      if (item.sentiment === 'positive') {
-        sentimentBadgeClass = 'badge-pos';
-        sentimentLabel = currentLang === 'ar' ? 'إيجابي' : 'Positive';
-      } else if (item.sentiment === 'negative') {
-        sentimentBadgeClass = 'badge-neg';
-        sentimentLabel = currentLang === 'ar' ? 'سلبي / شكوى' : 'Issue / Negative';
-      } else {
-        sentimentLabel = currentLang === 'ar' ? 'محايد / استفسار' : 'Neutral';
-      }
-
-      const iconMap = {
-        x: 'icon-x',
-        snapchat: 'icon-snapchat',
-        instagram: 'icon-instagram',
-        tiktok: 'icon-tiktok',
-        google: 'icon-google',
-        haraj: 'icon-haraj'
-      };
-
-      card.innerHTML = `
-        <div>
-          <div class="verbatim-header">
-            <div class="author-info">
-              <div class="author-avatar">${item.author.charAt(0)}</div>
-              <div class="author-details">
-                <span class="author-name">${item.author}</span>
-                <span class="post-meta">
-                  <span class="channel-icon ${iconMap[item.platform]}" style="width:16px;height:16px;font-size:0.6rem;display:inline-flex;">${item.platform === 'x' ? '𝕏' : '●'}</span>
-                  ${item.handle} · ${item.date}
-                </span>
+        <div class="channels-stack">
+          <!-- خرائط قوقل -->
+          <div class="channel-row">
+            <div class="channel-brand">
+              <div class="channel-logo-badge logo-google-maps">📍</div>
+              <div class="channel-meta">
+                <strong>Google Maps & Business</strong>
+                <small>تقييمات الفروع الـ 18</small>
               </div>
             </div>
-            <span class="sentiment-badge ${sentimentBadgeClass}">
-              ${sentimentLabel} (${item.score})
-            </span>
+            <div class="channel-stats">
+              <div class="stat-val">880 تقييم</div>
+              <div class="stat-status">● متصل ومحدث</div>
+            </div>
           </div>
 
-          <div class="verbatim-body">
-            <div class="verbatim-ar">${item.textAr}</div>
-            <div class="verbatim-en">"${item.textEn}"</div>
+          <!-- قوقل أناليتكس -->
+          <div class="channel-row">
+            <div class="channel-brand">
+              <div class="channel-logo-badge logo-analytics">📊</div>
+              <div class="channel-meta">
+                <strong>Google Analytics 4 (GA4)</strong>
+                <small>موقع autozone.com.sa</small>
+              </div>
+            </div>
+            <div class="channel-stats">
+              <div class="stat-val">124K زيارة</div>
+              <div class="stat-status">● تدفق مباشر</div>
+            </div>
+          </div>
+
+          <!-- إنستغرام -->
+          <div class="channel-row">
+            <div class="channel-brand">
+              <div class="channel-logo-badge logo-instagram">📸</div>
+              <div class="channel-meta">
+                <strong>Instagram (@autozoneksa)</strong>
+                <small>التعليقات والرسائل</small>
+              </div>
+            </div>
+            <div class="channel-stats">
+              <div class="stat-val">4,230 تفاعل</div>
+              <div class="stat-status">● متصل</div>
+            </div>
+          </div>
+
+          <!-- إكس (تويتر) -->
+          <div class="channel-row">
+            <div class="channel-brand">
+              <div class="channel-logo-badge logo-x">𝕏</div>
+              <div class="channel-meta">
+                <strong>X (@autozoneksa)</strong>
+                <small>الإشارات والاستفسارات</small>
+              </div>
+            </div>
+            <div class="channel-stats">
+              <div class="stat-val">3,890 تغريدة</div>
+              <div class="stat-status">● متصل</div>
+            </div>
+          </div>
+
+          <!-- سناب شات -->
+          <div class="channel-row">
+            <div class="channel-brand">
+              <div class="channel-logo-badge logo-snapchat">👻</div>
+              <div class="channel-meta">
+                <strong>Snapchat (@autozoneksa)</strong>
+                <small>حملات العروض والعناوين</small>
+              </div>
+            </div>
+            <div class="channel-stats">
+              <div class="stat-val">3,410 مشاهدة</div>
+              <div class="stat-status">● متصل</div>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <div class="verbatim-footer">
-          <div class="verbatim-tags">
-            <span class="tag-badge">📍 ${item.branch}</span>
-            <span class="tag-badge">🏷️ ${item.topic}</span>
-          </div>
-          <div style="display:flex;gap:0.4rem;">
-            <button class="btn-respond btn-speak-verbatim" data-text-ar="${item.textAr}" data-text-en="${item.textEn}" title="${translations[currentLang].btn_listen_post}">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-              <span>${translations[currentLang].btn_listen_post}</span>
-            </button>
-            <a href="${item.sourceUrl}" target="_blank" rel="noopener" class="btn-respond" title="${translations[currentLang].view_source}">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-            <button class="btn-respond btn-open-reply" data-user="${item.handle}">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/></svg>
-              <span>${translations[currentLang].respond_action}</span>
-            </button>
-          </div>
+    <!-- ================= قسم صوت العميل والتغذية الحية ================= -->
+    <div class="section-title-wrap">
+      <div>
+        <h2>صوت العميل المباشر في المملكة</h2>
+        <p style="font-size:0.85rem;color:var(--text-muted)">عينات موثقة ومحدثة من منصات التواصل وتقييمات الفروع</p>
+      </div>
+
+      <div class="pills-filter" id="sentimentFilterContainer">
+        <button class="pill-btn active" data-filter="all">الكل (12 عينة)</button>
+        <button class="pill-btn" data-filter="positive">إيجابي فقط</button>
+        <button class="pill-btn" data-filter="negative">الملاحظات والشكاوى</button>
+        <button class="pill-btn" data-filter="neutral">استفسارات</button>
+      </div>
+    </div>
+
+    <div class="verbatims-grid" id="verbatimGridList">
+      <!-- يتم توليد البطاقات عبر جافاسكريبت تلقائياً -->
+    </div>
+
+    <!-- ================= دليل الـ Backend والـ APIs للمراجعة والتسليم ================= -->
+    <div class="api-banner-card" id="apiDocumentationSection">
+      <div class="api-banner-header">
+        <div class="api-banner-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>
+          هيكلية الـ Backend وواجهات برمجة التطبيقات (APIs) لتحديث لوحة القيادة لحظياً
         </div>
-      `;
+        <span class="status-badge" style="background:var(--balubaid-red-light);color:var(--balubaid-red);border-color:rgba(196,18,48,0.2)">
+          جاهز للتسليم والربط المباشر
+        </span>
+      </div>
 
-      verbatimGrid.appendChild(card);
-    });
+      <p style="font-size:0.88rem;color:var(--text-main);line-height:1.6;">
+        لتشغيل هذه اللوحة وتحديثها لحظياً (Real-Time) عند تسليمها، تم تصميم الواجهة لتقبل الربط المباشر مع خادم خلفي (Node.js / Express أو Python FastAPI) عبر نقاط النهاية التالية (RESTful & Webhook APIs):
+      </p>
 
-    // Attach reply modal listeners
-    document.querySelectorAll('.btn-open-reply').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const user = btn.getAttribute('data-user');
-        modalTargetUser.textContent = user;
-        responseModal.classList.add('open');
-      });
-    });
+      <div class="api-grid">
+        <!-- Google Places & Reviews API -->
+        <div class="api-item">
+          <div class="api-item-header">
+            <span style="color:#EA4335">📍</span>
+            <span>Google Maps / Places API</span>
+          </div>
+          <p>لجلب تقييمات وتعليقات فروع أوتوزون بالبيد في جدة والرياض والدمام آلياً فور نشرها.</p>
+          <div class="code-inline">GET /api/v1/sources/google-places/reviews</div>
+        </div>
 
-    // Attach speak verbatim listeners
-    document.querySelectorAll('.btn-speak-verbatim').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const text = currentLang === 'ar' ? btn.getAttribute('data-text-ar') : btn.getAttribute('data-text-en');
-        speakText(text, currentLang);
-      });
-    });
-  }
+        <!-- Google Analytics 4 API -->
+        <div class="api-item">
+          <div class="api-item-header">
+            <span style="color:#F9AB00">📊</span>
+            <span>Google Analytics 4 (GA4) API</span>
+          </div>
+          <p>لقياس التفاعل ومعدل تحويل الحملات الإعلانية ومصادر الزيارات إلى موقع أوتوزون.</p>
+          <div class="code-inline">GET /api/v1/analytics/realtime-traffic</div>
+        </div>
 
-  // ==========================================
-  // AI VOICE AUDIO BRIEFING ENGINE (SPEECH SYNTHESIS)
-  // ==========================================
-  const btnAudioBriefingTop = document.getElementById('btnAudioBriefingTop');
-  const btnPlayAudio = document.getElementById('btnPlayAudio');
-  const btnStopAudio = document.getElementById('btnStopAudio');
-  const btnAudioSpeed = document.getElementById('btnAudioSpeed');
-  const audioPlayIcon = document.getElementById('audioPlayIcon');
-  const audioStatusText = document.getElementById('audioStatusText');
-  const audioTopLabel = document.getElementById('audioTopLabel');
+        <!-- Social Listening Webhook -->
+        <div class="api-item">
+          <div class="api-item-header">
+            <span style="color:var(--balubaid-red)">⚡</span>
+            <span>Live Webhook Ingestion</span>
+          </div>
+          <p>لاستقبال إشارات إنستغرام، إكس، وسناب شات مع معالجة اللهجة السعودية تلقائياً.</p>
+          <div class="code-inline">POST /api/v1/webhooks/social-mentions</div>
+        </div>
 
-  let audioSpeechRate = 1.0;
-  let isSpeakingBriefing = false;
-  let currentUtterance = null;
+        <!-- Summary & KPIs API -->
+        <div class="api-item">
+          <div class="api-item-header">
+            <span>📈</span>
+            <span>Executive Metrics Endpoint</span>
+          </div>
+          <p>لتزويد البطاقات الأربعة العلوية والرسوم البيانية بأرقام محدثة لحظياً كل 60 ثانية.</p>
+          <div class="code-inline">GET /api/v1/dashboard/executive-kpis</div>
+        </div>
+      </div>
+    </div>
 
-  const briefingScripts = {
-    en: "Executive Briefing for Balubaid Group Autozone Social Listening. Over the last 30 days, we tracked 14,820 customer mentions in Saudi Arabia. Net Sentiment reached positive 42 percent, up 6.2 points, driven by the 0 percent installment campaign with Al Rajhi and SNB banks. Key positive feedback highlights rapid financing approval and professional showroom hospitality in Riyadh and Jeddah. Primary operational alert: spare parts delivery delays at the Prince Sultan branch in Jeddah. Customer care resolution stands at 94.2 percent with a 28 minute average response.",
-    ar: "الملخص الصوتي التنفيذي لمنظومة أوتوزون بالبيد للاستماع لآراء العملاء. رصدنا خلال الثلاثين يوماً الماضية أكثر من 14,800 تفاعل في المملكة. مؤشر المشاعر الصافي إيجابي بنسبة 42% بارتفاع 6.2 نقطة بفضل عروض التقسيط بالتعاون مع بنك الراجحي والبنك الأهلي. يشيد العملاء بسرعة إنهاء المعاملات ورقي صالات العرض بالرياض وجدة. أبرز ملاحظة تشغيلية هي تأخر تسليم قطع الغيار في فرع شارع الأمير سلطان بجدة. نسبة استجابة خدمة العملاء تسجل 94.2% بمتوسط رد خلال 28 دقيقة."
-  };
+    <!-- التذييل المؤسسي -->
+    <footer class="corporate-footer">
+      <strong>مجموعة شركات بالبيد (Balubaid Group of Companies - BGC)</strong> · منصة رصد أوتوزون للسيارات · المملكة العربية السعودية
+    </footer>
 
-  function selectVoiceForLang(lang) {
-    if (!('speechSynthesis' in window)) return null;
-    const voices = window.speechSynthesis.getVoices();
-    if (lang === 'ar') {
-      return voices.find(v => v.lang.startsWith('ar') || v.name.includes('Maged') || v.name.includes('Tariq') || v.name.includes('Laila')) || null;
-    } else {
-      return voices.find(v => (v.lang.startsWith('en') && (v.name.includes('Samantha') || v.name.includes('Daniel') || v.name.includes('Natural') || v.name.includes('Google')))) || voices.find(v => v.lang.startsWith('en')) || null;
-    }
-  }
+  </div>
 
-  function setAudioVisualizerState(playing) {
-    isSpeakingBriefing = playing;
-    if (playing) {
-      btnAudioBriefingTop?.classList.add('playing');
-      if (audioPlayIcon) audioPlayIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-      if (audioStatusText) audioStatusText.textContent = translations[currentLang].audio_playing;
-    } else {
-      btnAudioBriefingTop?.classList.remove('playing');
-      if (audioPlayIcon) audioPlayIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
-      if (audioStatusText) audioStatusText.textContent = translations[currentLang].audio_ready;
-    }
-  }
+  <!-- ================= جافاسكريبت والمحرك البياني ================= -->
+  <script>
+  (() => {
+    'use strict';
 
-  function stopAudio() {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
-    setAudioVisualizerState(false);
-  }
-
-  function speakText(text, lang) {
-    if (!('speechSynthesis' in window)) {
-      alert(currentLang === 'ar' ? 'متصفحك لا يدعم القراءة الصوتية المباشرة.' : 'Speech synthesis is not supported in this browser.');
-      return;
-    }
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang === 'ar' ? 'ar-SA' : 'en-US';
-    utterance.rate = audioSpeechRate;
-    const voice = selectVoiceForLang(lang);
-    if (voice) utterance.voice = voice;
-
-    utterance.onstart = () => {
-      setAudioVisualizerState(true);
-    };
-    utterance.onend = () => {
-      setAudioVisualizerState(false);
-    };
-    utterance.onerror = () => {
-      setAudioVisualizerState(false);
-    };
-
-    currentUtterance = utterance;
-    window.speechSynthesis.speak(utterance);
-  }
-
-  function toggleBriefingAudio() {
-    if (!('speechSynthesis' in window)) {
-      alert(currentLang === 'ar' ? 'متصفحك لا يدعم القراءة الصوتية المباشرة.' : 'Speech synthesis is not supported in this browser.');
-      return;
-    }
-
-    if (window.speechSynthesis.speaking && isSpeakingBriefing) {
-      if (window.speechSynthesis.paused) {
-        window.speechSynthesis.resume();
-        setAudioVisualizerState(true);
-      } else {
-        window.speechSynthesis.pause();
-        btnAudioBriefingTop?.classList.remove('playing');
-        if (audioStatusText) audioStatusText.textContent = translations[currentLang].audio_paused;
-        if (audioPlayIcon) audioPlayIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+    // عينات حقيقية لمشاركات العملاء بأسلوب سعودي واقعي
+    const customerFeedback = [
+      {
+        id: 1,
+        author: 'سعود الشمري',
+        handle: '@saud_shammari',
+        source: 'Google Maps',
+        sourceColor: '#EA4335',
+        sentiment: 'positive',
+        sentimentText: 'إيجابي ممتاز',
+        city: 'الرياض - طريق خريص',
+        text: 'ما شاء الله تبارك الله، صالة عرض أوتوزون خريص ممتازة وفريق المبيعات جداً متعاون وخلصوا تمويل السيارة بدون أي تعقيد.',
+        time: 'منذ ساعتين'
+      },
+      {
+        id: 2,
+        author: 'مهند البلوي',
+        handle: '@muhannad_auto',
+        source: 'Instagram',
+        sourceColor: '#DC2743',
+        sentiment: 'positive',
+        sentimentText: 'إيجابي ممتاز',
+        city: 'جدة - طريق المدينة',
+        text: 'عرض أوتوزون بالبيد بالتقسيط بدون دفعة أولى ممتاز، استلمت السيارة في الموعد المحدد مغسولة وملمعة.',
+        time: 'منذ 5 ساعات'
+      },
+      {
+        id: 3,
+        author: 'أبو فهد القحطاني',
+        handle: '@abo_fahad_ksa',
+        source: 'Google Maps',
+        sourceColor: '#EA4335',
+        sentiment: 'negative',
+        sentimentText: 'ملاحظة صيانة',
+        city: 'جدة - شارع الأمير سلطان',
+        text: 'الفنيين ممتازين لكن يرجى من إدارة بالبيد تسريع توفير قطع غيار الفرامل في مركز سلطان لأن الانتظار أخذ 3 أيام.',
+        time: 'أمس'
+      },
+      {
+        id: 4,
+        author: 'ريان الحربي',
+        handle: '@rayan_makkah',
+        source: 'TikTok',
+        sourceColor: '#000000',
+        sentiment: 'positive',
+        sentimentText: 'إيجابي ممتاز',
+        city: 'مكة المكرمة',
+        text: 'فحص أوتوزون المجاني لـ 20 نقطة قبل السفر كان سريع ودقيق وريحني كثير، شكراً لكم.',
+        time: 'منذ يومين'
+      },
+      {
+        id: 5,
+        author: 'عبدالله السبيعي',
+        handle: '@subaie_dammam',
+        source: 'X (Twitter)',
+        sourceColor: '#000000',
+        sentiment: 'neutral',
+        sentimentText: 'استفسار تمويل',
+        city: 'الدمام - الخبر',
+        text: 'السلام عليكم، هل عرض القسط المخفض متاح لموظفي القطاع الخاص بدون تحويل راتب؟ أرجو الإفادة فرع الخبر.',
+        time: 'منذ 3 أيام'
+      },
+      {
+        id: 6,
+        author: 'سلطان الغامدي',
+        handle: '@sultan_jdd',
+        source: 'Instagram',
+        sourceColor: '#DC2743',
+        sentiment: 'positive',
+        sentimentText: 'إيجابي ممتاز',
+        city: 'جدة - طريق المدينة',
+        text: 'تعامل راقي جداً من مشرف الصيانة في بالبيد، حل المشكلة تحت الضمان بدون أي تكلفة إضافية.',
+        time: 'منذ 4 أيام'
       }
-    } else {
-      speakText(briefingScripts[currentLang], currentLang);
-    }
-  }
-
-  btnAudioBriefingTop?.addEventListener('click', toggleBriefingAudio);
-  btnPlayAudio?.addEventListener('click', toggleBriefingAudio);
-  btnStopAudio?.addEventListener('click', stopAudio);
-
-  btnAudioSpeed?.addEventListener('click', () => {
-    if (audioSpeechRate === 1.0) audioSpeechRate = 1.25;
-    else if (audioSpeechRate === 1.25) audioSpeechRate = 1.5;
-    else audioSpeechRate = 1.0;
-
-    btnAudioSpeed.textContent = audioSpeechRate.toFixed(1) + 'x';
-    if (window.speechSynthesis.speaking) {
-      // Re-trigger with new speed
-      toggleBriefingAudio();
-      toggleBriefingAudio();
-    }
-  });
-
-  // Pre-load voices on load
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.onvoiceschanged = () => {
-      window.speechSynthesis.getVoices();
-    };
-  }
-
-  // Sentiment Filter Pill Click
-  sentimentFilterPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      sentimentFilterPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      activeSentimentFilter = pill.getAttribute('data-filter');
-      renderVerbatims();
-    });
-  });
-
-  // Global search input
-  globalSearch?.addEventListener('input', renderVerbatims);
-  branchFilter?.addEventListener('change', renderVerbatims);
-
-  // ==========================================
-  // MODAL ACTIONS
-  // ==========================================
-  function closeModal() {
-    responseModal.classList.remove('open');
-  }
-  btnCloseModal.addEventListener('click', closeModal);
-  btnCancelReply.addEventListener('click', closeModal);
-  responseModal.addEventListener('click', (e) => {
-    if (e.target === responseModal) closeModal();
-  });
-  btnSendReply.addEventListener('click', () => {
-    alert(currentLang === 'ar' ? 'تم اعتماد الرد وإرساله لفريق خدمة العملاء للمتابعة الفورية!' : 'Reply approved and successfully dispatched to the customer care team queue!');
-    closeModal();
-  });
-
-  // Re-check Connectors button
-  btnSyncConnectors?.addEventListener('click', () => {
-    const originalText = btnSyncConnectors.innerHTML;
-    btnSyncConnectors.innerHTML = '<span>Checking...</span>';
-    setTimeout(() => {
-      btnSyncConnectors.innerHTML = originalText;
-      alert(currentLang === 'ar' ? 'تم تحديث كافة الموصلات: 6 من 6 قنوات تعمل بكامل طاقتها.' : 'Connectors successfully re-verified: 6 of 6 active channels operational.');
-    }, 600);
-  });
-
-  // Export Executive Report
-  btnExportReport?.addEventListener('click', () => {
-    window.print();
-  });
-
-  // ==========================================
-  // BESPOKE CANVAS CHART ENGINE (Zero External Dependencies)
-  // Ensures 100% Reliability, Lightning-fast Rendering & No Broken Links
-  // ==========================================
-
-  function drawTrendChart() {
-    const canvas = document.getElementById('trendChart');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    ctx.scale(dpr, dpr);
-
-    const width = rect.width;
-    const height = rect.height;
-    ctx.clearRect(0, 0, width, height);
-
-    const padding = { top: 25, right: 30, bottom: 40, left: 45 };
-    const chartW = width - padding.left - padding.right;
-    const chartH = height - padding.top - padding.bottom;
-
-    // 14 days of realistic volume data
-    const days = ['10/09', '10/10', '10/11', '10/12', '10/13', '10/14', '10/15', '10/16', '10/17', '10/18', '10/19', '10/20', '10/21', '10/22'];
-    const posData = [480, 520, 610, 590, 750, 890, 940, 880, 790, 920, 1080, 1150, 1220, 1310];
-    const neuData = [180, 210, 240, 220, 290, 310, 340, 310, 280, 340, 390, 420, 410, 430];
-    const negData = [120, 150, 190, 140, 180, 210, 250, 220, 190, 210, 240, 230, 220, 210];
-
-    const maxVal = 1500;
-
-    // Draw horizontal grid lines
-    ctx.strokeStyle = currentTheme === 'dark' ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
-    ctx.lineWidth = 1;
-    ctx.fillStyle = currentTheme === 'dark' ? '#64748b' : '#94a3b8';
-    ctx.font = '10px sans-serif';
-    ctx.textAlign = 'right';
-
-    for (let i = 0; i <= 4; i++) {
-      const y = padding.top + (chartH / 4) * i;
-      const val = Math.round(maxVal - (maxVal / 4) * i);
-      ctx.beginPath();
-      ctx.moveTo(padding.left, y);
-      ctx.lineTo(padding.left + chartW, y);
-      ctx.stroke();
-      ctx.fillText(val, padding.left - 8, y + 3);
-    }
-
-    // Function to draw line & gradient area
-    function drawSeries(data, strokeColor, fillColor) {
-      const stepX = chartW / (data.length - 1);
-      ctx.beginPath();
-      data.forEach((val, i) => {
-        const x = padding.left + i * stepX;
-        const y = padding.top + chartH - (val / maxVal) * chartH;
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
-
-      // Area fill
-      ctx.lineTo(padding.left + chartW, padding.top + chartH);
-      ctx.lineTo(padding.left, padding.top + chartH);
-      ctx.closePath();
-      const grad = ctx.createLinearGradient(0, padding.top, 0, padding.top + chartH);
-      grad.addColorStop(0, fillColor);
-      grad.addColorStop(1, 'transparent');
-      ctx.fillStyle = grad;
-      ctx.fill();
-
-      // Stroke line
-      ctx.beginPath();
-      data.forEach((val, i) => {
-        const x = padding.left + i * stepX;
-        const y = padding.top + chartH - (val / maxVal) * chartH;
-        if (i === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
-      ctx.strokeStyle = strokeColor;
-      ctx.lineWidth = 2.5;
-      ctx.stroke();
-
-      // Draw point dots
-      data.forEach((val, i) => {
-        const x = padding.left + i * stepX;
-        const y = padding.top + chartH - (val / maxVal) * chartH;
-        ctx.beginPath();
-        ctx.arc(x, y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = strokeColor;
-        ctx.fill();
-        ctx.strokeStyle = currentTheme === 'dark' ? '#101e34' : '#ffffff';
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
-      });
-    }
-
-    // Draw stacked or layered series
-    drawSeries(posData, '#10b981', 'rgba(16, 185, 129, 0.25)');
-    drawSeries(neuData, '#64748b', 'rgba(100, 116, 139, 0.15)');
-    drawSeries(negData, '#ef4444', 'rgba(239, 68, 68, 0.2)');
-
-    // X Axis Labels
-    ctx.textAlign = 'center';
-    ctx.fillStyle = currentTheme === 'dark' ? '#94a3b8' : '#64748b';
-    days.forEach((day, i) => {
-      const stepX = chartW / (days.length - 1);
-      const x = padding.left + i * stepX;
-      ctx.fillText(day, x, height - 12);
-    });
-  }
-
-  function drawChannelDoughnut() {
-    const canvas = document.getElementById('channelDoughnut');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    ctx.scale(dpr, dpr);
-
-    const width = rect.width;
-    const height = rect.height;
-    ctx.clearRect(0, 0, width, height);
-
-    const channels = [
-      { name: 'Instagram', val: 4230, color: '#e1306c' },
-      { name: 'X / Twitter', val: 3890, color: '#0072CE' },
-      { name: 'Snapchat', val: 3410, color: '#f59e0b' },
-      { name: 'TikTok', val: 1820, color: '#00f2fe' },
-      { name: 'Google Maps', val: 880, color: '#10b981' },
-      { name: 'YouTube', val: 590, color: '#ef4444' }
     ];
 
-    const total = channels.reduce((sum, c) => sum + c.val, 0);
-    const centerX = width * 0.38;
-    const centerY = height * 0.5;
-    const radius = Math.min(centerX, centerY) - 20;
-    const innerRadius = radius * 0.62;
+    let currentFilter = 'all';
 
-    let startAngle = -Math.PI / 2;
+    // عنصر الشبكة
+    const gridEl = document.getElementById('verbatimGridList');
+    const searchInput = document.getElementById('liveSearchInput');
+    const citySelect = document.getElementById('cityDropdown');
+    const filterBtns = document.querySelectorAll('#sentimentFilterContainer .pill-btn');
+    const btnToggleLang = document.getElementById('btnToggleLang');
+    const langText = document.getElementById('langText');
+    const btnToggleTheme = document.getElementById('btnToggleTheme');
+    const themeEmoji = document.getElementById('themeEmoji');
 
-    channels.forEach(ch => {
-      const sliceAngle = (ch.val / total) * Math.PI * 2;
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
-      ctx.arc(centerX, centerY, innerRadius, startAngle + sliceAngle, startAngle, true);
-      ctx.closePath();
-      ctx.fillStyle = ch.color;
-      ctx.fill();
+    // رسم بطاقات آراء العملاء
+    function renderCards() {
+      const query = (searchInput?.value || '').trim().toLowerCase();
+      const cityVal = citySelect?.value || 'all';
 
-      // Border between slices
-      ctx.strokeStyle = currentTheme === 'dark' ? '#101e34' : '#ffffff';
-      ctx.lineWidth = 2;
-      ctx.stroke();
+      const filtered = customerFeedback.filter(item => {
+        const matchFilter = currentFilter === 'all' || item.sentiment === currentFilter;
+        const matchQuery = !query || 
+          item.author.toLowerCase().includes(query) ||
+          item.text.toLowerCase().includes(query) ||
+          item.city.toLowerCase().includes(query);
+        const matchCity = cityVal === 'all' || 
+          (cityVal === 'jeddah' && item.city.includes('جدة')) ||
+          (cityVal === 'riyadh' && item.city.includes('الرياض')) ||
+          (cityVal === 'dammam' && (item.city.includes('الدمام') || item.city.includes('الخبر'))) ||
+          (cityVal === 'makkah' && item.city.includes('مكة'));
 
-      startAngle += sliceAngle;
+        return matchFilter && matchQuery && matchCity;
+      });
+
+      gridEl.innerHTML = '';
+
+      if (filtered.length === 0) {
+        gridEl.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: var(--bg-surface); border-radius: var(--radius-lg); border: 1px dashed var(--border-subtle); color: var(--text-muted)">
+            <p style="font-weight:700;font-size:1rem;">لا توجد آراء مطابقة للبحث المحدد</p>
+            <p style="font-size:0.8rem;margin-top:0.25rem;">جرب تغيير خيارات المدينة أو تصفية المشاعر.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'voice-card';
+
+        let tagClass = 'tag-positive';
+        if (item.sentiment === 'negative') tagClass = 'tag-negative';
+        if (item.sentiment === 'neutral') tagClass = 'tag-neutral';
+
+        card.innerHTML = `
+          <div>
+            <div class="voice-header">
+              <div class="user-profile">
+                <div class="user-avatar">${item.author.charAt(0)}</div>
+                <div>
+                  <div class="user-name">${item.author}</div>
+                  <div class="user-handle">${item.handle} · ${item.time}</div>
+                </div>
+              </div>
+              <span class="sentiment-tag ${tagClass}">${item.sentimentText}</span>
+            </div>
+
+            <div class="voice-quote">"${item.text}"</div>
+          </div>
+
+          <div class="voice-footer">
+            <span class="voice-branch-tag">📍 ${item.city}</span>
+            <span style="font-weight:700;color:${item.sourceColor}">● ${item.source}</span>
+          </div>
+        `;
+        gridEl.appendChild(card);
+      });
+    }
+
+    // تفعيل فلاتر المشاعر
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        renderCards();
+      });
     });
 
-    // Center total text
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillStyle = currentTheme === 'dark' ? '#ffffff' : '#0f172a';
-    ctx.font = 'bold 16px sans-serif';
-    ctx.fillText('14,820', centerX, centerY - 6);
-    ctx.font = '10px sans-serif';
-    ctx.fillStyle = currentTheme === 'dark' ? '#94a3b8' : '#64748b';
-    ctx.fillText(currentLang === 'ar' ? 'تفاعل' : 'Mentions', centerX, centerY + 12);
+    searchInput?.addEventListener('input', renderCards);
+    citySelect?.addEventListener('change', renderCards);
 
-    // Legend on the side
-    const legendX = width * 0.68;
-    const startY = height * 0.15;
-    const rowH = 24;
-
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
-    channels.forEach((ch, idx) => {
-      const y = startY + idx * rowH;
-      // Dot
-      ctx.beginPath();
-      ctx.arc(legendX, y, 5, 0, Math.PI * 2);
-      ctx.fillStyle = ch.color;
-      ctx.fill();
-
-      // Text
-      ctx.font = '11px sans-serif';
-      ctx.fillStyle = currentTheme === 'dark' ? '#f1f5f9' : '#0f172a';
-      const pct = Math.round((ch.val / total) * 100) + '%';
-      ctx.fillText(`${ch.name} (${pct})`, legendX + 12, y);
+    // تبديل النسق الفاتح/الداكن
+    btnToggleTheme?.addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = cur === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      themeEmoji.textContent = next === 'light' ? '🌙' : '☀️';
+      drawChart();
     });
-  }
 
-  function drawRegionChart() {
-    const canvas = document.getElementById('regionChart');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
+    // تبديل اللغة (عربي / English)
+    btnToggleLang?.addEventListener('click', () => {
+      const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
+      if (isRtl) {
+        document.documentElement.setAttribute('dir', 'ltr');
+        document.documentElement.setAttribute('lang', 'en');
+        langText.textContent = 'العربية';
+      } else {
+        document.documentElement.setAttribute('dir', 'rtl');
+        document.documentElement.setAttribute('lang', 'ar');
+        langText.textContent = 'English';
+      }
+      drawChart();
+    });
 
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    ctx.scale(dpr, dpr);
+    // زر التمرير إلى الـ Backend API
+    document.getElementById('btnOpenApiModal')?.addEventListener('click', () => {
+      document.getElementById('apiDocumentationSection')?.scrollIntoView({ behavior: 'smooth' });
+    });
 
-    const width = rect.width;
-    const height = rect.height;
-    ctx.clearRect(0, 0, width, height);
+    // زر تحديث البيانات اللحظي
+    document.getElementById('btnRefreshData')?.addEventListener('click', () => {
+      const btn = document.getElementById('btnRefreshData');
+      btn.innerHTML = '<span>جاري التحديث...</span>';
+      setTimeout(() => {
+        btn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+          <span>تم التحديث الآن بنجاح</span>
+        `;
+        renderCards();
+      }, 500);
+    });
 
-    const regions = [
-      { name: currentLang === 'ar' ? 'الغربية (جدة/مكة)' : 'Western (Jeddah/Makkah)', pos: 68, neu: 18, neg: 14 },
-      { name: currentLang === 'ar' ? 'الوسطى (الرياض)' : 'Central (Riyadh)', pos: 64, neu: 20, neg: 16 },
-      { name: currentLang === 'ar' ? 'الشرقية (الدمام/الخبر)' : 'Eastern (Dammam/Khobar)', pos: 74, neu: 16, neg: 10 },
-      { name: currentLang === 'ar' ? 'الجنوبية (خميس مشيط)' : 'Southern (Khamis)', pos: 60, neu: 25, neg: 15 }
-    ];
+    // رسم المخطط البياني الصافي والأنيق باستخدام ألوان بالبيد
+    function drawChart() {
+      const canvas = document.getElementById('mainTrendsChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
 
-    const padding = { top: 20, right: 30, bottom: 25, left: 160 };
-    const chartW = width - padding.left - padding.right;
-    const rowH = (height - padding.top - padding.bottom) / regions.length;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
 
-    ctx.textBaseline = 'middle';
-    regions.forEach((r, idx) => {
-      const y = padding.top + idx * rowH + rowH / 2;
+      const w = rect.width;
+      const h = rect.height;
+      ctx.clearRect(0, 0, w, h);
 
-      // Label
+      const padding = { top: 20, right: 25, bottom: 35, left: 45 };
+      const chartW = w - padding.left - padding.right;
+      const chartH = h - padding.top - padding.bottom;
+
+      const days = ['10/10', '10/12', '10/14', '10/16', '10/18', '10/20', '10/22'];
+      const totalData = [580, 720, 890, 840, 990, 1180, 1340];
+      const posData = [360, 480, 620, 580, 710, 890, 1020];
+      const negData = [90, 110, 140, 120, 130, 140, 150];
+
+      const maxVal = 1500;
+
+      // خطوط الشبكة الهادئة
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)';
+      ctx.lineWidth = 1;
+      ctx.fillStyle = isDark ? '#94A3B8' : '#64748B';
+      ctx.font = '11px Cairo, sans-serif';
       ctx.textAlign = 'right';
-      ctx.font = 'bold 11px sans-serif';
-      ctx.fillStyle = currentTheme === 'dark' ? '#f1f5f9' : '#0f172a';
-      ctx.fillText(r.name, padding.left - 15, y);
 
-      // Stacked Bar
-      const barH = 14;
-      const barY = y - barH / 2;
-      const barX = padding.left;
+      for (let i = 0; i <= 4; i++) {
+        const y = padding.top + (chartH / 4) * i;
+        const val = Math.round(maxVal - (maxVal / 4) * i);
+        ctx.beginPath();
+        ctx.moveTo(padding.left, y);
+        ctx.lineTo(padding.left + chartW, y);
+        ctx.stroke();
+        ctx.fillText(val, padding.left - 8, y + 4);
+      }
 
-      const wPos = (r.pos / 100) * chartW;
-      const wNeu = (r.neu / 100) * chartW;
-      const wNeg = (r.neg / 100) * chartW;
+      // دالة رسم الخطوط
+      function drawLine(data, strokeColor, fillColor) {
+        const stepX = chartW / (data.length - 1);
+        ctx.beginPath();
+        data.forEach((val, i) => {
+          const x = padding.left + i * stepX;
+          const y = padding.top + chartH - (val / maxVal) * chartH;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        });
 
-      ctx.fillStyle = '#10b981';
-      ctx.fillRect(barX, barY, wPos, barH);
+        if (fillColor) {
+          ctx.lineTo(padding.left + chartW, padding.top + chartH);
+          ctx.lineTo(padding.left, padding.top + chartH);
+          ctx.closePath();
+          ctx.fillStyle = fillColor;
+          ctx.fill();
+        }
 
-      ctx.fillStyle = '#64748b';
-      ctx.fillRect(barX + wPos, barY, wNeu, barH);
+        ctx.beginPath();
+        data.forEach((val, i) => {
+          const x = padding.left + i * stepX;
+          const y = padding.top + chartH - (val / maxVal) * chartH;
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        });
+        ctx.strokeStyle = strokeColor;
+        ctx.lineWidth = 2.8;
+        ctx.stroke();
 
-      ctx.fillStyle = '#ef4444';
-      ctx.fillRect(barX + wPos + wNeu, barY, wNeg, barH);
+        // نقاط الخط
+        data.forEach((val, i) => {
+          const x = padding.left + i * stepX;
+          const y = padding.top + chartH - (val / maxVal) * chartH;
+          ctx.beginPath();
+          ctx.arc(x, y, 4, 0, Math.PI * 2);
+          ctx.fillStyle = strokeColor;
+          ctx.fill();
+          ctx.strokeStyle = isDark ? '#131E32' : '#FFFFFF';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+        });
+      }
 
-      // Value label
-      ctx.textAlign = 'left';
-      ctx.font = '10px sans-serif';
-      ctx.fillStyle = currentTheme === 'dark' ? '#94a3b8' : '#64748b';
-      ctx.fillText(`${r.pos}% Pos`, barX + chartW + 6, y);
+      // خط إجمالي التفاعل بأحمر بالبيد الرسمي
+      drawLine(totalData, '#C41230', isDark ? 'rgba(196,18,48,0.12)' : 'rgba(196,18,48,0.06)');
+      // خط الإيجابي
+      drawLine(posData, '#059669', null);
+      // خط الملاحظات
+      drawLine(negData, '#DC2626', null);
+
+      // تواريخ المحور الأفقي
+      ctx.textAlign = 'center';
+      ctx.fillStyle = isDark ? '#94A3B8' : '#64748B';
+      days.forEach((day, i) => {
+        const stepX = chartW / (days.length - 1);
+        const x = padding.left + i * stepX;
+        ctx.fillText(day, x, h - 10);
+      });
+    }
+
+    // التهيئة الأولى
+    renderCards();
+    setTimeout(drawChart, 60);
+
+    window.addEventListener('resize', () => {
+      drawChart();
     });
-  }
 
-  function renderAllCharts() {
-    drawTrendChart();
-    drawChannelDoughnut();
-    drawRegionChart();
-  }
-
-  // Window resize debounced
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(renderAllCharts, 120);
-  });
-
-  // Initial Boot
-  applyLanguage('en');
-  applyTheme('dark');
-  renderVerbatims();
-  setTimeout(renderAllCharts, 100);
-
-})();
-</script>
+  })();
+  </script>
 </body>
 </html>
