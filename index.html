@@ -317,6 +317,170 @@
       transform: translateY(-1px);
     }
 
+    /* Audio Briefing Pill & Visualizer */
+    .audio-briefing-btn {
+      background: linear-gradient(135deg, rgba(212, 155, 53, 0.16), rgba(26, 115, 232, 0.16));
+      border: 1.5px solid var(--brand-gold-500);
+      color: var(--text-main);
+      padding: 0.45rem 0.95rem;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.82rem;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(212, 155, 53, 0.2);
+    }
+
+    .audio-briefing-btn:hover {
+      background: linear-gradient(135deg, rgba(212, 155, 53, 0.28), rgba(26, 115, 232, 0.28));
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(212, 155, 53, 0.35);
+    }
+
+    .audio-wave {
+      display: inline-flex;
+      align-items: center;
+      gap: 2.5px;
+      height: 16px;
+    }
+
+    .audio-bar {
+      width: 3px;
+      background: var(--brand-gold-400);
+      border-radius: 2px;
+      height: 4px;
+      transition: height 0.15s ease;
+    }
+
+    .audio-briefing-btn.playing .audio-bar {
+      animation: wavePulse 0.7s infinite alternate ease-in-out;
+    }
+
+    .audio-briefing-btn.playing .audio-bar:nth-child(1) { animation-delay: 0.0s; }
+    .audio-briefing-btn.playing .audio-bar:nth-child(2) { animation-delay: 0.18s; }
+    .audio-briefing-btn.playing .audio-bar:nth-child(3) { animation-delay: 0.36s; }
+    .audio-briefing-btn.playing .audio-bar:nth-child(4) { animation-delay: 0.12s; }
+    .audio-briefing-btn.playing .audio-bar:nth-child(5) { animation-delay: 0.28s; }
+
+    @keyframes wavePulse {
+      0% { height: 4px; }
+      100% { height: 16px; }
+    }
+
+    /* Embedded Audio Briefing Hero Widget in Overview */
+    .audio-briefing-card {
+      background: linear-gradient(135deg, var(--bg-surface-elevated) 0%, var(--bg-surface) 100%);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .audio-briefing-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--brand-gold-500), var(--brand-blue-500));
+    }
+
+    html[dir="rtl"] .audio-briefing-card::before {
+      left: auto;
+      right: 0;
+    }
+
+    .audio-briefing-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .audio-briefing-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--brand-navy-800);
+      border: 1.5px solid var(--brand-gold-500);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-gold-400);
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .audio-briefing-info h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .audio-briefing-info p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .audio-controls-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-audio-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--brand-blue-600);
+      border: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
+      transition: all var(--transition-fast);
+    }
+
+    .btn-audio-circle:hover {
+      background: var(--brand-blue-500);
+      transform: scale(1.06);
+    }
+
+    .audio-speed-btn {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 0.3rem 0.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .audio-status-text {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--brand-gold-400);
+      min-width: 90px;
+    }
+
     .btn-primary {
       background: linear-gradient(135deg, #1a73e8 0%, #0d56b8 100%);
       color: #ffffff;
@@ -1330,6 +1494,17 @@
           <span data-i18n="status_live">Live Ingestion Active</span>
         </div>
 
+        <button class="audio-briefing-btn" id="btnAudioBriefingTop" title="Listen to AI Voice Briefing / استمع للموجز الصوتي">
+          <div class="audio-wave">
+            <span class="audio-bar"></span>
+            <span class="audio-bar"></span>
+            <span class="audio-bar"></span>
+            <span class="audio-bar"></span>
+            <span class="audio-bar"></span>
+          </div>
+          <span id="audioTopLabel" data-i18n="audio_briefing">🎙️ Listen to Briefing</span>
+        </button>
+
         <button class="btn-toggle-lang" id="btnToggleLang" title="Switch Language / تغيير اللغة">
           <span id="langLabel">العربية</span>
         </button>
@@ -1471,6 +1646,28 @@
 
     <!-- ================= TAB 1: EXECUTIVE OVERVIEW ================= -->
     <div class="tab-pane active" id="tab-overview">
+
+      <!-- Executive Audio Briefing Hero Widget -->
+      <div class="audio-briefing-card" id="executiveAudioCard">
+        <div class="audio-briefing-meta">
+          <div class="audio-briefing-icon">🎙️</div>
+          <div class="audio-briefing-info">
+            <h3 data-i18n="audio_card_title">Executive Audio Intelligence Digest · October 2026</h3>
+            <p data-i18n="audio_card_sub">Listen to AI voice briefing summarizing 14,820 customer interactions, +42% NSS sentiment, and operational alerts.</p>
+          </div>
+        </div>
+        <div class="audio-controls-row">
+          <span class="audio-status-text" id="audioStatusText" data-i18n="audio_ready">Ready to play</span>
+          <button class="btn-audio-circle" id="btnPlayAudio" title="Play / Pause Audio Briefing">
+            <svg id="audioPlayIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </button>
+          <button class="audio-speed-btn" id="btnAudioSpeed">1.0x</button>
+          <button class="btn-action" id="btnStopAudio" title="Stop Audio" style="padding:0.35rem 0.65rem;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+            <span data-i18n="btn_stop">Stop</span>
+          </button>
+        </div>
+      </div>
       <div class="dashboard-row">
         <!-- Main Sentiment & Volume Trend Chart -->
         <div class="card">
@@ -2044,7 +2241,15 @@
       btn_cancel: 'Cancel',
       btn_send_reply: 'Approve & Dispatch Reply',
       respond_action: 'Respond',
-      view_source: 'Source Link'
+      view_source: 'Source Link',
+      audio_briefing: '🎙️ Listen to Briefing',
+      audio_card_title: 'Executive Audio Intelligence Digest · October 2026',
+      audio_card_sub: 'Listen to AI voice briefing summarizing 14,820 customer interactions, +42% NSS sentiment, and operational alerts.',
+      audio_ready: 'Ready to play',
+      audio_playing: 'Playing briefing...',
+      audio_paused: 'Paused',
+      btn_stop: 'Stop',
+      btn_listen_post: 'Listen'
     },
     ar: {
       bgc_group: 'مجموعة شركات بالبيد · BGC',
@@ -2125,7 +2330,15 @@
       btn_cancel: 'إلغاء',
       btn_send_reply: 'اعتماد وإرسال الرد',
       respond_action: 'رد رسمي',
-      view_source: 'رابط المصدر'
+      view_source: 'رابط المصدر',
+      audio_briefing: '🎙️ استمع للموجز الصوتي',
+      audio_card_title: 'الملخص الصوتي الذكي للتنفيذيين · أكتوبر 2026',
+      audio_card_sub: 'استمع لموجز صوتي ذكي يلخص 14,820 تفاعل للعملاء، مؤشر الرضا +42%، وأولويات التشغيل.',
+      audio_ready: 'جاهز للاستماع',
+      audio_playing: 'جاري القراءة الصوتية...',
+      audio_paused: 'متوقف مؤقتاً',
+      btn_stop: 'إيقاف',
+      btn_listen_post: 'استمع'
     }
   };
 
@@ -2468,6 +2681,10 @@
             <span class="tag-badge">🏷️ ${item.topic}</span>
           </div>
           <div style="display:flex;gap:0.4rem;">
+            <button class="btn-respond btn-speak-verbatim" data-text-ar="${item.textAr}" data-text-en="${item.textEn}" title="${translations[currentLang].btn_listen_post}">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              <span>${translations[currentLang].btn_listen_post}</span>
+            </button>
             <a href="${item.sourceUrl}" target="_blank" rel="noopener" class="btn-respond" title="${translations[currentLang].view_source}">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             </a>
@@ -2490,6 +2707,135 @@
         responseModal.classList.add('open');
       });
     });
+
+    // Attach speak verbatim listeners
+    document.querySelectorAll('.btn-speak-verbatim').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const text = currentLang === 'ar' ? btn.getAttribute('data-text-ar') : btn.getAttribute('data-text-en');
+        speakText(text, currentLang);
+      });
+    });
+  }
+
+  // ==========================================
+  // AI VOICE AUDIO BRIEFING ENGINE (SPEECH SYNTHESIS)
+  // ==========================================
+  const btnAudioBriefingTop = document.getElementById('btnAudioBriefingTop');
+  const btnPlayAudio = document.getElementById('btnPlayAudio');
+  const btnStopAudio = document.getElementById('btnStopAudio');
+  const btnAudioSpeed = document.getElementById('btnAudioSpeed');
+  const audioPlayIcon = document.getElementById('audioPlayIcon');
+  const audioStatusText = document.getElementById('audioStatusText');
+  const audioTopLabel = document.getElementById('audioTopLabel');
+
+  let audioSpeechRate = 1.0;
+  let isSpeakingBriefing = false;
+  let currentUtterance = null;
+
+  const briefingScripts = {
+    en: "Executive Briefing for Balubaid Group Autozone Social Listening. Over the last 30 days, we tracked 14,820 customer mentions in Saudi Arabia. Net Sentiment reached positive 42 percent, up 6.2 points, driven by the 0 percent installment campaign with Al Rajhi and SNB banks. Key positive feedback highlights rapid financing approval and professional showroom hospitality in Riyadh and Jeddah. Primary operational alert: spare parts delivery delays at the Prince Sultan branch in Jeddah. Customer care resolution stands at 94.2 percent with a 28 minute average response.",
+    ar: "الملخص الصوتي التنفيذي لمنظومة أوتوزون بالبيد للاستماع لآراء العملاء. رصدنا خلال الثلاثين يوماً الماضية أكثر من 14,800 تفاعل في المملكة. مؤشر المشاعر الصافي إيجابي بنسبة 42% بارتفاع 6.2 نقطة بفضل عروض التقسيط بالتعاون مع بنك الراجحي والبنك الأهلي. يشيد العملاء بسرعة إنهاء المعاملات ورقي صالات العرض بالرياض وجدة. أبرز ملاحظة تشغيلية هي تأخر تسليم قطع الغيار في فرع شارع الأمير سلطان بجدة. نسبة استجابة خدمة العملاء تسجل 94.2% بمتوسط رد خلال 28 دقيقة."
+  };
+
+  function selectVoiceForLang(lang) {
+    if (!('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    if (lang === 'ar') {
+      return voices.find(v => v.lang.startsWith('ar') || v.name.includes('Maged') || v.name.includes('Tariq') || v.name.includes('Laila')) || null;
+    } else {
+      return voices.find(v => (v.lang.startsWith('en') && (v.name.includes('Samantha') || v.name.includes('Daniel') || v.name.includes('Natural') || v.name.includes('Google')))) || voices.find(v => v.lang.startsWith('en')) || null;
+    }
+  }
+
+  function setAudioVisualizerState(playing) {
+    isSpeakingBriefing = playing;
+    if (playing) {
+      btnAudioBriefingTop?.classList.add('playing');
+      if (audioPlayIcon) audioPlayIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+      if (audioStatusText) audioStatusText.textContent = translations[currentLang].audio_playing;
+    } else {
+      btnAudioBriefingTop?.classList.remove('playing');
+      if (audioPlayIcon) audioPlayIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+      if (audioStatusText) audioStatusText.textContent = translations[currentLang].audio_ready;
+    }
+  }
+
+  function stopAudio() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setAudioVisualizerState(false);
+  }
+
+  function speakText(text, lang) {
+    if (!('speechSynthesis' in window)) {
+      alert(currentLang === 'ar' ? 'متصفحك لا يدعم القراءة الصوتية المباشرة.' : 'Speech synthesis is not supported in this browser.');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang === 'ar' ? 'ar-SA' : 'en-US';
+    utterance.rate = audioSpeechRate;
+    const voice = selectVoiceForLang(lang);
+    if (voice) utterance.voice = voice;
+
+    utterance.onstart = () => {
+      setAudioVisualizerState(true);
+    };
+    utterance.onend = () => {
+      setAudioVisualizerState(false);
+    };
+    utterance.onerror = () => {
+      setAudioVisualizerState(false);
+    };
+
+    currentUtterance = utterance;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function toggleBriefingAudio() {
+    if (!('speechSynthesis' in window)) {
+      alert(currentLang === 'ar' ? 'متصفحك لا يدعم القراءة الصوتية المباشرة.' : 'Speech synthesis is not supported in this browser.');
+      return;
+    }
+
+    if (window.speechSynthesis.speaking && isSpeakingBriefing) {
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+        setAudioVisualizerState(true);
+      } else {
+        window.speechSynthesis.pause();
+        btnAudioBriefingTop?.classList.remove('playing');
+        if (audioStatusText) audioStatusText.textContent = translations[currentLang].audio_paused;
+        if (audioPlayIcon) audioPlayIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+      }
+    } else {
+      speakText(briefingScripts[currentLang], currentLang);
+    }
+  }
+
+  btnAudioBriefingTop?.addEventListener('click', toggleBriefingAudio);
+  btnPlayAudio?.addEventListener('click', toggleBriefingAudio);
+  btnStopAudio?.addEventListener('click', stopAudio);
+
+  btnAudioSpeed?.addEventListener('click', () => {
+    if (audioSpeechRate === 1.0) audioSpeechRate = 1.25;
+    else if (audioSpeechRate === 1.25) audioSpeechRate = 1.5;
+    else audioSpeechRate = 1.0;
+
+    btnAudioSpeed.textContent = audioSpeechRate.toFixed(1) + 'x';
+    if (window.speechSynthesis.speaking) {
+      // Re-trigger with new speed
+      toggleBriefingAudio();
+      toggleBriefingAudio();
+    }
+  });
+
+  // Pre-load voices on load
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      window.speechSynthesis.getVoices();
+    };
   }
 
   // Sentiment Filter Pill Click

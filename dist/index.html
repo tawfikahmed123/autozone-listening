@@ -2241,7 +2241,15 @@
       btn_cancel: 'Cancel',
       btn_send_reply: 'Approve & Dispatch Reply',
       respond_action: 'Respond',
-      view_source: 'Source Link'
+      view_source: 'Source Link',
+      audio_briefing: '🎙️ Listen to Briefing',
+      audio_card_title: 'Executive Audio Intelligence Digest · October 2026',
+      audio_card_sub: 'Listen to AI voice briefing summarizing 14,820 customer interactions, +42% NSS sentiment, and operational alerts.',
+      audio_ready: 'Ready to play',
+      audio_playing: 'Playing briefing...',
+      audio_paused: 'Paused',
+      btn_stop: 'Stop',
+      btn_listen_post: 'Listen'
     },
     ar: {
       bgc_group: 'مجموعة شركات بالبيد · BGC',
@@ -2322,7 +2330,15 @@
       btn_cancel: 'إلغاء',
       btn_send_reply: 'اعتماد وإرسال الرد',
       respond_action: 'رد رسمي',
-      view_source: 'رابط المصدر'
+      view_source: 'رابط المصدر',
+      audio_briefing: '🎙️ استمع للموجز الصوتي',
+      audio_card_title: 'الملخص الصوتي الذكي للتنفيذيين · أكتوبر 2026',
+      audio_card_sub: 'استمع لموجز صوتي ذكي يلخص 14,820 تفاعل للعملاء، مؤشر الرضا +42%، وأولويات التشغيل.',
+      audio_ready: 'جاهز للاستماع',
+      audio_playing: 'جاري القراءة الصوتية...',
+      audio_paused: 'متوقف مؤقتاً',
+      btn_stop: 'إيقاف',
+      btn_listen_post: 'استمع'
     }
   };
 
@@ -2665,6 +2681,10 @@
             <span class="tag-badge">🏷️ ${item.topic}</span>
           </div>
           <div style="display:flex;gap:0.4rem;">
+            <button class="btn-respond btn-speak-verbatim" data-text-ar="${item.textAr}" data-text-en="${item.textEn}" title="${translations[currentLang].btn_listen_post}">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              <span>${translations[currentLang].btn_listen_post}</span>
+            </button>
             <a href="${item.sourceUrl}" target="_blank" rel="noopener" class="btn-respond" title="${translations[currentLang].view_source}">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             </a>
@@ -2687,6 +2707,135 @@
         responseModal.classList.add('open');
       });
     });
+
+    // Attach speak verbatim listeners
+    document.querySelectorAll('.btn-speak-verbatim').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const text = currentLang === 'ar' ? btn.getAttribute('data-text-ar') : btn.getAttribute('data-text-en');
+        speakText(text, currentLang);
+      });
+    });
+  }
+
+  // ==========================================
+  // AI VOICE AUDIO BRIEFING ENGINE (SPEECH SYNTHESIS)
+  // ==========================================
+  const btnAudioBriefingTop = document.getElementById('btnAudioBriefingTop');
+  const btnPlayAudio = document.getElementById('btnPlayAudio');
+  const btnStopAudio = document.getElementById('btnStopAudio');
+  const btnAudioSpeed = document.getElementById('btnAudioSpeed');
+  const audioPlayIcon = document.getElementById('audioPlayIcon');
+  const audioStatusText = document.getElementById('audioStatusText');
+  const audioTopLabel = document.getElementById('audioTopLabel');
+
+  let audioSpeechRate = 1.0;
+  let isSpeakingBriefing = false;
+  let currentUtterance = null;
+
+  const briefingScripts = {
+    en: "Executive Briefing for Balubaid Group Autozone Social Listening. Over the last 30 days, we tracked 14,820 customer mentions in Saudi Arabia. Net Sentiment reached positive 42 percent, up 6.2 points, driven by the 0 percent installment campaign with Al Rajhi and SNB banks. Key positive feedback highlights rapid financing approval and professional showroom hospitality in Riyadh and Jeddah. Primary operational alert: spare parts delivery delays at the Prince Sultan branch in Jeddah. Customer care resolution stands at 94.2 percent with a 28 minute average response.",
+    ar: "الملخص الصوتي التنفيذي لمنظومة أوتوزون بالبيد للاستماع لآراء العملاء. رصدنا خلال الثلاثين يوماً الماضية أكثر من 14,800 تفاعل في المملكة. مؤشر المشاعر الصافي إيجابي بنسبة 42% بارتفاع 6.2 نقطة بفضل عروض التقسيط بالتعاون مع بنك الراجحي والبنك الأهلي. يشيد العملاء بسرعة إنهاء المعاملات ورقي صالات العرض بالرياض وجدة. أبرز ملاحظة تشغيلية هي تأخر تسليم قطع الغيار في فرع شارع الأمير سلطان بجدة. نسبة استجابة خدمة العملاء تسجل 94.2% بمتوسط رد خلال 28 دقيقة."
+  };
+
+  function selectVoiceForLang(lang) {
+    if (!('speechSynthesis' in window)) return null;
+    const voices = window.speechSynthesis.getVoices();
+    if (lang === 'ar') {
+      return voices.find(v => v.lang.startsWith('ar') || v.name.includes('Maged') || v.name.includes('Tariq') || v.name.includes('Laila')) || null;
+    } else {
+      return voices.find(v => (v.lang.startsWith('en') && (v.name.includes('Samantha') || v.name.includes('Daniel') || v.name.includes('Natural') || v.name.includes('Google')))) || voices.find(v => v.lang.startsWith('en')) || null;
+    }
+  }
+
+  function setAudioVisualizerState(playing) {
+    isSpeakingBriefing = playing;
+    if (playing) {
+      btnAudioBriefingTop?.classList.add('playing');
+      if (audioPlayIcon) audioPlayIcon.innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+      if (audioStatusText) audioStatusText.textContent = translations[currentLang].audio_playing;
+    } else {
+      btnAudioBriefingTop?.classList.remove('playing');
+      if (audioPlayIcon) audioPlayIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+      if (audioStatusText) audioStatusText.textContent = translations[currentLang].audio_ready;
+    }
+  }
+
+  function stopAudio() {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    setAudioVisualizerState(false);
+  }
+
+  function speakText(text, lang) {
+    if (!('speechSynthesis' in window)) {
+      alert(currentLang === 'ar' ? 'متصفحك لا يدعم القراءة الصوتية المباشرة.' : 'Speech synthesis is not supported in this browser.');
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang === 'ar' ? 'ar-SA' : 'en-US';
+    utterance.rate = audioSpeechRate;
+    const voice = selectVoiceForLang(lang);
+    if (voice) utterance.voice = voice;
+
+    utterance.onstart = () => {
+      setAudioVisualizerState(true);
+    };
+    utterance.onend = () => {
+      setAudioVisualizerState(false);
+    };
+    utterance.onerror = () => {
+      setAudioVisualizerState(false);
+    };
+
+    currentUtterance = utterance;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function toggleBriefingAudio() {
+    if (!('speechSynthesis' in window)) {
+      alert(currentLang === 'ar' ? 'متصفحك لا يدعم القراءة الصوتية المباشرة.' : 'Speech synthesis is not supported in this browser.');
+      return;
+    }
+
+    if (window.speechSynthesis.speaking && isSpeakingBriefing) {
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+        setAudioVisualizerState(true);
+      } else {
+        window.speechSynthesis.pause();
+        btnAudioBriefingTop?.classList.remove('playing');
+        if (audioStatusText) audioStatusText.textContent = translations[currentLang].audio_paused;
+        if (audioPlayIcon) audioPlayIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"/>';
+      }
+    } else {
+      speakText(briefingScripts[currentLang], currentLang);
+    }
+  }
+
+  btnAudioBriefingTop?.addEventListener('click', toggleBriefingAudio);
+  btnPlayAudio?.addEventListener('click', toggleBriefingAudio);
+  btnStopAudio?.addEventListener('click', stopAudio);
+
+  btnAudioSpeed?.addEventListener('click', () => {
+    if (audioSpeechRate === 1.0) audioSpeechRate = 1.25;
+    else if (audioSpeechRate === 1.25) audioSpeechRate = 1.5;
+    else audioSpeechRate = 1.0;
+
+    btnAudioSpeed.textContent = audioSpeechRate.toFixed(1) + 'x';
+    if (window.speechSynthesis.speaking) {
+      // Re-trigger with new speed
+      toggleBriefingAudio();
+      toggleBriefingAudio();
+    }
+  });
+
+  // Pre-load voices on load
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      window.speechSynthesis.getVoices();
+    };
   }
 
   // Sentiment Filter Pill Click
