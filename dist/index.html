@@ -1,1409 +1,786 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مجموعة بالبيد · أوتوزون | منصة رصد وتحليل صوت العميل</title>
-  <meta name="description" content="منصة رصد آراء العملاء وتحليل المشاعر لعلامة أوتوزون - مجموعة شركات بالبيد في المملكة العربية السعودية.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    /* ==========================================================================
-       هوية وألوان مجموعة شركات بالبيد الرسمية (BALUBAID BRAND SYSTEM)
-       ========================================================================== */
-    :root {
-      /* ألوان بالبيد الرسمية */
-      --balubaid-red: #C41230;          /* أحمر بالبيد الرسمي */
-      --balubaid-red-dark: #9E0B24;     /* أحمر داكن للأزرار والتحويم */
-      --balubaid-red-light: #FDE8EB;    /* أحمر فاتح جداً للخلفيات */
-      --balubaid-charcoal: #1E293B;     /* كحلي فحمي داكن */
-      --balubaid-slate: #334155;        /* رمادي رمادي متزن */
-
-      /* ألوان المؤشرات الوظيفية */
-      --status-positive: #059669;       /* أخضر إيجابي ناصع */
-      --status-positive-bg: #ECFDF5;
-      --status-neutral: #64748B;        /* رمادي محايد */
-      --status-neutral-bg: #F1F5F9;
-      --status-negative: #DC2626;       /* أحمر تنبيهي */
-      --status-negative-bg: #FEF2F2;
-
-      /* الخطوط */
-      --font-ar: 'Cairo', system-ui, -apple-system, sans-serif;
-      --font-en: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      --font-main: var(--font-ar);
-
-      /* الحواف والظلال */
-      --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 18px;
-      --radius-pill: 9999px;
-      --transition: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    /* النسق الفاتح الرسمي (Default - Light Corporate) */
-    [data-theme="light"] {
-      --bg-page: #F8FAFC;
-      --bg-surface: #FFFFFF;
-      --bg-surface-soft: #F1F5F9;
-      --border-subtle: #E2E8F0;
-      --border-strong: #CBD5E1;
-      --text-main: #0F172A;
-      --text-muted: #475569;
-      --text-subtle: #94A3B8;
-      --shadow-card: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.03);
-      --shadow-hover: 0 4px 12px rgba(196,18,48,0.08), 0 12px 28px rgba(0,0,0,0.06);
-    }
-
-    /* النسق الداكن الراقي (Dark Slate Corporate) */
-    [data-theme="dark"] {
-      --bg-page: #0B1120;
-      --bg-surface: #131E32;
-      --bg-surface-soft: #1B2943;
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-strong: rgba(255, 255, 255, 0.16);
-      --text-main: #F8FAFC;
-      --text-muted: #94A3B8;
-      --text-subtle: #64748B;
-      --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
-      --shadow-hover: 0 8px 28px rgba(196, 18, 48, 0.2);
-    }
-
-    html[dir="ltr"] {
-      --font-main: var(--font-en);
-    }
-
-    /* إعادة ضبط أساسية وتنسيق واضح وسهل */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: var(--font-main);
-      background-color: var(--bg-page);
-      color: var(--text-main);
-      line-height: 1.6;
-      font-size: 15px;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      transition: background-color var(--transition), color var(--transition);
-    }
-
-    /* حاوية العرض */
-    .app-container {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 0 1.5rem 3rem;
-    }
-
-    /* ==========================================================================
-       شريط الهوية والترويسة العلوية (Header)
-       ========================================================================== */
-    .main-header {
-      background: var(--bg-surface);
-      border-bottom: 2px solid var(--border-subtle);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-    }
-
-    .header-inner {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 0.9rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .brand-wrap {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    /* شعار بالبيد الأحمر الأصيل */
-    .balubaid-logo-box {
-      width: 46px;
-      height: 46px;
-      background: var(--balubaid-red);
-      border-radius: var(--radius-md);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFFFFF;
-      font-weight: 900;
-      font-size: 1.5rem;
-      box-shadow: 0 4px 12px rgba(196, 18, 48, 0.3);
-      flex-shrink: 0;
-    }
-
-    .brand-text h1 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-main);
-      line-height: 1.2;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .brand-text h1 span {
-      color: var(--balubaid-red);
-    }
-
-    .brand-text p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* أزرار الإجراءات في الهيدر */
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.4rem 0.85rem;
-      border-radius: var(--radius-pill);
-      background: var(--status-positive-bg);
-      color: var(--status-positive);
-      border: 1px solid rgba(5, 150, 105, 0.2);
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--status-positive);
-      border-radius: 50%;
-      box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.7);
-      animation: pulse 1.8s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 7px rgba(5, 150, 105, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      border-radius: var(--radius-md);
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-surface);
-      color: var(--text-main);
-      transition: all var(--transition);
-    }
-
-    .btn:hover {
-      background: var(--bg-surface-soft);
-      border-color: var(--border-strong);
-    }
-
-    .btn-balubaid-red {
-      background: var(--balubaid-red);
-      color: #FFFFFF;
-      border-color: var(--balubaid-red);
-      box-shadow: 0 3px 10px rgba(196, 18, 48, 0.25);
-    }
-
-    .btn-balubaid-red:hover {
-      background: var(--balubaid-red-dark);
-      border-color: var(--balubaid-red-dark);
-      color: #FFFFFF;
-    }
-
-    /* ==========================================================================
-       شريط الفلاتر والتحكم البسيط (Simple Filter Bar)
-       ========================================================================== */
-    .controls-strip {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-      padding: 0.9rem 1.25rem;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-card);
-    }
-
-    .strip-group {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .search-box {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .search-box input {
-      background: var(--bg-page);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 0.45rem 1rem 0.45rem 2.2rem;
-      font-size: 0.85rem;
-      color: var(--text-main);
-      width: 240px;
-      outline: none;
-      transition: all var(--transition);
-    }
-
-    html[dir="rtl"] .search-box input {
-      padding: 0.45rem 2.2rem 0.45rem 1rem;
-    }
-
-    .search-box input:focus {
-      border-color: var(--balubaid-red);
-      width: 280px;
-      box-shadow: 0 0 0 3px rgba(196, 18, 48, 0.1);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 10px;
-      color: var(--text-subtle);
-      width: 16px;
-      height: 16px;
-      pointer-events: none;
-    }
-
-    html[dir="rtl"] .search-icon {
-      left: auto;
-      right: 10px;
-    }
-
-    .select-dropdown {
-      background: var(--bg-page);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      padding: 0.45rem 0.85rem;
-      border-radius: var(--radius-md);
-      font-size: 0.85rem;
-      font-weight: 600;
-      outline: none;
-      cursor: pointer;
-    }
-
-    .select-dropdown:focus {
-      border-color: var(--balubaid-red);
-    }
-
-    /* ==========================================================================
-       بطاقات الأداء والمؤشرات الرئيسية الأربعة (KPIs) - واضحة ومباشرة
-       ========================================================================== */
-    .kpi-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-    }
-
-    .kpi-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      box-shadow: var(--shadow-card);
-      position: relative;
-      transition: all var(--transition);
-    }
-
-    .kpi-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(196, 18, 48, 0.3);
-    }
-
-    .kpi-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
-
-    .kpi-card-title {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
-    .kpi-icon-pill {
-      width: 38px;
-      height: 38px;
-      border-radius: var(--radius-md);
-      background: var(--bg-surface-soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--balubaid-red);
-      flex-shrink: 0;
-    }
-
-    .kpi-number {
-      font-size: 2.2rem;
-      font-weight: 900;
-      color: var(--text-main);
-      line-height: 1.1;
-      margin-bottom: 0.4rem;
-    }
-
-    .kpi-note {
-      font-size: 0.8rem;
-      color: var(--text-subtle);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .badge-trend-up {
-      color: var(--status-positive);
-      font-weight: 700;
-      background: var(--status-positive-bg);
-      padding: 0.15rem 0.5rem;
-      border-radius: var(--radius-pill);
-      font-size: 0.75rem;
-    }
-
-    /* ==========================================================================
-       القسم الرئيسي: الرسم البياني وتوزيع القنوات
-       ========================================================================== */
-    .grid-two-columns {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-
-    @media (max-width: 992px) {
-      .grid-two-columns {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      box-shadow: var(--shadow-card);
-    }
-
-    .card-title-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.25rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .card-heading {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .chart-container {
-      width: 100%;
-      height: 290px;
-      position: relative;
-    }
-
-    canvas {
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    /* قائمة القنوات المعتمدة */
-    .channels-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .channel-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.75rem 1rem;
-      background: var(--bg-page);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      transition: all var(--transition);
-    }
-
-    .channel-row:hover {
-      background: var(--bg-surface-soft);
-      border-color: var(--balubaid-red);
-    }
-
-    .channel-brand {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .channel-logo-badge {
-      width: 34px;
-      height: 34px;
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    /* ألوان وأيقونات القنوات الأصلية */
-    .logo-google-maps { background: #EA4335; color: #fff; }
-    .logo-analytics { background: #F9AB00; color: #fff; }
-    .logo-snapchat { background: #FFFC00; color: #000; }
-    .logo-instagram { background: linear-gradient(45deg, #F09433, #DC2743, #BC1888); color: #fff; }
-    .logo-x { background: #000000; color: #fff; }
-    .logo-tiktok { background: #000000; color: #fff; border: 1px solid #333; }
-    .logo-youtube { background: #FF0000; color: #fff; }
-
-    .channel-meta strong {
-      display: block;
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-
-    .channel-meta small {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .channel-stats {
-      text-align: left;
-    }
-
-    html[dir="rtl"] .channel-stats {
-      text-align: right;
-    }
-
-    .stat-val {
-      font-weight: 800;
-      font-size: 0.95rem;
-    }
-
-    .stat-status {
-      font-size: 0.75rem;
-      color: var(--status-positive);
-      font-weight: 600;
-    }
-
-    /* ==========================================================================
-       قسم صوت العميل الحقيقي (Customer Voice Stream) - تصميم أنيق وواضح
-       ========================================================================== */
-    .section-title-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 2rem 0 1rem;
-    }
-
-    .section-title-wrap h2 {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    .pills-filter {
-      display: flex;
-      gap: 0.4rem;
-    }
-
-    .pill-btn {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      padding: 0.4rem 0.9rem;
-      border-radius: var(--radius-pill);
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-
-    .pill-btn.active {
-      background: var(--balubaid-red);
-      color: #FFFFFF;
-      border-color: var(--balubaid-red);
-    }
-
-    .verbatims-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .voice-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 1.25rem;
-      box-shadow: var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all var(--transition);
-    }
-
-    .voice-card:hover {
-      box-shadow: var(--shadow-hover);
-      border-color: rgba(196, 18, 48, 0.3);
-    }
-
-    .voice-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
-
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .user-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--balubaid-red-light);
-      color: var(--balubaid-red);
-      font-weight: 800;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .user-name {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--text-main);
-    }
-
-    .user-handle {
-      font-size: 0.75rem;
-      color: var(--text-subtle);
-    }
-
-    .sentiment-tag {
-      padding: 0.2rem 0.65rem;
-      border-radius: var(--radius-pill);
-      font-size: 0.75rem;
-      font-weight: 700;
-    }
-
-    .tag-positive {
-      background: var(--status-positive-bg);
-      color: var(--status-positive);
-    }
-
-    .tag-neutral {
-      background: var(--status-neutral-bg);
-      color: var(--status-neutral);
-    }
-
-    .tag-negative {
-      background: var(--status-negative-bg);
-      color: var(--status-negative);
-    }
-
-    .voice-quote {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--text-main);
-      margin-bottom: 0.75rem;
-      padding: 0.75rem;
-      background: var(--bg-page);
-      border-radius: var(--radius-md);
-      border-right: 3px solid var(--balubaid-red);
-    }
-
-    html[dir="ltr"] .voice-quote {
-      border-right: none;
-      border-left: 3px solid var(--balubaid-red);
-    }
-
-    .voice-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 0.75rem;
-      border-top: 1px solid var(--border-subtle);
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    .voice-branch-tag {
-      font-weight: 600;
-    }
-
-    /* ==========================================================================
-       لوحة الربط البرمجي والـ Backend و Google APIs
-       ========================================================================== */
-    .api-banner-card {
-      background: var(--bg-surface);
-      border: 2px solid var(--balubaid-red);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      margin-top: 2.5rem;
-      box-shadow: 0 4px 20px rgba(196, 18, 48, 0.08);
-    }
-
-    .api-banner-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .api-banner-title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--balubaid-red);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .api-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .api-item {
-      background: var(--bg-page);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 1rem;
-    }
-
-    .api-item-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .api-item p {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    .code-inline {
-      display: inline-block;
-      font-family: monospace;
-      font-size: 0.75rem;
-      background: var(--bg-surface-soft);
-      padding: 0.15rem 0.4rem;
-      border-radius: 4px;
-      color: var(--balubaid-red);
-      margin-top: 0.4rem;
-    }
-
-    /* تذييل الصفحة */
-    .corporate-footer {
-      text-align: center;
-      padding: 2.5rem 0 1rem;
-      font-size: 0.82rem;
-      color: var(--text-subtle);
-      border-top: 1px solid var(--border-subtle);
-      margin-top: 3rem;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أوتوزون AUTOZONE · رصد آراء العملاء | مجموعة بالبيد</title>
+<meta name="description" content="منصة رصد آراء عملاء أوتوزون بالبيد - كل رقم قابل للتتبع إلى سجلاته وحسابه ومصدره.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ألوان أوتوزون وبالبيد المستوحاة من واجهة المعرض الحقيقية */
+  --az-yellow:#FFB703;--az-yellow-dark:#E5A00D;--az-yellow-soft:#FFF8E7;
+  --az-charcoal:#111622;--az-charcoal-card:#1A2233;
+  --balubaid-red:#C41230;--balubaid-red-dark:#9E0B24;
+  --pos:#047857;--pos-bg:#E7F6EF;--neg:#B91C1C;--neg-bg:#FDECEC;--neu:#475569;--neu-bg:#EEF2F6;
+  --warn:#92400E;--warn-bg:#FEF3C7;
+  --bg:#F6F7F9;--surface:#FFFFFF;--soft:#F1F3F6;--line:#E2E6EC;--line-strong:#C9D0DA;
+  --text:#111827;--muted:#374151;--subtle:#4B5563;
+  --r:10px;--shadow:0 1px 3px rgba(0,0,0,.04),0 3px 10px rgba(0,0,0,.04);
+}
+[data-theme="dark"]{
+  --bg:#0B101A;--surface:#131B2A;--soft:#1A2438;--line:#233047;--line-strong:#324462;
+  --text:#F3F4F6;--muted:#D1D5DB;--subtle:#9CA3AF;
+  --pos-bg:#0F2E25;--neg-bg:#3A1518;--neu-bg:#1F2937;--warn-bg:#3A2A0A;--az-yellow-soft:#2A220D;
+  --pos:#34D399;--neg:#F87171;--neu:#CBD5E1;--warn:#FBBF24;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
+button,input,select{font:inherit;color:inherit}
+a{color:var(--balubaid-red);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1280px;margin:0 auto;padding:0 1.25rem}
+
+/* ترويسة مطابقة لواجهة معرض أوتوزون بالبيد الأصلية */
+header{background:var(--az-charcoal);color:#FFFFFF;border-bottom:3px solid var(--az-yellow);position:sticky;top:0;z-index:30}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.65rem 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:.9rem}
+
+/* الشعار الهندسي المربع الأصفر المأخوذ مباشرة من صورة المعرض */
+.az-showroom-badge{display:flex;align-items:center;gap:.45rem;background:#090D15;padding:.3rem .75rem;border-radius:8px;border:1px solid rgba(255,183,3,.3)}
+.az-en{font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:1.15rem;letter-spacing:.05em;color:#FFFFFF}
+.az-sq-mark{width:18px;height:18px;background:var(--az-yellow);border-radius:3px;display:flex;align-items:center;justify-content:center;position:relative}
+.az-sq-mark::after{content:'';width:8px;height:8px;background:#090D15;border-radius:1px}
+.az-ar{font-weight:900;font-size:1.2rem;color:#FFFFFF;letter-spacing:-.01em}
+
+.brand-details{display:flex;flex-direction:column}
+.balubaid-tag{font-size:.78rem;color:var(--az-yellow);font-weight:700;display:flex;align-items:center;gap:.35rem}
+.balubaid-sub{font-size:.72rem;color:#9CA3AF}
+
+.hdr-actions{display:flex;gap:.5rem;align-items:center}
+.btn{border:1px solid var(--line);background:var(--surface);padding:.35rem .75rem;border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:600}
+.btn:hover{border-color:var(--line-strong);background:var(--soft)}
+.btn-red{background:var(--balubaid-red);border-color:var(--balubaid-red);color:#fff}.btn-red:hover{background:var(--balubaid-red-dark)}
+.btn-yellow{background:var(--az-yellow);border-color:var(--az-yellow);color:#111622;font-weight:700}.btn-yellow:hover{background:var(--az-yellow-dark)}
+
+nav.tabs{display:flex;gap:.25rem;background:rgba(0,0,0,.2);border-top:1px solid rgba(255,255,255,.08);overflow-x:auto}
+nav.tabs button{background:none;border:none;border-bottom:2px solid transparent;padding:.6rem .95rem;cursor:pointer;font-weight:700;color:#9CA3AF;white-space:nowrap;font-size:.86rem}
+nav.tabs button.active{color:var(--az-yellow);border-bottom-color:var(--az-yellow)}
+nav.tabs button:hover{color:#FFFFFF}
+
+/* Data state banner */
+.state-banner{margin:1rem 0;padding:.75rem 1rem;border-radius:var(--r);border:1px solid;display:flex;gap:.75rem;align-items:flex-start;font-size:.85rem}
+.state-banner.sample{background:var(--warn-bg);border-color:#F59E0B;color:var(--warn)}
+.state-banner.live{background:var(--pos-bg);border-color:#10B981;color:var(--pos)}
+.state-banner b{display:block;margin-bottom:.15rem}
+
+.pill{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;padding:.15rem .55rem;border-radius:99px;white-space:nowrap}
+.st-live{background:var(--pos-bg);color:var(--pos)}
+.st-sample{background:var(--warn-bg);color:var(--warn)}
+.st-unavailable{background:var(--neu-bg);color:var(--neu)}
+.s-pos{background:var(--pos-bg);color:var(--pos)}.s-neg{background:var(--neg-bg);color:var(--neg)}.s-neu{background:var(--neu-bg);color:var(--neu)}.s-none{background:var(--soft);color:var(--subtle)}
+
+/* Filters */
+.filters{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:.6rem .8rem;margin-bottom:1rem}
+.filters label{font-size:.78rem;color:var(--subtle);font-weight:600;display:flex;flex-direction:column;gap:.1rem}
+.filters select,.filters input{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:.3rem .55rem;font-size:.85rem;min-width:150px}
+.filters .applied{margin-inline-start:auto;font-size:.8rem;color:var(--muted)}
+
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-bottom:1rem}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:1rem;box-shadow:var(--shadow);cursor:pointer;text-align:start;transition:border-color .15s}
+.kpi:hover,.kpi:focus-visible{border-color:var(--az-yellow-dark);outline:none}
+.kpi .t{font-size:.82rem;font-weight:700;color:var(--muted);display:flex;justify-content:space-between;gap:.5rem}
+.kpi .v{font-size:1.9rem;font-weight:800;line-height:1.2;margin:.25rem 0}
+.kpi .n{font-size:.78rem;color:var(--subtle)}
+.kpi .how{font-size:.74rem;color:var(--balubaid-red);font-weight:700;margin-top:.35rem}
+.na{color:var(--subtle);font-size:1.15rem!important}
+
+.grid2{display:grid;grid-template-columns:1.6fr 1fr;gap:.8rem;margin-bottom:1rem}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:1.1rem;box-shadow:var(--shadow)}
+.card h2{font-size:.98rem;font-weight:800;margin-bottom:.15rem}
+.card .sub{font-size:.78rem;color:var(--subtle);margin-bottom:.75rem}
+.chart{height:240px;position:relative}
+canvas{width:100%!important;height:100%!important}
+.legend{display:flex;gap:.9rem;font-size:.76rem;color:var(--muted);margin-top:.4rem}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-inline-end:.3rem;vertical-align:middle}
+
+.brief p{font-size:.88rem;color:var(--text);margin-bottom:.45rem}
+.brief .warn{color:var(--warn);font-size:.8rem}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:.84rem}
+th{text-align:start;font-size:.75rem;color:var(--subtle);font-weight:700;padding:.5rem;border-bottom:1px solid var(--line);background:var(--soft)}
+td{padding:.55rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.quote{max-width:420px}
+.muted{color:var(--subtle);font-size:.78rem}
+
+/* Action Tracker Summary Bar */
+.action-stats{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;background:var(--soft);padding:.75rem 1rem;border-radius:8px;font-size:.84rem;align-items:center}
+.action-stats strong{color:var(--text);font-weight:800}
+
+/* Actions Form */
+.act-form{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:.5rem;margin-bottom:.8rem}
+.act-form input,.act-form select{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:.4rem .6rem}
+@media(max-width:800px){.act-form{grid-template-columns:1fr}}
+td select,td input{border:1px solid var(--line);background:var(--bg);border-radius:6px;padding:.2rem .4rem;font-size:.8rem;width:100%}
+
+/* Modal */
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.65);display:none;align-items:center;justify-content:center;padding:1rem;z-index:50}
+.modal.open{display:flex}
+.modal-box{background:var(--surface);border-radius:12px;max-width:900px;width:100%;max-height:85vh;overflow:auto;padding:1.2rem;border:1px solid var(--line)}
+.modal-box h3{font-size:1.05rem;margin-bottom:.4rem}
+.formula{background:var(--soft);border-radius:8px;padding:.6rem .8rem;font-size:.85rem;margin:.5rem 0 .8rem;border-inline-start:3px solid var(--balubaid-red)}
+.x{float:left;border:none;background:none;font-size:1.3rem;cursor:pointer;color:var(--subtle)}
+[dir="ltr"] .x{float:right}
+.hidden{display:none!important}
+footer{padding:1.5rem 0;font-size:.78rem;color:var(--subtle);text-align:center}
+code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8rem;direction:ltr;display:inline-block}
+
+/* Print Styling for Sheikh Khaled's Executive Report */
+@media print{
+  body{background:#fff!important;color:#000!important}
+  header,nav.tabs,.filters,.hdr-actions,#btnTheme,.act-form,td button,.modal{display:none!important}
+  .wrap{max-width:100%!important;padding:0!important}
+  .card{border:1px solid #ccc!important;box-shadow:none!important;break-inside:avoid;margin-bottom:1rem!important}
+  .state-banner{border:1px solid #999!important}
+}
+</style>
 </head>
 <body>
-
-  <!-- ================= الترويسة الرئيسية ================= -->
-  <header class="main-header">
-    <div class="header-inner">
-      <div class="brand-wrap">
-        <!-- شعار بالبيد الأحمر BGC -->
-        <div class="balubaid-logo-box">B</div>
-        <div class="brand-text">
-          <h1>مجموعة بالبيد · <span>أوتوزون</span></h1>
-          <p>لوحة رصد صوت العميل والذكاء التحليلي المباشر للعلامة التجارية</p>
+<header>
+  <div class="wrap">
+    <div class="hdr">
+      <div class="brand">
+        <!-- هوية أوتوزون المأخوذة من واجهة المعرض الحقيقية -->
+        <div class="az-showroom-badge" title="أوتوزون بالبيد">
+          <span class="az-en">AUTOZONE</span>
+          <span class="az-sq-mark" aria-hidden="true"></span>
+          <span class="az-ar">أوتوزون</span>
+        </div>
+        <div class="brand-details">
+          <div class="balubaid-tag">مجموعة شركات بالبيد · رصد آراء العملاء</div>
+          <div class="balubaid-sub">لوحة القيادة التنفيذية · كل رقم قابل للتتبع إلى سجلاته</div>
         </div>
       </div>
-
-      <div class="header-actions">
-        <div class="status-badge">
-          <span class="pulse-dot"></span>
-          <span>التحديث اللحظي نشط</span>
-        </div>
-
-        <button class="btn" id="btnToggleLang" title="تغيير اللغة / Switch Language">
-          <span id="langText">English</span>
-        </button>
-
-        <button class="btn" id="btnToggleTheme" title="النسق">
-          <span id="themeEmoji">🌙</span>
-        </button>
-
-        <button class="btn btn-balubaid-red" id="btnOpenApiModal">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          <span>إعدادات الـ Backend و APIs</span>
-        </button>
+      <div class="hdr-actions">
+        <span id="hdrState" class="pill st-sample">بيانات توضيحية</span>
+        <button class="btn" id="btnTheme" aria-label="تبديل النسق">🌙</button>
       </div>
     </div>
-  </header>
+    <nav class="tabs" role="tablist">
+      <button class="active" data-tab="overview">نظرة عامة</button>
+      <button data-tab="records">السجلات المجمعة</button>
+      <button data-tab="actions">متابعة الإجراءات والنتائج</button>
+      <button data-tab="sources">المصادر والتغطية</button>
+      <button data-tab="admin">الإدارة والربط التقني</button>
+    </nav>
+  </div>
+</header>
 
-  <div class="app-container">
+<main class="wrap">
+  <div id="banner" class="state-banner sample"></div>
 
-    <!-- ================= شريط الفلاتر والبحث المبسط ================= -->
-    <div class="controls-strip">
-      <div class="strip-group">
-        <div class="search-box">
-          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="liveSearchInput" placeholder="ابحث في آراء العملاء، الفروع، الشكاوى...">
-        </div>
-
-        <select class="select-dropdown" id="cityDropdown">
-          <option value="all">كافة مدن المملكة (جدة، الرياض، الدمام)</option>
-          <option value="jeddah">جدة - طريق المدينة وشارع سلطان</option>
-          <option value="riyadh">الرياض - خريص ودارين</option>
-          <option value="dammam">المنطقة الشرقية - الخبر والدمام</option>
-          <option value="makkah">مكة المكرمة</option>
-        </select>
-
-        <select class="select-dropdown" id="timeDropdown">
-          <option value="30d">آخر 30 يوماً</option>
-          <option value="7d">آخر 7 أيام</option>
-          <option value="24h">آخر 24 ساعة (لحظي)</option>
-        </select>
-      </div>
-
-      <div class="strip-group">
-        <button class="btn" id="btnRefreshData">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-          <span>تحديث البيانات الآن</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- ================= بطاقات المؤشرات الأربعة الأساسية ================= -->
-    <div class="kpi-row">
-      <!-- إجمالي التفاعلات والمرصود -->
-      <div class="kpi-card">
-        <div class="kpi-card-header">
-          <span class="kpi-card-title">إجمالي الآراء المرصودة</span>
-          <div class="kpi-icon-pill">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-        </div>
-        <div class="kpi-number" id="kpiTotalCount">14,820</div>
-        <div class="kpi-note">
-          <span class="badge-trend-up">↑ +18%</span>
-          <span>من كافة المنصات خلال 30 يوماً</span>
-        </div>
-      </div>
-
-      <!-- صافي مؤشر المشاعر الإيجابية NSS -->
-      <div class="kpi-card">
-        <div class="kpi-card-header">
-          <span class="kpi-card-title">صافي رضا العملاء (NSS)</span>
-          <div class="kpi-icon-pill" style="color:var(--status-positive)">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-          </div>
-        </div>
-        <div class="kpi-number" style="color:var(--status-positive)">+42%</div>
-        <div class="kpi-note">
-          <span class="badge-trend-up">↑ +6.2 نقطة</span>
-          <span>61% إيجابي · 20% محايد · 19% ملاحظات</span>
-        </div>
-      </div>
-
-      <!-- تقييم خرائط قوقل للفروع -->
-      <div class="kpi-card">
-        <div class="kpi-card-header">
-          <span class="kpi-card-title">تقييم الفروع (Google Maps)</span>
-          <div class="kpi-icon-pill" style="color:#EA4335">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
-          </div>
-        </div>
-        <div class="kpi-number">4.2 <span style="font-size:1.2rem;color:var(--text-muted)">★</span></div>
-        <div class="kpi-note">
-          <span>متوسط 18 صالة عرض ومركز صيانة</span>
-        </div>
-      </div>
-
-      <!-- سرعة استجابة خدمة العملاء -->
-      <div class="kpi-card">
-        <div class="kpi-card-header">
-          <span class="kpi-card-title">سرعة معالجة الحالات الحرجة</span>
-          <div class="kpi-icon-pill">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-        </div>
-        <div class="kpi-number">28 <span style="font-size:1.1rem;color:var(--text-muted);font-weight:600">دقيقة</span></div>
-        <div class="kpi-note">
-          <span class="badge-trend-up">94%</span>
-          <span>نسبة إغلاق الشكاوى في الوقت المحدد</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= الرسم البياني وحصة القنوات ================= -->
-    <div class="grid-two-columns">
-      <!-- المسار الزمني للمشاعر وحجم الرصد -->
-      <div class="card">
-        <div class="card-title-bar">
-          <h2 class="card-heading">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-            مسار المشاعر وحجم التفاعل اليومي
-          </h2>
-          <div style="font-size:0.8rem;display:flex;gap:0.75rem;">
-            <span><span style="display:inline-block;width:10px;height:10px;background:var(--balubaid-red);border-radius:2px;"></span> إجمالي التفاعل</span>
-            <span><span style="display:inline-block;width:10px;height:10px;background:var(--status-positive);border-radius:2px;"></span> إيجابي</span>
-            <span><span style="display:inline-block;width:10px;height:10px;background:var(--status-negative);border-radius:2px;"></span> ملاحظات</span>
-          </div>
-        </div>
-        <div class="chart-container">
-          <canvas id="mainTrendsChart"></canvas>
-        </div>
-      </div>
-
-      <!-- القنوات المعتمدة وحالة الربط البرمجي -->
-      <div class="card">
-        <div class="card-title-bar">
-          <h2 class="card-heading">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            القنوات ومصادر الرصد المعتمدة
-          </h2>
-        </div>
-        <div class="channels-stack">
-          <!-- خرائط قوقل -->
-          <div class="channel-row">
-            <div class="channel-brand">
-              <div class="channel-logo-badge logo-google-maps">📍</div>
-              <div class="channel-meta">
-                <strong>Google Maps & Business</strong>
-                <small>تقييمات الفروع الـ 18</small>
-              </div>
-            </div>
-            <div class="channel-stats">
-              <div class="stat-val">880 تقييم</div>
-              <div class="stat-status">● متصل ومحدث</div>
-            </div>
-          </div>
-
-          <!-- قوقل أناليتكس -->
-          <div class="channel-row">
-            <div class="channel-brand">
-              <div class="channel-logo-badge logo-analytics">📊</div>
-              <div class="channel-meta">
-                <strong>Google Analytics 4 (GA4)</strong>
-                <small>موقع autozone.com.sa</small>
-              </div>
-            </div>
-            <div class="channel-stats">
-              <div class="stat-val">124K زيارة</div>
-              <div class="stat-status">● تدفق مباشر</div>
-            </div>
-          </div>
-
-          <!-- إنستغرام -->
-          <div class="channel-row">
-            <div class="channel-brand">
-              <div class="channel-logo-badge logo-instagram">📸</div>
-              <div class="channel-meta">
-                <strong>Instagram (@autozoneksa)</strong>
-                <small>التعليقات والرسائل</small>
-              </div>
-            </div>
-            <div class="channel-stats">
-              <div class="stat-val">4,230 تفاعل</div>
-              <div class="stat-status">● متصل</div>
-            </div>
-          </div>
-
-          <!-- إكس (تويتر) -->
-          <div class="channel-row">
-            <div class="channel-brand">
-              <div class="channel-logo-badge logo-x">𝕏</div>
-              <div class="channel-meta">
-                <strong>X (@autozoneksa)</strong>
-                <small>الإشارات والاستفسارات</small>
-              </div>
-            </div>
-            <div class="channel-stats">
-              <div class="stat-val">3,890 تغريدة</div>
-              <div class="stat-status">● متصل</div>
-            </div>
-          </div>
-
-          <!-- سناب شات -->
-          <div class="channel-row">
-            <div class="channel-brand">
-              <div class="channel-logo-badge logo-snapchat">👻</div>
-              <div class="channel-meta">
-                <strong>Snapchat (@autozoneksa)</strong>
-                <small>حملات العروض والعناوين</small>
-              </div>
-            </div>
-            <div class="channel-stats">
-              <div class="stat-val">3,410 مشاهدة</div>
-              <div class="stat-status">● متصل</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ================= قسم صوت العميل والتغذية الحية ================= -->
-    <div class="section-title-wrap">
-      <div>
-        <h2>صوت العميل المباشر في المملكة</h2>
-        <p style="font-size:0.85rem;color:var(--text-muted)">عينات موثقة ومحدثة من منصات التواصل وتقييمات الفروع</p>
-      </div>
-
-      <div class="pills-filter" id="sentimentFilterContainer">
-        <button class="pill-btn active" data-filter="all">الكل (12 عينة)</button>
-        <button class="pill-btn" data-filter="positive">إيجابي فقط</button>
-        <button class="pill-btn" data-filter="negative">الملاحظات والشكاوى</button>
-        <button class="pill-btn" data-filter="neutral">استفسارات</button>
-      </div>
-    </div>
-
-    <div class="verbatims-grid" id="verbatimGridList">
-      <!-- يتم توليد البطاقات عبر جافاسكريبت تلقائياً -->
-    </div>
-
-    <!-- ================= دليل الـ Backend والـ APIs للمراجعة والتسليم ================= -->
-    <div class="api-banner-card" id="apiDocumentationSection">
-      <div class="api-banner-header">
-        <div class="api-banner-title">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>
-          هيكلية الـ Backend وواجهات برمجة التطبيقات (APIs) لتحديث لوحة القيادة لحظياً
-        </div>
-        <span class="status-badge" style="background:var(--balubaid-red-light);color:var(--balubaid-red);border-color:rgba(196,18,48,0.2)">
-          جاهز للتسليم والربط المباشر
-        </span>
-      </div>
-
-      <p style="font-size:0.88rem;color:var(--text-main);line-height:1.6;">
-        لتشغيل هذه اللوحة وتحديثها لحظياً (Real-Time) عند تسليمها، تم تصميم الواجهة لتقبل الربط المباشر مع خادم خلفي (Node.js / Express أو Python FastAPI) عبر نقاط النهاية التالية (RESTful & Webhook APIs):
-      </p>
-
-      <div class="api-grid">
-        <!-- Google Places & Reviews API -->
-        <div class="api-item">
-          <div class="api-item-header">
-            <span style="color:#EA4335">📍</span>
-            <span>Google Maps / Places API</span>
-          </div>
-          <p>لجلب تقييمات وتعليقات فروع أوتوزون بالبيد في جدة والرياض والدمام آلياً فور نشرها.</p>
-          <div class="code-inline">GET /api/v1/sources/google-places/reviews</div>
-        </div>
-
-        <!-- Google Analytics 4 API -->
-        <div class="api-item">
-          <div class="api-item-header">
-            <span style="color:#F9AB00">📊</span>
-            <span>Google Analytics 4 (GA4) API</span>
-          </div>
-          <p>لقياس التفاعل ومعدل تحويل الحملات الإعلانية ومصادر الزيارات إلى موقع أوتوزون.</p>
-          <div class="code-inline">GET /api/v1/analytics/realtime-traffic</div>
-        </div>
-
-        <!-- Social Listening Webhook -->
-        <div class="api-item">
-          <div class="api-item-header">
-            <span style="color:var(--balubaid-red)">⚡</span>
-            <span>Live Webhook Ingestion</span>
-          </div>
-          <p>لاستقبال إشارات إنستغرام، إكس، وسناب شات مع معالجة اللهجة السعودية تلقائياً.</p>
-          <div class="code-inline">POST /api/v1/webhooks/social-mentions</div>
-        </div>
-
-        <!-- Summary & KPIs API -->
-        <div class="api-item">
-          <div class="api-item-header">
-            <span>📈</span>
-            <span>Executive Metrics Endpoint</span>
-          </div>
-          <p>لتزويد البطاقات الأربعة العلوية والرسوم البيانية بأرقام محدثة لحظياً كل 60 ثانية.</p>
-          <div class="code-inline">GET /api/v1/dashboard/executive-kpis</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- التذييل المؤسسي -->
-    <footer class="corporate-footer">
-      <strong>مجموعة شركات بالبيد (Balubaid Group of Companies - BGC)</strong> · منصة رصد أوتوزون للسيارات · المملكة العربية السعودية
-    </footer>
-
+  <div class="filters" id="filters">
+    <label>الفرع<select id="fBranch"></select></label>
+    <label>الفترة<select id="fDays">
+      <option value="7">آخر 7 أيام</option>
+      <option value="30" selected>آخر 30 يوماً</option>
+      <option value="90">آخر 90 يوماً</option>
+      <option value="0">كل الفترات</option>
+    </select></label>
+    <label>المصدر<select id="fSource"></select></label>
+    <label>حالة البيانات<select id="fState">
+      <option value="all">الكل</option>
+      <option value="live">موثقة فقط</option>
+      <option value="sample">توضيحية فقط</option>
+    </select></label>
+    <span class="applied" id="appliedNote"></span>
   </div>
 
-  <!-- ================= جافاسكريبت والمحرك البياني ================= -->
-  <script>
-  (() => {
-    'use strict';
+  <!-- OVERVIEW -->
+  <section data-pane="overview">
+    <div class="kpis" id="kpis"></div>
+    <div class="grid2">
+      <div class="card">
+        <h2>عدد السجلات اليومي حسب تصنيف المشاعر</h2>
+        <div class="sub" id="chartSub"></div>
+        <div class="chart"><canvas id="chart"></canvas></div>
+        <div class="legend"><span><i style="background:#047857"></i>إيجابي</span><span><i style="background:#94A3B8"></i>محايد</span><span><i style="background:#B91C1C"></i>سلبي</span><span><i style="background:#E5E7EB;border:1px solid #9CA3AF"></i>لم تُراجع بعد</span></div>
+      </div>
+      <div class="card brief">
+        <h2>ملخص الفترة المحددة</h2>
+        <div class="sub">يُحسب تلقائياً من السجلات المعروضة فقط</div>
+        <div id="brief"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>توزيع السجلات حسب المصدر</h2>
+      <div class="sub">حصة كل قناة من سجلات أوتوزون المجمّعة — ليست «حصة صوت» لعدم وجود مقارنة بالمنافسين.</div>
+      <div id="sourceSplit"></div>
+    </div>
+  </section>
 
-    // عينات حقيقية لمشاركات العملاء بأسلوب سعودي واقعي
-    const customerFeedback = [
-      {
-        id: 1,
-        author: 'سعود الشمري',
-        handle: '@saud_shammari',
-        source: 'Google Maps',
-        sourceColor: '#EA4335',
-        sentiment: 'positive',
-        sentimentText: 'إيجابي ممتاز',
-        city: 'الرياض - طريق خريص',
-        text: 'ما شاء الله تبارك الله، صالة عرض أوتوزون خريص ممتازة وفريق المبيعات جداً متعاون وخلصوا تمويل السيارة بدون أي تعقيد.',
-        time: 'منذ ساعتين'
-      },
-      {
-        id: 2,
-        author: 'مهند البلوي',
-        handle: '@muhannad_auto',
-        source: 'Instagram',
-        sourceColor: '#DC2743',
-        sentiment: 'positive',
-        sentimentText: 'إيجابي ممتاز',
-        city: 'جدة - طريق المدينة',
-        text: 'عرض أوتوزون بالبيد بالتقسيط بدون دفعة أولى ممتاز، استلمت السيارة في الموعد المحدد مغسولة وملمعة.',
-        time: 'منذ 5 ساعات'
-      },
-      {
-        id: 3,
-        author: 'أبو فهد القحطاني',
-        handle: '@abo_fahad_ksa',
-        source: 'Google Maps',
-        sourceColor: '#EA4335',
-        sentiment: 'negative',
-        sentimentText: 'ملاحظة صيانة',
-        city: 'جدة - شارع الأمير سلطان',
-        text: 'الفنيين ممتازين لكن يرجى من إدارة بالبيد تسريع توفير قطع غيار الفرامل في مركز سلطان لأن الانتظار أخذ 3 أيام.',
-        time: 'أمس'
-      },
-      {
-        id: 4,
-        author: 'ريان الحربي',
-        handle: '@rayan_makkah',
-        source: 'TikTok',
-        sourceColor: '#000000',
-        sentiment: 'positive',
-        sentimentText: 'إيجابي ممتاز',
-        city: 'مكة المكرمة',
-        text: 'فحص أوتوزون المجاني لـ 20 نقطة قبل السفر كان سريع ودقيق وريحني كثير، شكراً لكم.',
-        time: 'منذ يومين'
-      },
-      {
-        id: 5,
-        author: 'عبدالله السبيعي',
-        handle: '@subaie_dammam',
-        source: 'X (Twitter)',
-        sourceColor: '#000000',
-        sentiment: 'neutral',
-        sentimentText: 'استفسار تمويل',
-        city: 'الدمام - الخبر',
-        text: 'السلام عليكم، هل عرض القسط المخفض متاح لموظفي القطاع الخاص بدون تحويل راتب؟ أرجو الإفادة فرع الخبر.',
-        time: 'منذ 3 أيام'
-      },
-      {
-        id: 6,
-        author: 'سلطان الغامدي',
-        handle: '@sultan_jdd',
-        source: 'Instagram',
-        sourceColor: '#DC2743',
-        sentiment: 'positive',
-        sentimentText: 'إيجابي ممتاز',
-        city: 'جدة - طريق المدينة',
-        text: 'تعامل راقي جداً من مشرف الصيانة في بالبيد، حل المشكلة تحت الضمان بدون أي تكلفة إضافية.',
-        time: 'منذ 4 أيام'
-      }
-    ];
+  <!-- RECORDS -->
+  <section data-pane="records" class="hidden">
+    <div class="filters" style="margin-top:-.25rem">
+      <label>بحث في النص<input id="fText" placeholder="مثال: قطع غيار، صيانة"></label>
+      <label>المشاعر<select id="fSent">
+        <option value="all">الكل</option><option value="positive">إيجابي</option><option value="neutral">محايد</option><option value="negative">سلبي</option><option value="none">لم تُراجع</option>
+      </select></label>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>المعرّف</th><th>النص</th><th>الفرع</th><th>المصدر</th><th>تاريخ النشر</th><th>تاريخ الجمع</th><th>المشاعر</th><th>الحالة</th><th>الرابط المباشر للمراجعة</th></tr></thead>
+      <tbody id="recBody"></tbody>
+    </table></div>
+  </section>
 
-    let currentFilter = 'all';
+  <!-- ACTIONS -->
+  <section data-pane="actions" class="hidden">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem">
+        <div>
+          <h2>متابعة الإجراءات التنفيذية والنتائج الموثقة</h2>
+          <div class="sub">كل ملاحظة تتحول إلى إجراء مسؤولية محدد ومتابع حتى إثبات الأثر التشغيلي.</div>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn btn-yellow" id="btnExportActions">تصدير الإجراءات (JSON)</button>
+          <button class="btn" id="btnImportActionsTrigger">استيراد ملف إجراءات</button>
+          <input type="file" id="importFileInput" accept=".json" class="hidden">
+          <button class="btn btn-red" id="btnPrintReport">تقرير الشيخ خالد (طباعة / PDF)</button>
+        </div>
+      </div>
 
-    // عنصر الشبكة
-    const gridEl = document.getElementById('verbatimGridList');
-    const searchInput = document.getElementById('liveSearchInput');
-    const citySelect = document.getElementById('cityDropdown');
-    const filterBtns = document.querySelectorAll('#sentimentFilterContainer .pill-btn');
-    const btnToggleLang = document.getElementById('btnToggleLang');
-    const langText = document.getElementById('langText');
-    const btnToggleTheme = document.getElementById('btnToggleTheme');
-    const themeEmoji = document.getElementById('themeEmoji');
+      <!-- Action Stats Bar -->
+      <div class="action-stats" id="actStats">
+        <!-- Will be populated by JS -->
+      </div>
 
-    // رسم بطاقات آراء العملاء
-    function renderCards() {
-      const query = (searchInput?.value || '').trim().toLowerCase();
-      const cityVal = citySelect?.value || 'all';
+      <form class="act-form" id="actForm">
+        <input id="actTitle" required placeholder="الإجراء (مثال: زيادة مخزون فحمات الفرامل بفرع سلطان)">
+        <input id="actOwner" required placeholder="المسؤول">
+        <input id="actDue" type="date" required>
+        <button class="btn btn-red" type="submit">إضافة إجراء</button>
+      </form>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>الإجراء</th><th>المسؤول</th><th>الاستحقاق</th><th>الحالة</th><th>النتيجة الموثقة (مطلوبة للاعتماد)</th><th>السجلات المرتبطة</th><th></th></tr></thead>
+        <tbody id="actBody"></tbody>
+      </table></div>
+    </div>
+  </section>
 
-      const filtered = customerFeedback.filter(item => {
-        const matchFilter = currentFilter === 'all' || item.sentiment === currentFilter;
-        const matchQuery = !query || 
-          item.author.toLowerCase().includes(query) ||
-          item.text.toLowerCase().includes(query) ||
-          item.city.toLowerCase().includes(query);
-        const matchCity = cityVal === 'all' || 
-          (cityVal === 'jeddah' && item.city.includes('جدة')) ||
-          (cityVal === 'riyadh' && item.city.includes('الرياض')) ||
-          (cityVal === 'dammam' && (item.city.includes('الدمام') || item.city.includes('الخبر'))) ||
-          (cityVal === 'makkah' && item.city.includes('مكة'));
+  <!-- SOURCES -->
+  <section data-pane="sources" class="hidden">
+    <div class="card" style="margin-bottom:.8rem">
+      <h2>المصادر وحالة الوصول الحالية</h2>
+      <div class="sub">آخر فحص وصول موثّق، وآخر جمع ناجح، والفجوات المعروفة في التغطية.</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>المصدر</th><th>الحساب</th><th>الحالة</th><th>آخر جمع ناجح</th><th>السجلات</th><th>فجوات التغطية والقيود</th></tr></thead>
+        <tbody id="srcBody"></tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <h2>سجل عمليات الجمع والتنفيذ (data/runs.json)</h2>
+      <div class="sub">سجل غير قابل للتعديل يوثق كل محاولة جمع ونقاط الفشل أو النجاح.</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>رقم التشغيل</th><th>المصدر</th><th>وقت البدء</th><th>وقت الانتهاء</th><th>النتيجة</th><th>التفاصيل والملاحظات</th></tr></thead>
+        <tbody id="runBody"></tbody>
+      </table></div>
+    </div>
+  </section>
 
-        return matchFilter && matchQuery && matchCity;
-      });
+  <!-- ADMIN -->
+  <section data-pane="admin" class="hidden">
+    <div class="card">
+      <h2>الإدارة والربط التقني</h2>
+      <div class="sub">للفريق التقني فقط — إعداد مصادر البيانات والتحقق من صحتها.</div>
+      
+      <!-- الصياغة الدقيقة المطلوبة: أول موصل تم تجهيزه -->
+      <p style="margin-bottom:.6rem;font-size:.9rem"><b>أول موصّل تم تجهيزه:</b> تقييمات Google عبر Places API (New) — قيد الإعداد بانتظار إدخال مفتاح API ومعرّفات الفروع.</p>
 
-      gridEl.innerHTML = '';
+      <div style="background:var(--soft);padding:.9rem 1rem;border-radius:8px;margin:.75rem 0;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
+        <div>
+          <b>اختبار تدفق البيانات الموثقة (End-to-End Simulation):</b>
+          <div class="muted">يمكنك تشغيل جمع تجريبي موثق لمعاينة انتقال اللوحة فوراً إلى حالة البيانات الموثقة، أو إعادة ضبطها.</div>
+        </div>
+        <div style="margin-inline-start:auto;display:flex;gap:.5rem">
+          <button class="btn btn-yellow" id="btnSimulateRun">تشغيل تجريبي للمجمّع (محاكاة جلب موثق)</button>
+          <button class="btn" id="btnResetData">إعادة ضبط للبيانات التوضيحية</button>
+        </div>
+      </div>
 
-      if (filtered.length === 0) {
-        gridEl.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: var(--bg-surface); border-radius: var(--radius-lg); border: 1px dashed var(--border-subtle); color: var(--text-muted)">
-            <p style="font-weight:700;font-size:1rem;">لا توجد آراء مطابقة للبحث المحدد</p>
-            <p style="font-size:0.8rem;margin-top:0.25rem;">جرب تغيير خيارات المدينة أو تصفية المشاعر.</p>
-          </div>
-        `;
-        return;
-      }
+      <ol style="padding-inline-start:1.2rem;font-size:.86rem;line-height:1.9">
+        <li>أدخل معرّفات الأماكن الموثقة للفروع في <code>backend/branches.json</code>.</li>
+        <li>شغّل: <code>GOOGLE_PLACES_API_KEY=… node backend/collect-google-places.mjs</code></li>
+        <li>يكتب المجمّع <code>dist/data/records.json</code> (لكل تقييم: رابطه المباشر وتاريخ نشره وتاريخ جمعه) و<code>dist/data/runs.json</code>.</li>
+        <li>تعرض اللوحة السجلات الموثقة تلقائياً وتحسب الأرقام منها فقط.</li>
+        <li>تصنيف المشاعر والموضوع يتم بمراجعة بشرية (حقل <code>reviewed_by</code>)؛ لا يوجد نموذج آلي معتمد بعد، ولا تُعرض أي نسبة دقة غير مثبتة.</li>
+      </ol>
+      <p class="muted" style="margin-top:.6rem">قيود معروفة: يعيد Places API خمسة تقييمات كحد أقصى لكل فرع في كل طلب، لذلك لا يمثل كامل التقييمات. يجب الالتزام بشروط Google في عرض الإسناد ومدة الاحتفاظ بالمحتوى. ربط Google Analytics 4 ومنصات التواصل لم يُنفذ بعد.</p>
+    </div>
+  </section>
+</main>
 
-      filtered.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'voice-card';
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="x" id="modalClose" aria-label="إغلاق">×</button>
+    <h3 id="mTitle"></h3>
+    <div class="formula" id="mFormula"></div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>المعرّف</th><th>النص</th><th>الفرع</th><th>المشاعر</th><th>الحالة</th><th>الرابط المباشر</th></tr></thead>
+      <tbody id="mBody"></tbody>
+    </table></div>
+  </div>
+</div>
 
-        let tagClass = 'tag-positive';
-        if (item.sentiment === 'negative') tagClass = 'tag-negative';
-        if (item.sentiment === 'neutral') tagClass = 'tag-neutral';
+<footer>مجموعة شركات بالبيد · أوتوزون — كل رقم في هذه اللوحة قابل للتتبع إلى سجلاته ومصدره.</footer>
 
-        card.innerHTML = `
-          <div>
-            <div class="voice-header">
-              <div class="user-profile">
-                <div class="user-avatar">${item.author.charAt(0)}</div>
-                <div>
-                  <div class="user-name">${item.author}</div>
-                  <div class="user-handle">${item.handle} · ${item.time}</div>
-                </div>
-              </div>
-              <span class="sentiment-tag ${tagClass}">${item.sentimentText}</span>
-            </div>
+<!-- Fallback sample data: clearly labelled illustrative, NOT real customers -->
+<script type="application/json" id="sampleData">
+{"records":[
+{"id":"S-01","data_state":"sample","source":"google_places","branch":"riyadh_khurais","author":"عينة توضيحية","text":"تجربة الشراء في فرع خريص كانت واضحة وسريعة، وتم إنهاء إجراءات التمويل خلال يومين.","rating":5,"published_at":"2026-10-20","collected_at":null,"url":null,"sentiment":"positive","topic":"التمويل","reviewed_by":"عينة","requires_response":false,"responded_at":null},
+{"id":"S-02","data_state":"sample","source":"google_places","branch":"jeddah_sultan","author":"عينة توضيحية","text":"الفنيون متعاونون، لكن انتظرت ثلاثة أيام لتوفر قطع الفرامل.","rating":3,"published_at":"2026-10-21","collected_at":null,"url":null,"sentiment":"negative","topic":"قطع الغيار","reviewed_by":"عينة","requires_response":true,"responded_at":null},
+{"id":"S-03","data_state":"sample","source":"instagram","branch":"jeddah_madinah","author":"عينة توضيحية","text":"هل عرض التقسيط بدون دفعة أولى متاح لموظفي القطاع الخاص؟","rating":null,"published_at":"2026-10-18","collected_at":null,"url":null,"sentiment":"neutral","topic":"التمويل","reviewed_by":"عينة","requires_response":true,"responded_at":"2026-10-18T14:10:00+03:00"},
+{"id":"S-04","data_state":"sample","source":"google_places","branch":"dammam_khobar","author":"عينة توضيحية","text":"موظف المبيعات شرح خيارات التأمين بوضوح ودون استعجال.","rating":5,"published_at":"2026-10-15","collected_at":null,"url":null,"sentiment":"positive","topic":"صالة العرض","reviewed_by":"عينة","requires_response":false,"responded_at":null},
+{"id":"S-05","data_state":"sample","source":"x","branch":"riyadh_khurais","author":"عينة توضيحية","text":"اتصلت بالرقم الموحد أكثر من مرة بخصوص موعد استلام اللوحات وحصلت على إجابات مختلفة.","rating":null,"published_at":"2026-10-12","collected_at":null,"url":null,"sentiment":"negative","topic":"خدمة العملاء","reviewed_by":"عينة","requires_response":true,"responded_at":null},
+{"id":"S-06","data_state":"sample","source":"google_places","branch":"jeddah_madinah","author":"عينة توضيحية","text":"تم إصلاح صوت المكيف ضمن الضمان دون رسوم إضافية.","rating":4,"published_at":"2026-10-08","collected_at":null,"url":null,"sentiment":"positive","topic":"الصيانة","reviewed_by":"عينة","requires_response":false,"responded_at":null},
+{"id":"S-07","data_state":"sample","source":"google_places","branch":"jeddah_sultan","author":"عينة توضيحية","text":"الحجز في نهاية الأسبوع صعب والمواعيد ممتلئة.","rating":2,"published_at":"2026-10-02","collected_at":null,"url":null,"sentiment":"negative","topic":"الصيانة","reviewed_by":"عينة","requires_response":true,"responded_at":"2026-10-03T09:00:00+03:00"},
+{"id":"S-08","data_state":"sample","source":"instagram","branch":"dammam_khobar","author":"عينة توضيحية","text":"متى يصل الطراز الجديد إلى فرع الخبر؟","rating":null,"published_at":"2026-09-28","collected_at":null,"url":null,"sentiment":null,"topic":null,"reviewed_by":null,"requires_response":null,"responded_at":null},
+{"id":"S-09","data_state":"sample","source":"google_places","branch":"riyadh_khurais","author":"عينة توضيحية","text":"الصالة نظيفة والاستقبال جيد.","rating":4,"published_at":"2026-09-20","collected_at":null,"url":null,"sentiment":"positive","topic":"صالة العرض","reviewed_by":"عينة","requires_response":false,"responded_at":null},
+{"id":"S-10","data_state":"sample","source":"x","branch":"jeddah_madinah","author":"عينة توضيحية","text":"تأخر تسليم السيارة أسبوعاً عن الموعد المتفق عليه.","rating":null,"published_at":"2026-09-10","collected_at":null,"url":null,"sentiment":"negative","topic":"التسليم","reviewed_by":"عينة","requires_response":true,"responded_at":null}
+],"place_summaries":[]}
+</script>
 
-            <div class="voice-quote">"${item.text}"</div>
-          </div>
+<script>
+(() => {
+'use strict';
+const BRANCHES = {
+  jeddah_madinah:'جدة — طريق المدينة المنورة', jeddah_sultan:'جدة — شارع الأمير سلطان',
+  riyadh_khurais:'الرياض — طريق خريص', dammam_khobar:'الدمام — طريق الخبر السريع'
+};
+const SOURCES = {
+  google_places:{name:'تقييمات Google', account:'فروع أوتوزون على خرائط Google', gaps:'أول موصّل تم تجهيزه. حد أقصى 5 تقييمات لكل فرع في كل طلب عبر Places API.'},
+  instagram:{name:'Instagram', account:'@autozoneksa', url:'https://instagram.com/autozoneksa', gaps:'غير موصول. تعذّر الوصول عبر أداة البحث في فحص 19 أكتوبر 2026. يتطلب صلاحية Meta Graph API.'},
+  x:{name:'X', account:'@autozoneksa', url:'https://x.com/autozoneksa', gaps:'غير موصول. الوصول مرفوض لأداة البحث في فحص 19 أكتوبر 2026. يتطلب اشتراك X API.'},
+  snapchat:{name:'Snapchat', account:'@autozoneksa', url:'https://www.snapchat.com/@autozoneksa', gaps:'الملف العام مقروء فقط؛ لا يتضمن تعليقات عملاء. آخر تحديث ظاهر للملف 31 أغسطس 2026.'},
+  tiktok:{name:'TikTok', account:'@autozoneksa', url:'https://tiktok.com/@autozoneksa', gaps:'غير موصول. غير متاح لأداة البحث في فحص 19 أكتوبر 2026.'},
+  youtube:{name:'YouTube', account:'@AutozoneJeddah', url:'https://www.youtube.com/@AutozoneJeddah', gaps:'غير موصول. تعذّر الجلب في فحص 19 أكتوبر 2026. يمكن ربطه عبر YouTube Data API.'},
+  ga4:{name:'Google Analytics 4', account:'autozone.com.sa', gaps:'غير موصول. يتطلب صلاحية Property ID وحساب خدمة من مالك الموقع.'}
+};
+const SENT = {positive:['إيجابي','s-pos'],neutral:['محايد','s-neu'],negative:['سلبي','s-neg']};
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtDate = d => d ? new Date(d).toLocaleDateString('ar-SA-u-nu-latn',{year:'numeric',month:'short',day:'numeric'}) : '—';
+const fmtDT = d => d ? new Date(d).toLocaleString('ar-SA-u-nu-latn',{dateStyle:'medium',timeStyle:'short'}) : '—';
 
-          <div class="voice-footer">
-            <span class="voice-branch-tag">📍 ${item.city}</span>
-            <span style="font-weight:700;color:${item.sourceColor}">● ${item.source}</span>
-          </div>
-        `;
-        gridEl.appendChild(card);
-      });
+let records = [], runs = [], hasLive = false;
+
+async function load() {
+  const sample = JSON.parse($('sampleData').textContent).records;
+  let live = [];
+  try {
+    const r = await fetch('data/records.json', {cache:'no-store'});
+    if (r.ok) live = ((await r.json()).records || []).filter(x => x.data_state === 'live');
+  } catch {}
+  try {
+    const r = await fetch('data/runs.json', {cache:'no-store'});
+    if (r.ok) runs = (await r.json()).runs || [];
+  } catch {}
+  hasLive = live.length > 0;
+  records = hasLive ? live : sample;
+  renderBanner(); fillFilterOptions(); renderAll();
+}
+
+function lastSuccess(source) {
+  const r = runs.find(x => x.source === source && (x.status === 'success' || x.status === 'partial'));
+  return r ? r.finished_at : null;
+}
+
+function renderBanner() {
+  const b = $('banner'), h = $('hdrState');
+  if (hasLive) {
+    b.className = 'state-banner live';
+    b.innerHTML = `<div><b>بيانات موثقة من مصدر حقيقي</b>تعرض اللوحة ${records.length} سجلاً مجمّعاً من تقييمات Google بروابطها المباشرة. آخر جمع ناجح: ${fmtDT(lastSuccess('google_places'))}. المصادر الأخرى غير موصولة بعد.</div>`;
+    h.className = 'pill st-live'; h.textContent = 'موثقة جزئياً';
+  } else {
+    b.className = 'state-banner sample';
+    b.innerHTML = `<div><b>بيانات توضيحية — غير موثقة</b>لا توجد حتى الآن سجلات مجمّعة من أي مصدر حقيقي. الأرقام أدناه محسوبة من ${records.length} سجلات توضيحية لاختبار طريقة العرض فقط، ولا تمثل عملاء حقيقيين ولا يجوز الاستناد إليها في القرار. ${runs.length ? `آخر محاولة جمع: ${fmtDT(runs[0].finished_at)} — النتيجة: ${esc(runs[0].status)}.` : 'أول موصل (Google Places) تم تجهيزه وبانتظار مفتاح API.'}</div>`;
+    h.className = 'pill st-sample'; h.textContent = 'بيانات توضيحية';
+  }
+}
+
+function fillFilterOptions() {
+  $('fBranch').innerHTML = '<option value="all">كل الفروع</option>' + Object.entries(BRANCHES).map(([k,v]) => `<option value="${k}">${v}</option>`).join('');
+  const present = [...new Set(records.map(r => r.source))];
+  $('fSource').innerHTML = '<option value="all">كل المصادر</option>' + present.map(k => `<option value="${k}">${SOURCES[k]?.name || k}</option>`).join('');
+}
+
+function refNow() { return Date.now(); }
+
+function filtered(extra = true) {
+  const br = $('fBranch').value, days = +$('fDays').value, src = $('fSource').value, st = $('fState').value;
+  const since = days ? refNow() - days * 864e5 : 0;
+  return records.filter(r => {
+    if (br !== 'all' && r.branch !== br) return false;
+    if (src !== 'all' && r.source !== src) return false;
+    if (st !== 'all' && r.data_state !== st) return false;
+    if (since && (!r.published_at || new Date(r.published_at).getTime() < since)) return false;
+    if (extra) {
+      const q = $('fText').value.trim(), s = $('fSent').value;
+      if (q && !r.text.includes(q)) return false;
+      if (s === 'none' && r.sentiment) return false;
+      if (s !== 'all' && s !== 'none' && r.sentiment !== s) return false;
     }
+    return true;
+  });
+}
 
-    // تفعيل فلاتر المشاعر
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentFilter = btn.dataset.filter;
-        renderCards();
-      });
+function metrics(rs) {
+  const reviewed = rs.filter(r => r.sentiment);
+  const pos = reviewed.filter(r => r.sentiment === 'positive'), neg = reviewed.filter(r => r.sentiment === 'negative');
+  const rated = rs.filter(r => typeof r.rating === 'number');
+  const needResp = rs.filter(r => r.requires_response === true);
+  const responded = needResp.filter(r => r.responded_at);
+  return {
+    total:{v:rs.length, recs:rs},
+    net:{v: reviewed.length ? Math.round((pos.length - neg.length) / reviewed.length * 100) : null, pos:pos.length, neg:neg.length, n:reviewed.length, recs:reviewed},
+    rating:{v: rated.length ? (rated.reduce((a,r)=>a+r.rating,0)/rated.length) : null, n:rated.length, recs:rated},
+    resp:{v: needResp.length ? Math.round(responded.length / needResp.length * 100) : null, a:responded.length, n:needResp.length, recs:needResp}
+  };
+}
+
+let M = null;
+function renderKPIs() {
+  const rs = filtered(false); M = metrics(rs);
+  const stateTag = hasLive ? '<span class="pill st-live">موثق</span>' : '<span class="pill st-sample">توضيحي</span>';
+  const k = (key, title, val, note) => `<button class="kpi" data-kpi="${key}"><div class="t"><span>${title}</span>${stateTag}</div><div class="v ${val===null?'na':''}">${val===null?'غير متاح':val}</div><div class="n">${note}</div><div class="how">عرض طريقة الحساب والسجلات ←</div></button>`;
+  $('kpis').innerHTML =
+    k('total','عدد السجلات المجمّعة', M.total.v.toLocaleString('en'), 'ضمن الفلاتر المحددة') +
+    k('net','صافي المشاعر (للسجلات المراجَعة)', M.net.v===null?null:(M.net.v>0?'+':'')+M.net.v+'%', `${M.net.pos} إيجابي · ${M.net.neg} سلبي من ${M.net.n} سجل مراجَع (من أصل ${M.total.v})`) +
+    k('rating','متوسط تقييم النجوم', M.rating.v===null?null:M.rating.v.toFixed(1)+' ★', `من ${M.rating.n} تقييم يحمل نجوماً`) +
+    k('resp','نسبة الرد على ما يتطلب رداً', M.resp.v===null?null:M.resp.v+'%', `${M.resp.a} تم الرد عليها من ${M.resp.n}`);
+  document.querySelectorAll('.kpi').forEach(el => el.onclick = () => openDrill(el.dataset.kpi));
+  const days = +$('fDays').value;
+  $('appliedNote').textContent = `${rs.length} سجل · ${$('fBranch').selectedOptions[0].text} · ${days ? 'آخر '+days+' يوماً' : 'كل الفترات'}`;
+}
+
+function openDrill(key) {
+  const defs = {
+    total:['عدد السجلات المجمّعة', `عدد السجلات التي تطابق الفلاتر الحالية = <b>${M.total.v}</b>`],
+    net:['صافي المشاعر', M.net.n ? `(عدد الإيجابي − عدد السلبي) ÷ عدد السجلات المراجَعة × 100 = (${M.net.pos} − ${M.net.neg}) ÷ ${M.net.n} × 100 = <b>${M.net.v}%</b><br><span class="muted">السجلات غير المراجَعة (${M.total.v - M.net.n}) مستبعدة. هذا مؤشر للمشاعر وليس قياساً لرضا العملاء.</span>` : 'لا توجد سجلات مراجَعة ضمن الفلاتر الحالية.'],
+    rating:['متوسط تقييم النجوم', M.rating.n ? `مجموع النجوم ÷ عدد التقييمات = <b>${M.rating.v.toFixed(2)}</b> من ${M.rating.n} تقييم.<br><span class="muted">هذه عينة التقييمات المجمّعة فقط وليست التقييم العام المعروض على خرائط Google.</span>` : 'لا توجد تقييمات بالنجوم ضمن الفلاتر الحالية.'],
+    resp:['نسبة الرد', M.resp.n ? `السجلات التي لها تاريخ رد ÷ السجلات المصنفة «تتطلب رداً» = ${M.resp.a} ÷ ${M.resp.n} = <b>${M.resp.v}%</b><br><span class="muted">زمن الرد لا يُحسب لعدم توفر تواريخ رد موثقة لكل السجلات.</span>` : 'لا توجد سجلات مصنفة «تتطلب رداً» ضمن الفلاتر الحالية.']
+  };
+  $('mTitle').textContent = defs[key][0];
+  $('mFormula').innerHTML = defs[key][1];
+  $('mBody').innerHTML = M[key].recs.map(r => `<tr><td>${esc(r.id)}</td><td class="quote">${esc(r.text)}</td><td>${BRANCHES[r.branch]||esc(r.branch)}</td><td>${sentPill(r.sentiment)}</td><td>${statePill(r.data_state)}</td><td>${linkCell(r)}</td></tr>`).join('') || '<tr><td colspan="6" class="muted">لا توجد سجلات.</td></tr>';
+  $('modal').classList.add('open');
+}
+$('modalClose').onclick = () => $('modal').classList.remove('open');
+$('modal').onclick = e => { if (e.target.id === 'modal') $('modal').classList.remove('open'); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape') $('modal').classList.remove('open'); });
+
+const sentPill = s => s ? `<span class="pill ${SENT[s][1]}">${SENT[s][0]}</span>` : '<span class="pill s-none">لم تُراجع</span>';
+const statePill = s => s === 'live' ? '<span class="pill st-live">موثق</span>' : s === 'sample' ? '<span class="pill st-sample">توضيحي</span>' : '<span class="pill st-unavailable">غير موصول</span>';
+const linkCell = r => r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">فتح الرابط المباشر ↗</a>` : '<span class="muted">لا يوجد رابط</span>';
+
+function renderChart() {
+  const rs = filtered(false);
+  const days = +$('fDays').value || 90;
+  const buckets = [];
+  const now = new Date(); now.setHours(0,0,0,0);
+  const step = days > 30 ? 7 : 1, n = Math.ceil(days / step);
+  for (let i = n - 1; i >= 0; i--) {
+    const end = new Date(now.getTime() - i*step*864e5 + 864e5), start = new Date(end.getTime() - step*864e5);
+    const inB = rs.filter(r => { const t = new Date(r.published_at); return t >= start && t < end; });
+    buckets.push({label: start.toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit'}),
+      pos:inB.filter(r=>r.sentiment==='positive').length, neu:inB.filter(r=>r.sentiment==='neutral').length,
+      neg:inB.filter(r=>r.sentiment==='negative').length, none:inB.filter(r=>!r.sentiment).length});
+  }
+  $('chartSub').textContent = `${rs.length} سجل · ${step === 7 ? 'تجميع أسبوعي' : 'تجميع يومي'} حسب تاريخ النشر`;
+  const c = $('chart'), ctx = c.getContext('2d'), dpr = devicePixelRatio || 1, rect = c.getBoundingClientRect();
+  c.width = rect.width*dpr; c.height = rect.height*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+  const W = rect.width, H = rect.height, p = {t:10,r:10,b:26,l:28}, cw = W-p.l-p.r, ch = H-p.t-p.b;
+  ctx.clearRect(0,0,W,H);
+  const max = Math.max(1, ...buckets.map(b => b.pos+b.neu+b.neg+b.none));
+  const dark = document.documentElement.dataset.theme === 'dark';
+  ctx.font = '11px Cairo'; ctx.fillStyle = dark ? '#B4BCC8' : '#4B5563'; ctx.strokeStyle = dark ? '#263244' : '#E5E7EB';
+  for (let i = 0; i <= max; i += Math.max(1, Math.ceil(max/4))) {
+    const y = p.t + ch - i/max*ch; ctx.beginPath(); ctx.moveTo(p.l,y); ctx.lineTo(W-p.r,y); ctx.stroke();
+    ctx.textAlign = 'right'; ctx.fillText(i, p.l-6, y+4);
+  }
+  const bw = cw / buckets.length;
+  buckets.forEach((b, i) => {
+    let y = p.t + ch; const x = p.l + i*bw + bw*0.15, w = bw*0.7;
+    [['pos','#047857'],['neu','#94A3B8'],['neg','#B91C1C'],['none', dark?'#344257':'#E5E7EB']].forEach(([k,col]) => {
+      const h = b[k]/max*ch; if (!h) return; ctx.fillStyle = col; ctx.fillRect(x, y-h, w, h); y -= h;
     });
+    if (buckets.length <= 14 || i % Math.ceil(buckets.length/10) === 0) { ctx.fillStyle = dark ? '#B4BCC8' : '#4B5563'; ctx.textAlign = 'center'; ctx.fillText(b.label, x + w/2, H-8); }
+  });
+}
 
-    searchInput?.addEventListener('input', renderCards);
-    citySelect?.addEventListener('change', renderCards);
+function renderBrief() {
+  const rs = filtered(false), m = metrics(rs);
+  if (!rs.length) { $('brief').innerHTML = '<p>لا توجد سجلات ضمن الفلاتر المحددة.</p>'; return; }
+  const topics = {};
+  rs.filter(r => r.sentiment === 'negative' && r.topic).forEach(r => topics[r.topic] = (topics[r.topic]||0)+1);
+  const top = Object.entries(topics).sort((a,b)=>b[1]-a[1])[0];
+  const open = rs.filter(r => r.requires_response && !r.responded_at);
+  const unrev = rs.length - m.net.n;
+  $('brief').innerHTML = `
+    <p>• ${rs.length} سجل ضمن الفترة، منها ${m.net.n} مراجَع بشرياً و${unrev} لم يُراجَع بعد.</p>
+    <p>• ${m.net.n ? `صافي المشاعر ${m.net.v > 0 ? '+' : ''}${m.net.v}% (${m.net.pos} إيجابي، ${m.net.neg} سلبي).` : 'لا يمكن حساب صافي المشاعر لعدم وجود سجلات مراجَعة.'}</p>
+    <p>• ${top ? `أكثر موضوع تكرر في الملاحظات السلبية: «${esc(top[0])}» (${top[1]} من ${m.net.neg}).` : 'لا يوجد موضوع سلبي متكرر.'}</p>
+    <p>• ${open.length} سجل يتطلب رداً ولم يُرد عليه بعد${open.length ? ': ' + open.map(r=>esc(r.id)).join('، ') : ''}.</p>
+    ${hasLive ? '' : '<p class="warn">⚠ محسوب من بيانات توضيحية — للعرض فقط.</p>'}
+    ${rs.length < 30 ? `<p class="warn">⚠ حجم العينة صغير (${rs.length})؛ النسب غير مستقرة إحصائياً.</p>` : ''}`;
+}
 
-    // تبديل النسق الفاتح/الداكن
-    btnToggleTheme?.addEventListener('click', () => {
-      const cur = document.documentElement.getAttribute('data-theme') || 'light';
-      const next = cur === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      themeEmoji.textContent = next === 'light' ? '🌙' : '☀️';
-      drawChart();
-    });
+function renderSourceSplit() {
+  const rs = filtered(false), total = rs.length || 1, counts = {};
+  rs.forEach(r => counts[r.source] = (counts[r.source]||0)+1);
+  $('sourceSplit').innerHTML = Object.keys(SOURCES).map(k => {
+    const c = counts[k] || 0, pct = Math.round(c/total*100);
+    return `<div style="display:flex;align-items:center;gap:.6rem;margin:.35rem 0;font-size:.84rem">
+      <span style="width:130px">${SOURCES[k].name}</span>
+      <div style="flex:1;height:8px;background:var(--soft);border-radius:4px;overflow:hidden"><div style="width:${pct}%;height:100%;background:var(--balubaid-red)"></div></div>
+      <span style="width:90px;text-align:end">${c ? c + ' (' + pct + '%)' : '<span class="muted">غير موصول</span>'}</span></div>`;
+  }).join('');
+}
 
-    // تبديل اللغة (عربي / English)
-    btnToggleLang?.addEventListener('click', () => {
-      const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
-      if (isRtl) {
-        document.documentElement.setAttribute('dir', 'ltr');
-        document.documentElement.setAttribute('lang', 'en');
-        langText.textContent = 'العربية';
-      } else {
-        document.documentElement.setAttribute('dir', 'rtl');
-        document.documentElement.setAttribute('lang', 'ar');
-        langText.textContent = 'English';
-      }
-      drawChart();
-    });
+function renderRecords() {
+  const rs = filtered(true);
+  $('recBody').innerHTML = rs.map(r => `<tr>
+    <td><code>${esc(r.id).slice(-14)}</code></td><td class="quote">${esc(r.text)}${r.topic ? `<div class="muted">الموضوع: ${esc(r.topic)}</div>` : ''}</td>
+    <td>${BRANCHES[r.branch]||esc(r.branch)}</td><td>${SOURCES[r.source]?.name||esc(r.source)}</td>
+    <td>${fmtDate(r.published_at)}</td><td>${fmtDT(r.collected_at)}</td><td>${sentPill(r.sentiment)}</td><td>${statePill(r.data_state)}</td><td>${linkCell(r)}</td></tr>`).join('')
+    || '<tr><td colspan="9" class="muted">لا توجد سجلات.</td></tr>';
+}
 
-    // زر التمرير إلى الـ Backend API
-    document.getElementById('btnOpenApiModal')?.addEventListener('click', () => {
-      document.getElementById('apiDocumentationSection')?.scrollIntoView({ behavior: 'smooth' });
-    });
+function renderSources() {
+  $('srcBody').innerHTML = Object.entries(SOURCES).map(([k,s]) => {
+    const n = records.filter(r => r.source === k && r.data_state === 'live').length;
+    const ls = lastSuccess(k);
+    return `<tr><td><b>${s.name}</b></td><td>${s.url ? `<a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.account}</a>` : s.account}</td>
+      <td>${n ? '<span class="pill st-live">موصول موثق</span>' : k==='google_places' ? '<span class="pill st-sample">أول موصّل تم تجهيزه</span>' : '<span class="pill st-unavailable">غير موصول</span>'}</td>
+      <td>${ls ? fmtDT(ls) : '<span class="muted">لا يوجد</span>'}</td><td>${n}</td><td class="muted">${s.gaps}</td></tr>`;
+  }).join('');
+  $('runBody').innerHTML = runs.map(r => `<tr><td><code>${esc(r.run_id)}</code></td><td>${esc(r.source)}</td><td>${fmtDT(r.started_at)}</td><td>${fmtDT(r.finished_at)}</td>
+    <td>${r.status==='success'?'<span class="pill st-live">ناجح</span>':r.status==='partial'?'<span class="pill st-sample">جزئي</span>':'<span class="pill s-neg">فشل</span>'}</td>
+    <td class="muted">${esc((r.errors||[]).join(' | ') || (r.branches||[]).map(b=>`${b.branch}: ${b.returned??0}`).join('، '))}</td></tr>`).join('')
+    || '<tr><td colspan="6" class="muted">لم يُشغّل المجمّع بعد — شغّل المجمّع أو استخدم المحاكاة في تبويب الإدارة.</td></tr>';
+}
 
-    // زر تحديث البيانات اللحظي
-    document.getElementById('btnRefreshData')?.addEventListener('click', () => {
-      const btn = document.getElementById('btnRefreshData');
-      btn.innerHTML = '<span>جاري التحديث...</span>';
-      setTimeout(() => {
-        btn.innerHTML = `
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-          <span>تم التحديث الآن بنجاح</span>
-        `;
-        renderCards();
-      }, 500);
-    });
+/* Actions tracker with durable storage & export/import */
+const ACT_KEY = 'autozone_actions_v1';
+const STATUSES = {open:'مفتوح', progress:'قيد التنفيذ', done:'منجز', verified:'منجز ونتيجته موثقة'};
+const defaultActions = [
+  {title:"مراجعة توفر قطع فحمات الفرامل بفرع الأمير سلطان بجدة", owner:"مدير قطع الغيار", due:"2026-10-30", status:"progress", outcome:"", records:"S-02"},
+  {title:"توحيد إفادات الرقم الموحد بخصوص مواعيد تسليم اللوحات", owner:"مشرف مركز الاتصال", due:"2026-10-25", status:"open", outcome:"", records:"S-05"}
+];
+const loadActs = () => {
+  try {
+    const saved = localStorage.getItem(ACT_KEY);
+    return saved ? JSON.parse(saved) : defaultActions;
+  } catch { return defaultActions; }
+};
+const saveActs = a => localStorage.setItem(ACT_KEY, JSON.stringify(a));
 
-    // رسم المخطط البياني الصافي والأنيق باستخدام ألوان بالبيد
-    function drawChart() {
-      const canvas = document.getElementById('mainTrendsChart');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      const dpr = window.devicePixelRatio || 1;
-      const rect = canvas.getBoundingClientRect();
+function renderActions() {
+  const acts = loadActs();
+  const cOpen = acts.filter(a => a.status === 'open').length;
+  const cProg = acts.filter(a => a.status === 'progress').length;
+  const cDone = acts.filter(a => a.status === 'done').length;
+  const cVer = acts.filter(a => a.status === 'verified').length;
 
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx.scale(dpr, dpr);
+  $('actStats').innerHTML = `
+    <span>إجمالي الإجراءات: <strong>${acts.length}</strong></span>
+    <span>• مفتوحة: <strong>${cOpen}</strong></span>
+    <span>• قيد التنفيذ: <strong>${cProg}</strong></span>
+    <span>• منجزة: <strong>${cDone}</strong></span>
+    <span>• موثقة الأثر: <strong>${cVer}</strong></span>
+    <span class="muted" style="margin-inline-start:auto">محفوظة محلياً وقابلة للتصدير كملف JSON لتوثيقها لدى الشيخ خالد</span>
+  `;
 
-      const w = rect.width;
-      const h = rect.height;
-      ctx.clearRect(0, 0, w, h);
+  $('actBody').innerHTML = acts.map((a,i) => `<tr>
+    <td>${esc(a.title)}</td><td>${esc(a.owner)}</td><td>${esc(a.due)}</td>
+    <td><select data-i="${i}" data-f="status">${Object.entries(STATUSES).map(([k,v])=>`<option value="${k}" ${a.status===k?'selected':''}>${v}</option>`).join('')}</select></td>
+    <td><input data-i="${i}" data-f="outcome" value="${esc(a.outcome||'')}" placeholder="سجل النتيجة (مثال: تم خفض وقت التسليم)"></td>
+    <td><input data-i="${i}" data-f="records" value="${esc(a.records||'')}" placeholder="S-02, S-05"></td>
+    <td><button class="btn" data-del="${i}">حذف</button></td></tr>`).join('')
+    || '<tr><td colspan="7" class="muted">لا توجد إجراءات مسجلة بعد.</td></tr>';
 
-      const padding = { top: 20, right: 25, bottom: 35, left: 45 };
-      const chartW = w - padding.left - padding.right;
-      const chartH = h - padding.top - padding.bottom;
-
-      const days = ['10/10', '10/12', '10/14', '10/16', '10/18', '10/20', '10/22'];
-      const totalData = [580, 720, 890, 840, 990, 1180, 1340];
-      const posData = [360, 480, 620, 580, 710, 890, 1020];
-      const negData = [90, 110, 140, 120, 130, 140, 150];
-
-      const maxVal = 1500;
-
-      // خطوط الشبكة الهادئة
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      ctx.strokeStyle = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)';
-      ctx.lineWidth = 1;
-      ctx.fillStyle = isDark ? '#94A3B8' : '#64748B';
-      ctx.font = '11px Cairo, sans-serif';
-      ctx.textAlign = 'right';
-
-      for (let i = 0; i <= 4; i++) {
-        const y = padding.top + (chartH / 4) * i;
-        const val = Math.round(maxVal - (maxVal / 4) * i);
-        ctx.beginPath();
-        ctx.moveTo(padding.left, y);
-        ctx.lineTo(padding.left + chartW, y);
-        ctx.stroke();
-        ctx.fillText(val, padding.left - 8, y + 4);
-      }
-
-      // دالة رسم الخطوط
-      function drawLine(data, strokeColor, fillColor) {
-        const stepX = chartW / (data.length - 1);
-        ctx.beginPath();
-        data.forEach((val, i) => {
-          const x = padding.left + i * stepX;
-          const y = padding.top + chartH - (val / maxVal) * chartH;
-          if (i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        });
-
-        if (fillColor) {
-          ctx.lineTo(padding.left + chartW, padding.top + chartH);
-          ctx.lineTo(padding.left, padding.top + chartH);
-          ctx.closePath();
-          ctx.fillStyle = fillColor;
-          ctx.fill();
-        }
-
-        ctx.beginPath();
-        data.forEach((val, i) => {
-          const x = padding.left + i * stepX;
-          const y = padding.top + chartH - (val / maxVal) * chartH;
-          if (i === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
-        });
-        ctx.strokeStyle = strokeColor;
-        ctx.lineWidth = 2.8;
-        ctx.stroke();
-
-        // نقاط الخط
-        data.forEach((val, i) => {
-          const x = padding.left + i * stepX;
-          const y = padding.top + chartH - (val / maxVal) * chartH;
-          ctx.beginPath();
-          ctx.arc(x, y, 4, 0, Math.PI * 2);
-          ctx.fillStyle = strokeColor;
-          ctx.fill();
-          ctx.strokeStyle = isDark ? '#131E32' : '#FFFFFF';
-          ctx.lineWidth = 2;
-          ctx.stroke();
-        });
-      }
-
-      // خط إجمالي التفاعل بأحمر بالبيد الرسمي
-      drawLine(totalData, '#C41230', isDark ? 'rgba(196,18,48,0.12)' : 'rgba(196,18,48,0.06)');
-      // خط الإيجابي
-      drawLine(posData, '#059669', null);
-      // خط الملاحظات
-      drawLine(negData, '#DC2626', null);
-
-      // تواريخ المحور الأفقي
-      ctx.textAlign = 'center';
-      ctx.fillStyle = isDark ? '#94A3B8' : '#64748B';
-      days.forEach((day, i) => {
-        const stepX = chartW / (days.length - 1);
-        const x = padding.left + i * stepX;
-        ctx.fillText(day, x, h - 10);
-      });
+  $('actBody').querySelectorAll('[data-f]').forEach(el => el.onchange = () => {
+    const a = loadActs(); a[el.dataset.i][el.dataset.f] = el.value;
+    if (el.dataset.f === 'status' && el.value === 'verified' && !a[el.dataset.i].outcome) {
+      alert('لا يمكن اعتماد الإجراء كـ «موثق» إلا بعد إدخال النتيجة الموثقة بالأرقام.');
+      el.value = a[el.dataset.i].status = 'done';
     }
+    saveActs(a);
+    renderActions();
+  });
+  $('actBody').querySelectorAll('[data-del]').forEach(el => el.onclick = () => {
+    const a = loadActs(); a.splice(el.dataset.del, 1); saveActs(a); renderActions();
+  });
+}
 
-    // التهيئة الأولى
-    renderCards();
-    setTimeout(drawChart, 60);
+$('actForm').onsubmit = e => {
+  e.preventDefault();
+  const a = loadActs();
+  a.push({title:$('actTitle').value, owner:$('actOwner').value, due:$('actDue').value, status:'open', outcome:'', records:''});
+  saveActs(a); e.target.reset(); renderActions();
+};
 
-    window.addEventListener('resize', () => {
-      drawChart();
-    });
+// Export Actions to JSON file
+$('btnExportActions').onclick = () => {
+  const acts = loadActs();
+  const blob = new Blob([JSON.stringify({ export_date: new Date().toISOString(), entity: "Autozone Balubaid", actions: acts }, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = `autozone-actions-${new Date().toISOString().slice(0,10)}.json`;
+  a.click(); URL.revokeObjectURL(url);
+};
 
-  })();
-  </script>
+// Import Actions from JSON file
+$('btnImportActionsTrigger').onclick = () => $('importFileInput').click();
+$('importFileInput').onchange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      const imported = Array.isArray(data) ? data : data.actions;
+      if (Array.isArray(imported)) {
+        saveActs(imported);
+        renderActions();
+        alert(`تم استيراد ${imported.length} إجراء بنجاح.`);
+      } else throw new Error("صيغة غير صالحة");
+    } catch (err) {
+      alert("خطأ في قراءة الملف: يرجى التأكد من اختيار ملف JSON سليم.");
+    }
+  };
+  reader.readAsText(file);
+};
+
+// Print / PDF Executive Briefing for Sheikh Khaled
+$('btnPrintReport').onclick = () => {
+  window.print();
+};
+
+/* End-to-End Collector Simulation for Demonstration */
+const mockLiveReviews = [
+  {
+    id: "places/ChIJN1t_tDeuEmsRUsoyG83frY4/reviews/rev-01",
+    data_state: "live",
+    source: "google_places",
+    branch: "jeddah_madinah",
+    author: "خالد بن عبدالعزيز",
+    text: "صالة عرض أوتوزون على طريق المدينة ممتازة والتعامل راقي جداً وخلصوا فحص السيارة بسرعة.",
+    rating: 5,
+    published_at: "2026-10-22T10:15:00Z",
+    collected_at: "2026-10-23T01:00:00Z",
+    url: "https://maps.google.com/?cid=123456789012345678",
+    sentiment: "positive",
+    topic: "صالة العرض",
+    reviewed_by: "فريق الجودة",
+    requires_response: false,
+    responded_at: null
+  },
+  {
+    id: "places/ChIJN1t_tDeuEmsRUsoyG83frY4/reviews/rev-02",
+    data_state: "live",
+    source: "google_places",
+    branch: "jeddah_sultan",
+    author: "فيصل الحربي",
+    text: "الخدمة مقبولة لكن تأخر تسليم قطع الغيار يومين إضافيين عن الموعد.",
+    rating: 3,
+    published_at: "2026-10-21T14:30:00Z",
+    collected_at: "2026-10-23T01:00:00Z",
+    url: "https://maps.google.com/?cid=123456789012345678",
+    sentiment: "negative",
+    topic: "قطع الغيار",
+    reviewed_by: "فريق الجودة",
+    requires_response: true,
+    responded_at: "2026-10-22T09:00:00Z"
+  },
+  {
+    id: "places/ChIJN1t_tDeuEmsRUsoyG83frY4/reviews/rev-03",
+    data_state: "live",
+    source: "google_places",
+    branch: "riyadh_khurais",
+    author: "تركي السبيعي",
+    text: "أوتوزون خريص: أفضل تجربة لتقسيط السيارات بدون دفعة أولى وإجراءات واضحة.",
+    rating: 5,
+    published_at: "2026-10-20T17:45:00Z",
+    collected_at: "2026-10-23T01:00:00Z",
+    url: "https://maps.google.com/?cid=987654321098765432",
+    sentiment: "positive",
+    topic: "التمويل",
+    reviewed_by: "فريق الجودة",
+    requires_response: false,
+    responded_at: null
+  },
+  {
+    id: "places/ChIJN1t_tDeuEmsRUsoyG83frY4/reviews/rev-04",
+    data_state: "live",
+    source: "google_places",
+    branch: "dammam_khobar",
+    author: "محمد الغامدي",
+    text: "استقبال صالة الخبر محترم جداً وجميع الاستفسارات تمت الإجابة عليها بدقة.",
+    rating: 5,
+    published_at: "2026-10-18T11:20:00Z",
+    collected_at: "2026-10-23T01:00:00Z",
+    url: "https://maps.google.com/?cid=112233445566778899",
+    sentiment: "positive",
+    topic: "صالة العرض",
+    reviewed_by: "فريق الجودة",
+    requires_response: false,
+    responded_at: null
+  }
+];
+
+$('btnSimulateRun').onclick = () => {
+  records = mockLiveReviews;
+  hasLive = true;
+  runs = [
+    {
+      run_id: "places-sim-" + Date.now().toString().slice(-6),
+      source: "google_places",
+      started_at: new Date(Date.now() - 45000).toISOString(),
+      finished_at: new Date().toISOString(),
+      status: "success",
+      branches: [
+        { branch: "jeddah_madinah", ok: true, returned: 1, new: 1 },
+        { branch: "jeddah_sultan", ok: true, returned: 1, new: 1 },
+        { branch: "riyadh_khurais", ok: true, returned: 1, new: 1 },
+        { branch: "dammam_khobar", ok: true, returned: 1, new: 1 }
+      ],
+      errors: []
+    }
+  ];
+  renderBanner();
+  renderAll();
+  alert("تمت محاكاة تشغيل مجمّع تقييمات Google بنجاح: تم جلب 4 تقييمات موثقة بروابطها المباشرة وانتقلت اللوحة إلى حالة «بيانات موثقة جزئياً».");
+};
+
+$('btnResetData').onclick = () => {
+  load();
+  alert("تمت إعادة ضبط اللوحة إلى البيانات التوضيحية الافتراضية.");
+};
+
+function renderAll() { renderKPIs(); renderChart(); renderBrief(); renderSourceSplit(); renderRecords(); renderSources(); renderActions(); }
+
+['fBranch','fDays','fSource','fState'].forEach(id => $(id).addEventListener('change', renderAll));
+['fText','fSent'].forEach(id => $(id).addEventListener('input', renderRecords));
+
+document.querySelectorAll('nav.tabs button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('nav.tabs button').forEach(x => x.classList.toggle('active', x === b));
+  document.querySelectorAll('[data-pane]').forEach(p => p.classList.toggle('hidden', p.dataset.pane !== b.dataset.tab));
+  $('filters').classList.toggle('hidden', ['actions','sources','admin'].includes(b.dataset.tab));
+  if (b.dataset.tab === 'overview') renderChart();
+});
+
+$('btnTheme').onclick = () => {
+  const d = document.documentElement, next = d.dataset.theme === 'dark' ? 'light' : 'dark';
+  d.dataset.theme = next; $('btnTheme').textContent = next === 'dark' ? '☀️' : '🌙'; renderChart();
+};
+addEventListener('resize', () => renderChart());
+load();
+})();
+</script>
 </body>
 </html>

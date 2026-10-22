@@ -1,0 +1,9 @@
+{
+  "_note": "Replace each place_id with the verified Google Place ID of the Autozone (Balubaid) branch. Entries starting with REPLACE are skipped.",
+  "branches": [
+    { "branch_key": "jeddah_madinah", "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID" },
+    { "branch_key": "jeddah_sultan", "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID" },
+    { "branch_key": "riyadh_khurais", "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID" },
+    { "branch_key": "dammam_khobar", "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID" }
+  ]
+}
