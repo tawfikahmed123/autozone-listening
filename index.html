@@ -7,7 +7,7 @@
 <meta name="description" content="منصة رصد آراء عملاء شركات مجموعة بالبيد - كل رقم قابل للتتبع إلى سجلاته وحسابه ومصدره.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
   /* ألوان أوتوزون وبالبيد المستوحاة من واجهة المعرض الحقيقية */
@@ -178,6 +178,41 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
   .card{border:1px solid #ccc!important;box-shadow:none!important;break-inside:avoid;margin-bottom:1rem!important}
   .state-banner{border:1px solid #999!important}
 }
+
+/* ===== UI refinement layer ===== */
+:root{--r:14px;--shadow:0 1px 2px rgba(16,24,40,.04),0 4px 16px rgba(16,24,40,.06);--shadow-hover:0 8px 28px rgba(16,24,40,.10)}
+body{font-family:'IBM Plex Sans Arabic','Inter',system-ui,sans-serif;font-size:14.5px;line-height:1.7;-webkit-font-smoothing:antialiased;letter-spacing:0}
+html[lang="en"] body{font-family:'Inter','IBM Plex Sans Arabic',system-ui,sans-serif;line-height:1.6;letter-spacing:-.005em}
+header{background:linear-gradient(135deg,#0B101A 0%,#151D2E 60%,#1C2438 100%);box-shadow:0 4px 20px rgba(0,0,0,.18)}
+.hdr{padding:.85rem 0}
+.az-showroom-badge{border-radius:10px;padding:.4rem .85rem;box-shadow:inset 0 0 0 1px rgba(255,183,3,.25)}
+nav.tabs{background:transparent;border-top:1px solid rgba(255,255,255,.06);gap:.15rem}
+nav.tabs button{padding:.7rem 1rem;font-weight:600;transition:color .2s,border-color .2s}
+.btn{border-radius:10px;padding:.42rem .9rem;font-weight:600;transition:all .18s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-lang{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.18);font-family:'Inter',sans-serif;font-weight:700;letter-spacing:.04em;min-width:52px}
+.btn-lang:hover{background:rgba(255,183,3,.18);border-color:var(--az-yellow);color:var(--az-yellow)}
+#btnTheme{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff}
+.card,.kpi,.tbl-wrap,.filters,.review-card{border-radius:var(--r)}
+.card{padding:1.35rem;transition:box-shadow .2s}
+.card:hover{box-shadow:var(--shadow-hover)}
+.card h2{font-size:1.05rem;font-weight:700;letter-spacing:-.01em}
+.kpi{padding:1.15rem 1.2rem;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s,border-color .18s}
+.kpi::before{content:'';position:absolute;inset-inline-start:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--az-yellow),var(--balubaid-red))}
+.kpi:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+.kpi .v{font-family:'Inter',sans-serif;font-size:2rem;font-weight:800;letter-spacing:-.02em}
+.filters{padding:.8rem 1rem;box-shadow:var(--shadow)}
+.filters select,.filters input{border-radius:10px;padding:.42rem .65rem;transition:border-color .15s,box-shadow .15s}
+.filters select:focus,.filters input:focus{outline:none;border-color:var(--az-yellow);box-shadow:0 0 0 3px rgba(255,183,3,.2)}
+th{font-weight:600;text-transform:none;letter-spacing:.01em;padding:.7rem .6rem}
+td{padding:.7rem .6rem}
+tbody tr{transition:background .12s}
+tbody tr:hover{background:var(--soft)}
+.pill{font-weight:600;padding:.2rem .6rem}
+.state-banner{border-radius:var(--r);padding:.9rem 1.1rem}
+.review-card:hover{box-shadow:var(--shadow-hover)}
+section[data-pane]{animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -199,6 +234,7 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
       <div class="hdr-actions">
         <button class="btn btn-yellow" id="btnRefreshData" style="font-size:.78rem" title="إعادة قراءة وتحديث البيانات من ملفات السجلات المحلية (Local Cache Reload)">🔄 إعادة تحميل البيانات المحلية</button>
         <span id="hdrState" class="pill st-sample">بيانات توضيحية</span>
+        <button class="btn btn-lang" id="btnLang" aria-label="Switch language" title="English / العربية">EN</button>
         <button class="btn" id="btnTheme" aria-label="تبديل النسق">🌙</button>
       </div>
     </div>
@@ -1087,6 +1123,149 @@ $('btnTheme').onclick = () => {
 };
 addEventListener('resize', () => renderChart());
 load();
+})();
+</script>
+<script id="i18n">
+/* EN/AR language switch. Translates UI labels only — genuine review text (.quote, .rc-text) and code are never altered. */
+(() => {
+const D = {
+'مجموعة بالبيد · رصد آراء العملاء والشركات':'Balubaid Group · Customer & Company Reputation Monitor',
+'مجموعة شركات بالبيد · رصد آراء العملاء':'Balubaid Group · Customer Voice Monitoring',
+'لوحة القيادة التنفيذية · كل رقم قابل للتتبع إلى سجلاته':'Executive Dashboard · Every figure traceable to its records',
+'إعادة تحميل البيانات المحلية (Local Cache Reload)':'Local Cache Reload',
+'إعادة تحميل البيانات المحلية':'Reload Local Data',
+'بيانات مختلطة — النطاق موضح':'Mixed data — scope shown',
+'بيانات حقيقية جزئية':'Partial real data',
+'لا توجد بيانات متصلة':'No connected data',
+'بيانات توضيحية':'Illustrative data',
+'أبرز التقييمات (إيجابي / سلبي)':'Top Reviews (Positive / Negative)',
+'متابعة الإجراءات والنتائج':'Actions & Outcomes',
+'المصادر والتغطية':'Sources & Coverage',
+'الإدارة والربط التقني':'Admin & Integration',
+'السجلات المجمعة':'Collected Records',
+'نظرة عامة':'Overview',
+'مجموعة بالبيد — جميع الشركات والأنشطة':'Balubaid Group — All Companies & Activities',
+'الشركة أو النشاط':'Company / Activity',
+'دليل المجموعة · 15 شركة ونشاطاً — عرض المراجع وحالة البيانات':'Group Directory · 15 Companies & Activities — References & Data Status',
+'الشركة / النشاط':'Company / Activity','سجلات حقيقية':'Real records','عينات توضيحية':'Illustrative samples','مرجع التعريف':'Reference',
+'صفحة القطاع الرسمية':'Official sector page',
+'بيانات جزئية؛ راجع سجل الجمع':'Partial data; see collection log',
+'غير موصول — لا توجد بيانات حقيقية':'Not connected — no real data',
+'كل الفروع':'All branches','كل المصادر':'All sources','كل الفترات':'All periods',
+'آخر 7 أيام':'Last 7 days','آخر 30 يوماً':'Last 30 days','آخر 90 يوماً':'Last 90 days',
+'حالة البيانات':'Data status','موثقة فقط':'Verified only','توضيحية فقط':'Illustrative only',
+'عدد السجلات اليومي حسب تصنيف المشاعر':'Daily Records by Sentiment',
+'ملخص الفترة المحددة':'Selected Period Summary',
+'يُحسب تلقائياً من السجلات المعروضة فقط':'Calculated automatically from displayed records only',
+'توزيع السجلات حسب المصدر':'Records by Source',
+'حصة كل قناة من سجلات النطاق المحدد — ليست «حصة صوت» لعدم وجود مقارنة بالمنافسين.':'Each channel\'s share of records in scope — not "share of voice" (no competitor comparison).',
+'أبرز التقييمات الإيجابية وأكثر الشكاوى إلحاحاً':'Top Praise & Most Urgent Complaints',
+'عينات سريعة من أعلى وأدنى التقييمات عبر قنوات الرصد ومنصات التواصل للشركة المحددة':'Quick samples of the highest and lowest reviews across channels for the selected company',
+'عرض التحليل الشامل لأبرز التقييمات حسب المنصة ←':'View full platform analysis →',
+'أبرز تقييم إيجابي':'Top positive review','أكثر الشكاوى إلحاحاً':'Most urgent complaint',
+'أبرز التقييمات الإيجابية والسلبية لكل منصة وشركة':'Top Positive & Negative Reviews by Platform and Company',
+'مقارنة مباشرة بين أفضل ما يثني عليه العملاء وأكثر الشكاوى إلحاحاً، مصنفة حسب منصات التواصل وقنوات المراجعة.':'Side-by-side view of top customer praise and most urgent complaints, by platform and review channel.',
+'اختر منصة التواصل أو قناة الرصد:':'Choose a platform or channel:',
+'أعلى وأبرز التقييمات الإيجابية':'Top positive reviews',
+'أكثر الملاحظات والشكاوى إلحاحاً':'Most urgent feedback & complaints',
+'مصفوفة أداء منصات التواصل وقنوات الرصد':'Platform & Channel Performance Matrix',
+'مقارنة تفصيلية بين منصات الرصد للشركة المحددة: حجم الإيجابيات والسلبيات، وأبرز نقاط القوة والضعف المذكورة.':'Detailed comparison of channels for the selected company: positive/negative volume and key strengths/weaknesses.',
+'منصة التواصل / القناة':'Platform / Channel','الحساب المربوط':'Linked account','إجمالي السجلات':'Total records',
+'التقييمات الإيجابية':'Positive reviews','التقييمات السلبية':'Negative reviews',
+'أبرز نقاط الإشادة (القوة)':'Key praise (strengths)','أبرز نقاط الشكاوى (الضعف)':'Key complaints (weaknesses)',
+'جميع المنصات':'All platforms','تقييمات Google':'Google Reviews','منصة X':'X platform',
+'بحث في النص':'Search text','مثال: قطع غيار، صيانة':'e.g. spare parts, maintenance',
+'لم تُراجع بعد':'Not yet reviewed','لم تُراجع':'Not reviewed',
+'المعرّف':'ID','تاريخ النشر':'Published','تاريخ الجمع':'Collected','الرابط المباشر للمراجعة':'Direct review link','الرابط المباشر':'Direct link',
+'متابعة الإجراءات التنفيذية والنتائج الموثقة':'Executive Actions & Verified Outcomes',
+'اختر شركة لإضافة إجراء. تخزين محلي في هذا المتصفح، مع فصل الإجراءات لكل شركة؛ ليس خادماً مشتركاً.':'Select a company to add an action. Stored locally in this browser, separated per company; not a shared server.',
+'تصدير الإجراءات (JSON)':'Export actions (JSON)','استيراد ملف إجراءات':'Import actions file',
+'طباعة النطاق الحالي — ليس تقريراً معتمداً':'Print current scope — not an approved report',
+'الإجراء (مثال: زيادة مخزون فحمات الفرامل بفرع سلطان)':'Action (e.g. increase brake pad stock at Sultan branch)',
+'إضافة إجراء':'Add action','الاستحقاق':'Due','النتيجة الموثقة (مطلوبة للاعتماد)':'Verified outcome (required for approval)','السجلات المرتبطة':'Linked records',
+'سجل النتيجة (مثال: تم خفض وقت التسليم)':'Record outcome (e.g. delivery time reduced)',
+'إجمالي الإجراءات:':'Total actions:','مفتوحة:':'Open:','قيد التنفيذ:':'In progress:','منجزة:':'Done:','موثقة الأثر:':'Impact verified:',
+'منجز ونتيجته موثقة':'Done & outcome verified','قيد التنفيذ':'In progress','مفتوح':'Open','منجز':'Done',
+'المصادر وحالة الوصول الحالية':'Sources & Current Access Status',
+'آخر فحص وصول موثّق، وآخر جمع ناجح، والفجوات المعروفة في التغطية.':'Last verified access check, last successful collection, and known coverage gaps.',
+'آخر جمع ناجح':'Last successful collection','فترة التحديث المعتمدة':'Update interval','فجوات التغطية والقيود الموثقة':'Coverage gaps & documented limits',
+'سجل عمليات الجمع والتنفيذ (data/runs.json)':'Collection Run Log (data/runs.json)',
+'رقم التشغيل':'Run ID','وقت البدء':'Started','وقت الانتهاء':'Finished','النتيجة':'Result','التفاصيل والملاحظات':'Details & notes',
+'لا توجد عمليات جمع مسجلة لهذا النطاق.':'No collection runs recorded for this scope.',
+'موصول موثق':'Connected (verified)','موصّل قيد الإعداد':'Connector in setup','غير موصول':'Not connected','غير مجدول':'Not scheduled',
+'كل 60 دقيقة (تلقائي)':'Every 60 min (auto)','لا يوجد':'None','ناجح':'Success','جزئي':'Partial','فشل':'Failed',
+'للفريق التقني فقط — إعداد مصادر البيانات والتحقق من صحتها.':'Technical team only — data source setup and validation.',
+'أول موصّل تم تجهيزه:':'First connector prepared:',
+'التمييز التقني بين تحديث البيانات المحلية والجمع من المنصات:':'Local data reload vs. platform collection:',
+'التحقق الميداني من عدد الفروع (15 شركة لا تعني 15 فرعاً):':'Branch count verification (15 companies ≠ 15 branches):',
+'مصفوفة الحسابات والصلاحيات المطلوبة بدقة:':'Required accounts & permissions:',
+'لا توجد سجلات.':'No records.',
+'سجل حقيقي مجمّع':'real collected records','سجل توضيحي.':'illustrative records.',
+'العينات لا تمثل عملاء حقيقيين ولا تصلح لاتخاذ القرار.':'Samples do not represent real customers and are not suitable for decisions.',
+'لم تُجمع بيانات حقيقية لهذا النطاق؛ غياب السجلات لا يعني غياب شكاوى العملاء.':'No real data collected for this scope; absence of records does not mean absence of complaints.',
+'لا تفترض اللوحة اكتمال تاريخ ثلاث سنوات أو اتصال جميع الشركات.':'The dashboard does not assume a complete 3-year history or that all companies are connected.',
+'عينة استرجاع محدودة':'Limited retrieval sample',
+'تحويل إلى إجراء':'Convert to action','عرض الرابط':'View link','يتطلب رداً عاجلاً':'Needs urgent reply','تم الرد':'Replied',
+'الفرع غير محدد':'Branch not specified','الموضوع:':'Topic:',
+'تقييمات':'reviews','ملاحظات':'items','مشاهدة':'views','إعجاب':'likes','تقييم موثق':'verified ratings',
+'مجموعة شركات بالبيد · منصة متعددة الشركات — كل رقم في هذه اللوحة قابل للتتبع إلى سجلاته ومصدره.':'Balubaid Group · Multi-company platform — every figure is traceable to its records and source.',
+'مجموعة بالبيد':'Balubaid Group','أوتوزون':'AutoZone','بالبيد':'Balubaid',
+'الشركة':'Company','القطاع':'Sector','الوصول':'Access','الفرع':'Branch','الفترة':'Period','المصدر':'Source','المصادر':'Sources',
+'الحساب':'Account','الحالة':'Status','السجلات':'Records','النص':'Text','المشاعر':'Sentiment','الإجراء':'Action','المسؤول':'Owner','إجراء':'Action',
+'إيجابي':'Positive','سلبي':'Negative','محايد':'Neutral','موثق':'Verified','توضيحي':'Illustrative','الكل':'All',
+'النطاق:':'Scope:','حالة البيانات:':'Data status:'
+};
+const keys = Object.keys(D).sort((a,b)=>b.length-a.length);
+const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const re = new RegExp(keys.map(esc).join('|'),'g');
+const tr = s => s.replace(re, m => D[m]);
+const orig = new WeakMap();
+const SKIP = '.quote,.rc-text,code,script,style,[data-no-i18n]';
+let lang = localStorage.getItem('bgc_lang') || 'ar', busy = false;
+
+function apply(root){
+  if (lang !== 'en' || !root) return;
+  busy = true;
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let n;
+  while ((n = w.nextNode())) {
+    if (!/[\u0600-\u06FF]/.test(n.data) || n.parentElement?.closest(SKIP)) continue;
+    if (!orig.has(n)) orig.set(n, n.data);
+    n.data = tr(n.data);
+  }
+  (root.querySelectorAll ? root : document).querySelectorAll('[placeholder],[title],[aria-label]').forEach(el => {
+    ['placeholder','title','aria-label'].forEach(a => {
+      const v = el.getAttribute(a);
+      if (v && /[\u0600-\u06FF]/.test(v)) { el.dataset['o'+a.replace('-','')] ??= v; el.setAttribute(a, tr(v)); }
+    });
+  });
+  busy = false;
+}
+function restore(){
+  busy = true;
+  const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  let n; while ((n = w.nextNode())) if (orig.has(n)) n.data = orig.get(n);
+  document.querySelectorAll('[data-oplaceholder],[data-otitle],[data-oarialabel]').forEach(el => {
+    if (el.dataset.oplaceholder) el.setAttribute('placeholder', el.dataset.oplaceholder);
+    if (el.dataset.otitle) el.setAttribute('title', el.dataset.otitle);
+    if (el.dataset.oarialabel) el.setAttribute('aria-label', el.dataset.oarialabel);
+  });
+  busy = false;
+}
+function set(l){
+  lang = l; localStorage.setItem('bgc_lang', l);
+  const h = document.documentElement;
+  h.lang = l; h.dir = l === 'en' ? 'ltr' : 'rtl';
+  document.getElementById('btnLang').textContent = l === 'en' ? 'عربي' : 'EN';
+  document.title = l === 'en' ? D['مجموعة بالبيد · رصد آراء العملاء والشركات'] : 'مجموعة بالبيد · رصد آراء العملاء والشركات';
+  l === 'en' ? apply(document.body) : restore();
+}
+new MutationObserver(ms => {
+  if (busy || lang !== 'en') return;
+  ms.forEach(m => m.addedNodes.forEach(x => apply(x.nodeType === 3 ? x.parentElement : x)));
+}).observe(document.body, {childList:true, subtree:true});
+document.getElementById('btnLang').addEventListener('click', () => set(lang === 'en' ? 'ar' : 'en'));
+if (lang === 'en') setTimeout(() => set('en'), 0);
 })();
 </script>
 </body>
