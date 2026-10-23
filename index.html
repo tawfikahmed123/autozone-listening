@@ -131,6 +131,45 @@ td select,td input{border:1px solid var(--line);background:var(--bg);border-radi
 footer{padding:1.5rem 0;font-size:.78rem;color:var(--subtle);text-align:center}
 code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8rem;direction:ltr;display:inline-block}
 
+
+/* Top Reviews Section & Platform Breakdown */
+.top-reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1rem}
+@media(max-width:960px){.top-reviews-grid{grid-template-columns:1fr}}
+.top-column{display:flex;flex-direction:column;gap:.8rem}
+.top-col-header{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;border-radius:var(--r);font-weight:800;font-size:.95rem}
+.top-col-good{background:var(--pos-bg);color:var(--pos);border:1px solid rgba(4,120,87,.2)}
+.top-col-bad{background:var(--neg-bg);color:var(--neg);border:1px solid rgba(185,28,28,.2)}
+.review-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:1rem;box-shadow:var(--shadow);transition:border-color .15s, transform .15s;display:flex;flex-direction:column;gap:.6rem;position:relative}
+.review-card:hover{border-color:var(--line-strong);transform:translateY(-1px)}
+.review-card.card-good{border-inline-start:4px solid var(--pos)}
+.review-card.card-bad{border-inline-start:4px solid var(--neg)}
+.rc-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.4rem}
+.rc-badges{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.rc-text{font-size:.88rem;color:var(--text);line-height:1.65;font-weight:600}
+.rc-meta{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--subtle);flex-wrap:wrap;gap:.4rem;border-top:1px dashed var(--line);padding-top:.5rem;margin-top:.2rem}
+.rc-stars{color:#F59E0B;letter-spacing:1px;font-size:.85rem;font-weight:800}
+.platform-chip-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin:.6rem 0}
+.platform-chip{border:1px solid var(--line);background:var(--surface);padding:.35rem .8rem;border-radius:99px;font-size:.8rem;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:all .15s}
+.platform-chip:hover{background:var(--soft);border-color:var(--line-strong)}
+.platform-chip.active{background:var(--az-charcoal);color:#FFFFFF;border-color:var(--az-charcoal)}
+[data-theme="dark"] .platform-chip.active{background:var(--az-yellow);color:#111622;border-color:var(--az-yellow)}
+.platform-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;padding:.15rem .5rem;border-radius:6px}
+.pf-google_places{background:#E8F0FE;color:#1A73E8}
+.pf-instagram{background:#FCE7F3;color:#BE185D}
+.pf-x{background:#F1F5F9;color:#0F172A}
+.pf-snapchat{background:#FEF9C3;color:#854D0E}
+.pf-tiktok{background:#E0F2FE;color:#0369A1}
+.pf-youtube{background:#FEE2E2;color:#B91C1C}
+[data-theme="dark"] .pf-google_places{background:#1E3A5F;color:#93C5FD}
+[data-theme="dark"] .pf-instagram{background:#500724;color:#F472B6}
+[data-theme="dark"] .pf-x{background:#334155;color:#E2E8F0}
+[data-theme="dark"] .pf-snapchat{background:#422006;color:#FDE047}
+[data-theme="dark"] .pf-tiktok{background:#0C4A6E;color:#7DD3FC}
+[data-theme="dark"] .pf-youtube{background:#450A0A;color:#FCA5A5}
+.empty-review-notice{text-align:center;padding:1.5rem 1rem;background:var(--soft);border-radius:var(--r);color:var(--subtle);font-size:.85rem;border:1px dashed var(--line)}
+.top-matrix-card{margin-top:1.2rem}
+.btn-sm{padding:.2rem .5rem;font-size:.76rem;border-radius:6px}
+
 /* Print Styling for Sheikh Khaled's Executive Report */
 @media print{
   body{background:#fff!important;color:#000!important}
@@ -164,6 +203,7 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
     </div>
     <nav class="tabs" role="tablist">
       <button class="active" data-tab="overview">نظرة عامة</button>
+      <button data-tab="top-reviews">أبرز التقييمات (إيجابي / سلبي)</button>
       <button data-tab="records">السجلات المجمعة</button>
       <button data-tab="actions">متابعة الإجراءات والنتائج</button>
       <button data-tab="sources">المصادر والتغطية</button>
@@ -222,6 +262,79 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
       <h2>توزيع السجلات حسب المصدر</h2>
       <div class="sub">حصة كل قناة من سجلات النطاق المحدد — ليست «حصة صوت» لعدم وجود مقارنة بالمنافسين.</div>
       <div id="sourceSplit"></div>
+    </div>
+
+    <!-- Overview Quick Highlight of Top Good & Bad Reviews -->
+    <div class="card" style="margin-top:1rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem">
+        <div>
+          <h2>أبرز التقييمات الإيجابية وأكثر الشكاوى إلحاحاً</h2>
+          <div class="sub">عينات سريعة من أعلى وأدنى التقييمات عبر قنوات الرصد ومنصات التواصل للشركة المحددة</div>
+        </div>
+        <button class="btn btn-yellow" id="btnGoToTopReviews">عرض التحليل الشامل لأبرز التقييمات حسب المنصة ←</button>
+      </div>
+      <div class="top-reviews-grid" style="margin-top:0">
+        <div class="top-column">
+          <div class="top-col-header top-col-good">
+            <span>🌟 أبرز تقييم إيجابي</span>
+          </div>
+          <div id="overviewTopGood"></div>
+        </div>
+        <div class="top-column">
+          <div class="top-col-header top-col-bad">
+            <span>⚠️ أكثر الشكاوى إلحاحاً</span>
+          </div>
+          <div id="overviewTopBad"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- TOP REVIEWS PER COMPANY & PLATFORM -->
+  <section data-pane="top-reviews" class="hidden">
+    <div class="card" style="margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.75rem">
+        <div>
+          <h2>أبرز التقييمات الإيجابية والسلبية لكل منصة وشركة</h2>
+          <div class="sub">مقارنة مباشرة بين أفضل ما يثني عليه العملاء وأكثر الشكاوى إلحاحاً، مصنفة حسب منصات التواصل وقنوات المراجعة.</div>
+        </div>
+        <div id="topReviewStats" class="action-stats" style="margin-bottom:0"></div>
+      </div>
+
+      <div style="margin-top:.75rem">
+        <span style="font-size:.8rem;font-weight:700;color:var(--muted)">اختر منصة التواصل أو قناة الرصد:</span>
+        <div class="platform-chip-bar" id="platformChipBar"></div>
+      </div>
+    </div>
+
+    <!-- Dual Column Top Good vs Top Bad -->
+    <div class="top-reviews-grid">
+      <div class="top-column">
+        <div class="top-col-header top-col-good">
+          <span>🌟 أعلى وأبرز التقييمات الإيجابية</span>
+          <span id="topGoodCount" class="pill st-live">0 تقييمات</span>
+        </div>
+        <div id="topGoodList" style="display:flex;flex-direction:column;gap:.75rem"></div>
+      </div>
+
+      <div class="top-column">
+        <div class="top-col-header top-col-bad">
+          <span>⚠️ أكثر الملاحظات والشكاوى إلحاحاً</span>
+          <span id="topBadCount" class="pill s-neg">0 ملاحظات</span>
+        </div>
+        <div id="topBadList" style="display:flex;flex-direction:column;gap:.75rem"></div>
+      </div>
+    </div>
+
+    <!-- Platform Performance Matrix -->
+    <div class="card top-matrix-card">
+      <h2>مصفوفة أداء منصات التواصل وقنوات الرصد</h2>
+      <div class="sub">مقارنة تفصيلية بين منصات الرصد للشركة المحددة: حجم الإيجابيات والسلبيات، وأبرز نقاط القوة والضعف المذكورة.</div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>منصة التواصل / القناة</th><th>الحساب المربوط</th><th>إجمالي السجلات</th><th>التقييمات الإيجابية</th><th>التقييمات السلبية</th><th>أبرز نقاط الإشادة (القوة)</th><th>أبرز نقاط الشكاوى (الضعف)</th><th>إجراء</th></tr></thead>
+        <tbody id="platformMatrixBody"></tbody>
+      </table></div>
     </div>
   </section>
 
@@ -334,14 +447,14 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
 {"records":[
 {"id":"S-01","data_state":"sample","source":"google_places","branch":"riyadh_khurais","author":"عينة توضيحية","text":"تجربة الشراء في فرع خريص كانت واضحة وسريعة، وتم إنهاء إجراءات التمويل خلال يومين.","rating":5,"published_at":"2026-10-20","collected_at":null,"url":null,"sentiment":"positive","topic":"التمويل","reviewed_by":"عينة","requires_response":false,"responded_at":null},
 {"id":"S-02","data_state":"sample","source":"google_places","branch":"jeddah_sultan","author":"عينة توضيحية","text":"الفنيون متعاونون، لكن انتظرت ثلاثة أيام لتوفر قطع الفرامل.","rating":3,"published_at":"2026-10-21","collected_at":null,"url":null,"sentiment":"negative","topic":"قطع الغيار","reviewed_by":"عينة","requires_response":true,"responded_at":null},
-{"id":"S-03","data_state":"sample","source":"instagram","branch":"jeddah_madinah","author":"عينة توضيحية","text":"هل عرض التقسيط بدون دفعة أولى متاح لموظفي القطاع الخاص؟","rating":null,"published_at":"2026-10-18","collected_at":null,"url":null,"sentiment":"neutral","topic":"التمويل","reviewed_by":"عينة","requires_response":true,"responded_at":"2026-10-18T14:10:00+03:00"},
+{"id":"S-03","data_state":"sample","source":"instagram","branch":"jeddah_madinah","author":"عينة توضيحية","text":"تواصلت عبر الرسائل الخاصة بخصوص عروض الصيانة ولم أتلق رداً منذ يومين.","rating":null,"published_at":"2026-10-18","collected_at":null,"url":null,"sentiment":"negative","topic":"خدمة العملاء","reviewed_by":"عينة","requires_response":true,"responded_at":"2026-10-18T14:10:00+03:00"},
 {"id":"S-04","data_state":"sample","source":"google_places","branch":"dammam_khobar","author":"عينة توضيحية","text":"موظف المبيعات شرح خيارات التأمين بوضوح ودون استعجال.","rating":5,"published_at":"2026-10-15","collected_at":null,"url":null,"sentiment":"positive","topic":"صالة العرض","reviewed_by":"عينة","requires_response":false,"responded_at":null},
 {"id":"S-05","data_state":"sample","source":"x","branch":"riyadh_khurais","author":"عينة توضيحية","text":"اتصلت بالرقم الموحد أكثر من مرة بخصوص موعد استلام اللوحات وحصلت على إجابات مختلفة.","rating":null,"published_at":"2026-10-12","collected_at":null,"url":null,"sentiment":"negative","topic":"خدمة العملاء","reviewed_by":"عينة","requires_response":true,"responded_at":null},
-{"id":"S-06","data_state":"sample","source":"google_places","branch":"jeddah_madinah","author":"عينة توضيحية","text":"تم إصلاح صوت المكيف ضمن الضمان دون رسوم إضافية.","rating":4,"published_at":"2026-10-08","collected_at":null,"url":null,"sentiment":"positive","topic":"الصيانة","reviewed_by":"عينة","requires_response":false,"responded_at":null},
-{"id":"S-07","data_state":"sample","source":"google_places","branch":"jeddah_sultan","author":"عينة توضيحية","text":"الحجز في نهاية الأسبوع صعب والمواعيد ممتلئة.","rating":2,"published_at":"2026-10-02","collected_at":null,"url":null,"sentiment":"negative","topic":"الصيانة","reviewed_by":"عينة","requires_response":true,"responded_at":"2026-10-03T09:00:00+03:00"},
-{"id":"S-08","data_state":"sample","source":"instagram","branch":"dammam_khobar","author":"عينة توضيحية","text":"متى يصل الطراز الجديد إلى فرع الخبر؟","rating":null,"published_at":"2026-09-28","collected_at":null,"url":null,"sentiment":null,"topic":null,"reviewed_by":null,"requires_response":null,"responded_at":null},
-{"id":"S-09","data_state":"sample","source":"google_places","branch":"riyadh_khurais","author":"عينة توضيحية","text":"الصالة نظيفة والاستقبال جيد.","rating":4,"published_at":"2026-09-20","collected_at":null,"url":null,"sentiment":"positive","topic":"صالة العرض","reviewed_by":"عينة","requires_response":false,"responded_at":null},
-{"id":"S-10","data_state":"sample","source":"x","branch":"jeddah_madinah","author":"عينة توضيحية","text":"تأخر تسليم السيارة أسبوعاً عن الموعد المتفق عليه.","rating":null,"published_at":"2026-09-10","collected_at":null,"url":null,"sentiment":"negative","topic":"التسليم","reviewed_by":"عينة","requires_response":true,"responded_at":null}
+{"id":"S-06","data_state":"sample","source":"x","branch":"riyadh_khurais","author":"عينة توضيحية","text":"خدمة مميزة واستقبال رائع في فرع خريص، تم إنهاء الفحص الدوري وتسليم السيارة في نفس اليوم.","rating":null,"published_at":"2026-10-08","collected_at":null,"url":null,"sentiment":"positive","topic":"الصيانة","reviewed_by":"عينة","requires_response":false,"responded_at":null},
+{"id":"S-07","data_state":"sample","source":"google_places","branch":"jeddah_sultan","author":"عينة توضيحية","text":"الحجز في نهاية الأسبوع صعب والمواعيد ممتلئة وسوء تنظيم في الاستقبال.","rating":2,"published_at":"2026-10-02","collected_at":null,"url":null,"sentiment":"negative","topic":"الصيانة","reviewed_by":"عينة","requires_response":true,"responded_at":"2026-10-03T09:00:00+03:00"},
+{"id":"S-08","data_state":"sample","source":"instagram","branch":"dammam_khobar","author":"عينة توضيحية","text":"استفسرت عبر الرسائل الخاصة عن مواصفات الفئات المتوفرة والرد كان فورياً ومهنياً جداً.","rating":null,"published_at":"2026-09-28","collected_at":null,"url":null,"sentiment":"positive","topic":"خدمة العملاء","reviewed_by":"عينة","requires_response":false,"responded_at":null},
+{"id":"S-09","data_state":"sample","source":"google_places","branch":"riyadh_khurais","author":"عينة توضيحية","text":"الصالة نظيفة والاستقبال جيد جداً والمستشار المالي ساعدني باختيار أفضل بنك.","rating":4,"published_at":"2026-09-20","collected_at":null,"url":null,"sentiment":"positive","topic":"صالة العرض","reviewed_by":"عينة","requires_response":false,"responded_at":null},
+{"id":"S-10","data_state":"sample","source":"x","branch":"jeddah_madinah","author":"عينة توضيحية","text":"تأخر تسليم السيارة أسبوعاً عن الموعد المتفق عليه وخدمة ما بعد البيع لا ترد.","rating":null,"published_at":"2026-09-10","collected_at":null,"url":null,"sentiment":"negative","topic":"التسليم","reviewed_by":"عينة","requires_response":true,"responded_at":null}
 ],"place_summaries":[]}
 </script>
 
@@ -687,7 +800,203 @@ $('btnPrintReport').onclick = () => {
 };
 
 
-function renderAll() { renderBanner(); renderCompanyOverview(); renderKPIs(); renderChart(); renderBrief(); renderSourceSplit(); renderRecords(); renderSources(); renderActions(); }
+
+/* Top Good and Bad Reviews Logic */
+let selectedTopPlatform = 'all';
+
+const PLATFORM_META = {
+  all: { name: 'جميع المنصات', icon: '🌐', badgeClass: 'pf-x' },
+  google_places: { name: 'تقييمات Google', icon: '📍', badgeClass: 'pf-google_places' },
+  instagram: { name: 'Instagram', icon: '📸', badgeClass: 'pf-instagram' },
+  x: { name: 'منصة X', icon: '𝕏', badgeClass: 'pf-x' },
+  snapchat: { name: 'Snapchat', icon: '👻', badgeClass: 'pf-snapchat' },
+  tiktok: { name: 'TikTok', icon: '🎵', badgeClass: 'pf-tiktok' },
+  youtube: { name: 'YouTube', icon: '▶️', badgeClass: 'pf-youtube' }
+};
+
+function getTopGood(rs, limit = 10) {
+  return rs.filter(r => r.sentiment === 'positive' || (typeof r.rating === 'number' && r.rating >= 4))
+    .sort((a,b) => {
+      const ra = typeof a.rating === 'number' ? a.rating : 4;
+      const rb = typeof b.rating === 'number' ? b.rating : 4;
+      if (rb !== ra) return rb - ra;
+      return new Date(b.published_at || 0) - new Date(a.published_at || 0);
+    }).slice(0, limit);
+}
+
+function getTopBad(rs, limit = 10) {
+  return rs.filter(r => r.sentiment === 'negative' || (typeof r.rating === 'number' && r.rating <= 3))
+    .sort((a,b) => {
+      const ra = typeof a.rating === 'number' ? a.rating : 2;
+      const rb = typeof b.rating === 'number' ? b.rating : 2;
+      if (ra !== rb) return ra - rb;
+      const respA = (a.requires_response && !a.responded_at) ? 1 : 0;
+      const respB = (b.requires_response && !b.responded_at) ? 1 : 0;
+      if (respB !== respA) return respB - respA;
+      return new Date(b.published_at || 0) - new Date(a.published_at || 0);
+    }).slice(0, limit);
+}
+
+function renderReviewCard(r, isGood) {
+  const meta = PLATFORM_META[r.source] || { name: SOURCES[r.source]?.name || r.source, icon: '💬', badgeClass: 'pf-x' };
+  const starStr = typeof r.rating === 'number' ? '★'.repeat(Math.max(1, Math.min(5, Math.round(r.rating)))) + '☆'.repeat(Math.max(0, 5 - Math.round(r.rating))) + ` (${r.rating}/5)` : '';
+  const cName = companyName(r.company_id);
+  const brName = BRANCHES[r.branch] || r.branch || 'الفرع غير محدد';
+  const actBtn = !isGood ? `<button class="btn btn-red btn-sm btn-create-act" data-rec-id="${esc(r.id)}" data-company="${esc(r.company_id)}" data-topic="${esc(r.topic || 'شكوى عميل')}">⚡ تحويل إلى إجراء</button>` : '';
+
+  return `
+    <div class="review-card ${isGood ? 'card-good' : 'card-bad'}">
+      <div class="rc-header">
+        <div class="rc-badges">
+          <span class="platform-badge ${meta.badgeClass}">${meta.icon} ${meta.name}</span>
+          <span class="pill ${isGood ? 's-pos' : 's-neg'}">${isGood ? 'إيجابي' : 'سلبي'}</span>
+          ${r.data_state === 'sample' ? '<span class="pill st-sample">توضيحي</span>' : '<span class="pill st-live">موثق</span>'}
+          ${r.topic ? `<span class="pill s-neu">الموضوع: ${esc(r.topic)}</span>` : ''}
+        </div>
+        ${starStr ? `<div class="rc-stars">${starStr}</div>` : ''}
+      </div>
+      <div class="rc-text">«${esc(r.text)}»</div>
+      <div class="rc-meta">
+        <div>
+          <strong>${esc(cName)}</strong> · <span>${esc(brName)}</span> · <span class="muted">${fmtDate(r.published_at)}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:.4rem">
+          ${r.requires_response ? (r.responded_at ? '<span class="pill st-live">تم الرد</span>' : '<span class="pill s-neg">يتطلب رداً عاجلاً</span>') : ''}
+          ${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">عرض الرابط ↗</a>` : ''}
+          ${actBtn}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function bindActionButtons() {
+  document.querySelectorAll('.btn-create-act').forEach(btn => {
+    btn.onclick = () => {
+      const compId = btn.dataset.company;
+      const topic = btn.dataset.topic;
+      const recId = btn.dataset.recId;
+      if (selectedCompany() === 'all' || selectedCompany() !== compId) {
+        $('fCompany').value = compId;
+        companyChanged();
+      }
+      document.querySelectorAll('nav.tabs button').forEach(x => x.classList.toggle('active', x.dataset.tab === 'actions'));
+      document.querySelectorAll('[data-pane]').forEach(p => p.classList.toggle('hidden', p.dataset.pane !== 'actions'));
+      $('filters').classList.add('hidden');
+      $('actTitle').value = `معالجة ${topic} الواردة في السجل (${recId})`;
+      $('actOwner').value = 'مدير العمليات';
+      const d = new Date(); d.setDate(d.getDate() + 3);
+      $('actDue').value = d.toISOString().slice(0, 10);
+      $('actTitle').focus();
+      $('actForm').scrollIntoView({ behavior: 'smooth' });
+    };
+  });
+}
+
+function renderOverviewTopWidget() {
+  const elGood = $('overviewTopGood'), elBad = $('overviewTopBad');
+  if (!elGood || !elBad) return;
+  const rs = filtered(false);
+  const good = getTopGood(rs, 1);
+  const bad = getTopBad(rs, 1);
+  elGood.innerHTML = good.length ? renderReviewCard(good[0], true) : '<div class="empty-review-notice">لا توجد تقييمات إيجابية ضمن النطاق المحدد.</div>';
+  elBad.innerHTML = bad.length ? renderReviewCard(bad[0], false) : '<div class="empty-review-notice">لا توجد شكاوى أو تقييمات سلبية ضمن النطاق المحدد.</div>';
+  bindActionButtons();
+}
+
+function renderTopReviews() {
+  const chipBar = $('platformChipBar'), statsEl = $('topReviewStats'), goodListEl = $('topGoodList'), badListEl = $('topBadList'), matrixEl = $('platformMatrixBody');
+  if (!chipBar || !goodListEl || !badListEl) return;
+  const baseRs = filtered(false);
+  const cSources = companySources();
+
+  // Render platform chips
+  chipBar.innerHTML = Object.entries(PLATFORM_META).map(([k, meta]) => {
+    const activeClass = selectedTopPlatform === k ? ' active' : '';
+    const count = k === 'all' ? baseRs.length : baseRs.filter(r => r.source === k).length;
+    return `<button class="platform-chip${activeClass}" data-platform="${k}">${meta.icon} ${meta.name} (${count})</button>`;
+  }).join('');
+
+  chipBar.querySelectorAll('[data-platform]').forEach(btn => {
+    btn.onclick = () => {
+      selectedTopPlatform = btn.dataset.platform;
+      renderTopReviews();
+    };
+  });
+
+  const activeRs = selectedTopPlatform === 'all' ? baseRs : baseRs.filter(r => r.source === selectedTopPlatform);
+  const goodList = getTopGood(activeRs, 10);
+  const badList = getTopBad(activeRs, 10);
+
+  const selName = selectedCompany() === 'all' ? 'جميع شركات المجموعة' : companyName(selectedCompany());
+  const pfName = PLATFORM_META[selectedTopPlatform]?.name || selectedTopPlatform;
+
+  if (statsEl) {
+    statsEl.innerHTML = `
+      <span>الشركة: <strong>${esc(selName)}</strong></span>
+      <span>• المنصة: <strong>${esc(pfName)}</strong></span>
+      <span>• إجمالي السجلات: <strong>${activeRs.length}</strong></span>
+      <span>• إيجابي: <strong style="color:var(--pos)">${goodList.length}</strong></span>
+      <span>• سلبي: <strong style="color:var(--neg)">${badList.length}</strong></span>
+    `;
+  }
+
+  if ($('topGoodCount')) $('topGoodCount').textContent = `${goodList.length} تقييم`;
+  if ($('topBadCount')) $('topBadCount').textContent = `${badList.length} ملاحظة`;
+
+  goodListEl.innerHTML = goodList.length ?
+    goodList.map(r => renderReviewCard(r, true)).join('') :
+    `<div class="empty-review-notice">لا توجد تقييمات إيجابية مسجلة لـ ${esc(selName)} على ${esc(pfName)}.</div>`;
+
+  badListEl.innerHTML = badList.length ?
+    badList.map(r => renderReviewCard(r, false)).join('') :
+    `<div class="empty-review-notice">لا توجد ملاحظات سلبية مسجلة لـ ${esc(selName)} على ${esc(pfName)}.</div>`;
+
+  bindActionButtons();
+
+  // Render Platform Matrix table
+  if (matrixEl) {
+    matrixEl.innerHTML = Object.keys(cSources).map(k => {
+      const pMeta = PLATFORM_META[k] || { name: SOURCES[k]?.name || k, icon: '💬', badgeClass: 'pf-x' };
+      const pRecs = baseRs.filter(r => r.source === k);
+      const pGood = getTopGood(pRecs, 100);
+      const pBad = getTopBad(pRecs, 100);
+
+      const posTopics = {};
+      pGood.filter(r => r.topic).forEach(r => posTopics[r.topic] = (posTopics[r.topic]||0) + 1);
+      const topPosTopic = Object.entries(posTopics).sort((a,b)=>b[1]-a[1])[0];
+
+      const negTopics = {};
+      pBad.filter(r => r.topic).forEach(r => negTopics[r.topic] = (negTopics[r.topic]||0) + 1);
+      const topNegTopic = Object.entries(negTopics).sort((a,b)=>b[1]-a[1])[0];
+
+      const srcInfo = cSources[k];
+
+      return `<tr>
+        <td><b>${pMeta.icon} ${pMeta.name}</b></td>
+        <td>${srcInfo.url ? `<a href="${srcInfo.url}" target="_blank" rel="noopener noreferrer">${esc(srcInfo.account)}</a>` : esc(srcInfo.account)}</td>
+        <td><strong>${pRecs.length}</strong></td>
+        <td><span class="pill s-pos">${pGood.length} إيجابي</span></td>
+        <td><span class="pill s-neg">${pBad.length} سلبي</span></td>
+        <td>${topPosTopic ? `<span class="pill s-pos">${esc(topPosTopic[0])} (${topPosTopic[1]})` : '<span class="muted">—</span>'}</td>
+        <td>${topNegTopic ? `<span class="pill s-neg">${esc(topNegTopic[0])} (${topNegTopic[1]})` : '<span class="muted">—</span>'}</td>
+        <td><button class="btn btn-sm btn-filter-pf" data-platform="${k}">عرض التقييمات ←</button></td>
+      </tr>`;
+    }).join('') || '<tr><td colspan="8" class="muted">لا توجد منصات محددة.</td></tr>';
+
+    document.querySelectorAll('.btn-filter-pf').forEach(b => {
+      b.onclick = () => {
+        selectedTopPlatform = b.dataset.platform;
+        renderTopReviews();
+        if (statsEl) {
+          statsEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+    });
+  }
+}
+
+function renderAll() { renderBanner(); renderCompanyOverview(); renderKPIs(); renderChart(); renderBrief(); renderSourceSplit(); renderOverviewTopWidget(); renderTopReviews(); renderRecords(); renderSources(); renderActions(); }
 
 $('fCompany').addEventListener('change',companyChanged);
 ['fBranch','fDays','fSource','fState'].forEach(id => $(id).addEventListener('change', renderAll));
