@@ -72,6 +72,8 @@ async function main() {
             id,
             data_state: 'live',
             data_origin:'real',
+            sample_scope: 'limited_sample',
+            scope_note: 'عينة تقييمات محدودة (حد أقصى 5 تقييمات لكل فرع توفرها Places API) — لا تمثل السجل التاريخي الكامل للفرع.',
             company_id:b.company_id,
             source: 'google_places',
             branch: b.branch_key,
