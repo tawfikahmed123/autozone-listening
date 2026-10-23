@@ -197,6 +197,7 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
         </div>
       </div>
       <div class="hdr-actions">
+        <button class="btn btn-yellow" id="btnRefreshData" style="font-size:.78rem">🔄 تحديث السجلات الآن</button>
         <span id="hdrState" class="pill st-sample">بيانات توضيحية</span>
         <button class="btn" id="btnTheme" aria-label="تبديل النسق">🌙</button>
       </div>
@@ -392,7 +393,7 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
       <h2>المصادر وحالة الوصول الحالية</h2>
       <div class="sub">آخر فحص وصول موثّق، وآخر جمع ناجح، والفجوات المعروفة في التغطية.</div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>المصدر</th><th>الحساب</th><th>الحالة</th><th>آخر جمع ناجح</th><th>السجلات</th><th>فجوات التغطية والقيود</th></tr></thead>
+        <thead><tr><th>المصدر</th><th>الحساب</th><th>الحالة</th><th>آخر جمع ناجح</th><th>السجلات</th><th>فترة التحديث المعتمدة</th><th>فجوات التغطية والقيود الموثقة</th></tr></thead>
         <tbody id="srcBody"></tbody>
       </table></div>
     </div>
@@ -687,7 +688,7 @@ function renderSourceSplit() {
 function renderRecords() {
   const rs = filtered(true);
   $('recBody').innerHTML = rs.map(r => `<tr>
-    <td>${esc(companyName(r.company_id))}</td><td><code>${esc(r.id).slice(-14)}</code></td><td class="quote">${esc(r.text)}${r.topic ? `<div class="muted">الموضوع: ${esc(r.topic)}</div>` : ''}</td>
+    <td>${esc(companyName(r.company_id))}</td><td><code>${esc(r.id).slice(-14)}</code></td><td class="quote">${esc(r.text)}${r.topic ? `<div class="muted">الموضوع: ${esc(r.topic)}</div>` : ''}${r.metrics ? `<div style="display:flex;gap:.25rem;flex-wrap:wrap;margin-top:.2rem">${typeof r.metrics.views==='number' ? `<span class="pill s-neu" style="font-size:.68rem">👁 ${r.metrics.views.toLocaleString('en')} مشاهدة</span>` : ''}${typeof r.metrics.likes==='number' ? `<span class="pill s-neu" style="font-size:.68rem">👍 ${r.metrics.likes.toLocaleString('en')} إعجاب</span>` : ''}${typeof r.metrics.user_ratings_total==='number' ? `<span class="pill s-neu" style="font-size:.68rem">★ ${r.metrics.rating||r.rating} (${r.metrics.user_ratings_total} تقييم)</span>` : ''}</div>` : ''}</td>
     <td>${BRANCHES[r.branch]||esc(r.branch)}</td><td>${SOURCES[r.source]?.name||esc(r.source)}</td>
     <td>${fmtDate(r.published_at)}</td><td>${fmtDT(r.collected_at)}</td><td>${sentPill(r.sentiment)}</td><td>${statePill(r.data_state)}</td><td>${linkCell(r)}</td></tr>`).join('')
     || '<tr><td colspan="10" class="muted">لا توجد سجلات.</td></tr>';
@@ -697,9 +698,11 @@ function renderSources() {
   $('srcBody').innerHTML = Object.entries(companySources()).map(([k,s]) => {
     const n = scopeRecords().filter(r => r.source === k && r.data_state === 'live').length;
     const ls = lastSuccess(k);
+    const run = runs.find(x => runMatches(x));
+    const interval = run?.update_interval || (n ? 'كل 60 دقيقة (تلقائي)' : 'غير مجدول');
     return `<tr><td><b>${s.name}</b></td><td>${s.url ? `<a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.account}</a>` : s.account}</td>
-      <td>${n ? '<span class="pill st-live">موصول موثق</span>' : k==='google_places' && selectedCompany()==='autozone' ? '<span class="pill st-sample">أول موصّل تم تجهيزه</span>' : '<span class="pill st-unavailable">غير موصول</span>'}</td>
-      <td>${ls ? fmtDT(ls) : '<span class="muted">لا يوجد</span>'}</td><td>${n}</td><td class="muted">${s.gaps}</td></tr>`;
+      <td>${n ? '<span class="pill st-live">موصول موثق</span>' : k==='google_places' && selectedCompany()==='autozone' ? '<span class="pill st-sample">موصّل قيد الإعداد</span>' : '<span class="pill st-unavailable">غير موصول</span>'}</td>
+      <td>${ls ? fmtDT(ls) : '<span class="muted">لا يوجد</span>'}</td><td><strong>${n}</strong></td><td>${interval}</td><td class="muted">${s.gaps}</td></tr>`;
   }).join('');
   $('runBody').innerHTML = runs.filter(runMatches).map(r => `<tr><td><code>${esc(r.run_id)}</code></td><td>${esc(r.source)}</td><td>${fmtDT(r.started_at)}</td><td>${fmtDT(r.finished_at)}</td>
     <td>${r.status==='success'?'<span class="pill st-live">ناجح</span>':r.status==='partial'?'<span class="pill st-sample">جزئي</span>':'<span class="pill s-neg">فشل</span>'}</td>
@@ -856,6 +859,12 @@ function renderReviewCard(r, isGood) {
         ${starStr ? `<div class="rc-stars">${starStr}</div>` : ''}
       </div>
       <div class="rc-text">«${esc(r.text)}»</div>
+      ${r.metrics ? `
+        <div style="display:flex;gap:.35rem;flex-wrap:wrap;margin:.25rem 0">
+          ${typeof r.metrics.views === 'number' ? `<span class="pill s-neu">👁 ${r.metrics.views.toLocaleString('en')} مشاهدة</span>` : ''}
+          ${typeof r.metrics.likes === 'number' ? `<span class="pill s-neu">👍 ${r.metrics.likes.toLocaleString('en')} إعجاب</span>` : ''}
+          ${typeof r.metrics.user_ratings_total === 'number' ? `<span class="pill s-neu">★ ${r.metrics.rating || r.rating} (${r.metrics.user_ratings_total} تقييم موثق)</span>` : ''}
+        </div>` : ''}
       <div class="rc-meta">
         <div>
           <strong>${esc(cName)}</strong> · <span>${esc(brName)}</span> · <span class="muted">${fmtDate(r.published_at)}</span>
