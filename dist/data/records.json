@@ -17,10 +17,10 @@
         "likes": 12
       },
       "published_at": "2025-09-18T07:25:48-07:00",
-      "collected_at": "2026-10-23T01:04:22.494Z",
-      "sentiment": "positive",
-      "topic": "عروض اليوم الوطني والتسويق",
-      "reviewed_by": "تدقيق بشري موثق",
+      "collected_at": "2026-10-23T20:15:17.552Z",
+      "sentiment": null,
+      "topic": null,
+      "reviewed_by": null,
       "requires_response": false,
       "responded_at": null
     },
@@ -37,14 +37,14 @@
       "text": "سعودي أصلنا وطبعنا .. اوتوزون - اليوم الوطني الـ95  | Autozone - Saudi National Day 95",
       "rating": null,
       "metrics": {
-        "views": 366,
+        "views": 367,
         "likes": 6
       },
       "published_at": "2025-09-22T10:01:56-07:00",
-      "collected_at": "2026-10-23T01:04:25.678Z",
-      "sentiment": "positive",
-      "topic": "الهوية الوطنية والمبيعات",
-      "reviewed_by": "تدقيق بشري موثق",
+      "collected_at": "2026-10-23T20:15:19.146Z",
+      "sentiment": null,
+      "topic": null,
+      "reviewed_by": null,
       "requires_response": false,
       "responded_at": null
     },
@@ -65,35 +65,11 @@
         "likes": 25
       },
       "published_at": "2018-07-23T01:26:01-07:00",
-      "collected_at": "2026-10-23T01:04:26.551Z",
-      "sentiment": "positive",
-      "topic": "عروض السيارات والتمويل",
-      "reviewed_by": "تدقيق بشري موثق",
+      "collected_at": "2026-10-23T20:15:20.168Z",
+      "sentiment": null,
+      "topic": null,
+      "reviewed_by": null,
       "requires_response": false,
-      "responded_at": null
-    },
-    {
-      "id": "gp-autozone-dammam-01",
-      "company_id": "autozone",
-      "source": "google_places",
-      "data_state": "live",
-      "data_origin": "real",
-      "branch": "dammam_khobar",
-      "author": "مستهلك موثق — فرع الدمام",
-      "author_url": "https://maps.app.goo.gl/cES6ZbqFCDw2z7JL6",
-      "url": "https://maps.app.goo.gl/cES6ZbqFCDw2z7JL6",
-      "text": "المعرض واسع والسيارات متوفرة للشراء الفوري، لكن إجراءات الفحص واستلام اللوحات استغرقت 3 أيام عمل.",
-      "rating": 3,
-      "metrics": {
-        "rating": 3,
-        "user_ratings_total": 48
-      },
-      "published_at": "2026-09-15T11:20:00Z",
-      "collected_at": "2026-10-23T01:04:27.408Z",
-      "sentiment": "negative",
-      "topic": "إجراءات التسليم واللوحات",
-      "reviewed_by": "تدقيق بشري موثق",
-      "requires_response": true,
       "responded_at": null
     },
     {
@@ -113,59 +89,11 @@
         "likes": 10
       },
       "published_at": "2022-08-23T03:33:59-07:00",
-      "collected_at": "2026-10-23T01:04:27.408Z",
-      "sentiment": "positive",
-      "topic": "التوسع الصناعي والإنتاج",
-      "reviewed_by": "تدقيق بشري موثق",
+      "collected_at": "2026-10-23T20:15:21.258Z",
+      "sentiment": null,
+      "topic": null,
+      "reviewed_by": null,
       "requires_response": false,
-      "responded_at": null
-    },
-    {
-      "id": "gp-apico-01",
-      "company_id": "apico",
-      "source": "google_places",
-      "data_state": "live",
-      "data_origin": "real",
-      "branch": "jeddah_industrial",
-      "author": "شريك تجاري — توريد التعبئة",
-      "author_url": "https://www.apico.com.sa/",
-      "url": "https://www.apico.com.sa/",
-      "text": "جودة تصنيع عبوات البلاستيك الحراري وتطابق المعايير الغذائية ممتازة، ومواعيد التسليم التزمت بالجدول.",
-      "rating": 5,
-      "metrics": {
-        "rating": 5,
-        "user_ratings_total": 12
-      },
-      "published_at": "2026-08-20T10:00:00Z",
-      "collected_at": "2026-10-23T01:04:28.242Z",
-      "sentiment": "positive",
-      "topic": "جودة الإنتاج الصناعي",
-      "reviewed_by": "تدقيق بشري موثق",
-      "requires_response": false,
-      "responded_at": null
-    },
-    {
-      "id": "gp-apico-02",
-      "company_id": "apico",
-      "source": "google_places",
-      "data_state": "live",
-      "data_origin": "real",
-      "branch": "jeddah_industrial",
-      "author": "مستودعات التوزيع المركزي",
-      "author_url": "https://www.apico.com.sa/",
-      "url": "https://www.apico.com.sa/",
-      "text": "تأخرت شحنة قوالب الحقن البلاستيكية 4 أيام عن موعد وصول المصنع بسبب إجراءات الجمارك والشحن.",
-      "rating": 2,
-      "metrics": {
-        "rating": 2,
-        "user_ratings_total": 12
-      },
-      "published_at": "2026-07-14T08:30:00Z",
-      "collected_at": "2026-10-23T01:04:28.242Z",
-      "sentiment": "negative",
-      "topic": "سلاسل الإمداد والشحن",
-      "reviewed_by": "تدقيق بشري موثق",
-      "requires_response": true,
       "responded_at": null
     },
     {
@@ -185,62 +113,14 @@
         "likes": 7
       },
       "published_at": "2023-07-18T08:19:52-07:00",
-      "collected_at": "2026-10-23T01:04:28.242Z",
-      "sentiment": "positive",
-      "topic": "شبكة توزيع قطع الغيار",
-      "reviewed_by": "تدقيق بشري موثق",
+      "collected_at": "2026-10-23T20:15:22.726Z",
+      "sentiment": null,
+      "topic": null,
+      "reviewed_by": null,
       "requires_response": false,
-      "responded_at": null
-    },
-    {
-      "id": "gp-parts-01",
-      "company_id": "balubaid_parts",
-      "source": "google_places",
-      "data_state": "live",
-      "data_origin": "real",
-      "branch": "jeddah_central",
-      "author": "عميل صيانة — مراكز الخدمة",
-      "author_url": "https://www.balubaidparts.com.sa/",
-      "url": "https://www.balubaidparts.com.sa/",
-      "text": "قطع غيار AC Delco الأصلية وفلاتر الزيوت متوفرة دائماً وبأسعار منافسة مقارنة بالسوق.",
-      "rating": 5,
-      "metrics": {
-        "rating": 5,
-        "user_ratings_total": 34
-      },
-      "published_at": "2026-09-02T13:45:00Z",
-      "collected_at": "2026-10-23T01:04:29.080Z",
-      "sentiment": "positive",
-      "topic": "توفر القطع الأصلية",
-      "reviewed_by": "تدقيق بشري موثق",
-      "requires_response": false,
-      "responded_at": null
-    },
-    {
-      "id": "gp-parts-02",
-      "company_id": "balubaid_parts",
-      "source": "google_places",
-      "data_state": "live",
-      "data_origin": "real",
-      "branch": "riyadh_parts",
-      "author": "ورشة صيانة معتمدة",
-      "author_url": "https://www.balubaidparts.com.sa/",
-      "url": "https://www.balubaidparts.com.sa/",
-      "text": "صعوبة في الحصول على قطع غيار المحركات للطرازات الأقدم من 2018 والحاجة للطلب المسبق من المستودع المركزي.",
-      "rating": 2,
-      "metrics": {
-        "rating": 2,
-        "user_ratings_total": 34
-      },
-      "published_at": "2026-08-28T15:10:00Z",
-      "collected_at": "2026-10-23T01:04:29.080Z",
-      "sentiment": "negative",
-      "topic": "توفر قطع الموديلات القديمة",
-      "reviewed_by": "تدقيق بشري موثق",
-      "requires_response": true,
       "responded_at": null
     }
   ],
   "place_summaries": [],
-  "updated_at": "2026-10-23T01:04:29.080Z"
+  "updated_at": "2026-10-23T20:15:23.776Z"
 }

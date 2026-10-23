@@ -197,7 +197,7 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
         </div>
       </div>
       <div class="hdr-actions">
-        <button class="btn btn-yellow" id="btnRefreshData" style="font-size:.78rem">🔄 تحديث السجلات الآن</button>
+        <button class="btn btn-yellow" id="btnRefreshData" style="font-size:.78rem" title="إعادة قراءة وتحديث البيانات من ملفات السجلات المحلية (Local Cache Reload)">🔄 إعادة تحميل البيانات المحلية</button>
         <span id="hdrState" class="pill st-sample">بيانات توضيحية</span>
         <button class="btn" id="btnTheme" aria-label="تبديل النسق">🌙</button>
       </div>
@@ -414,7 +414,16 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
       <div class="sub">للفريق التقني فقط — إعداد مصادر البيانات والتحقق من صحتها.</div>
       
       <!-- الصياغة الدقيقة المطلوبة: أول موصل تم تجهيزه -->
-      <p style="margin-bottom:.6rem;font-size:.9rem"><b>أول موصّل تم تجهيزه:</b> تقييمات Google عبر Places API (New) — قيد الإعداد بانتظار إدخال مفتاح API ومعرّفات الفروع.</p>
+      <p style="margin-bottom:.6rem;font-size:.9rem"><b>أول موصّل تم تجهيزه:</b> تقييمات Google عبر Places API (New) — قيد الإعداد بانتظار تفعيل Cloud Billing ومفتاح API ومعرّفات الفروع.</p>
+
+      <!-- التمييز الصريح بين التحديث المحلي والجمع من المنصات -->
+      <div style="background:var(--soft);border-radius:8px;padding:.85rem;margin:.8rem 0;border-inline-start:4px solid var(--az-yellow)">
+        <h3 style="font-size:.92rem;margin-bottom:.35rem">التمييز التقني بين تحديث البيانات المحلية والجمع من المنصات:</h3>
+        <ul style="padding-inline-start:1.2rem;font-size:.84rem;line-height:1.8">
+          <li><b>إعادة تحميل البيانات المحلية (Local Cache Reload):</b> يقتصر على قراءة ملفات <code>dist/data/records.json</code> داخل المتصفح، ولا يُجري أي استعلام شبكي مع Google أو YouTube أو Meta.</li>
+          <li><b>جدولة الجمع من المنصات (Platform Ingestion Schedule):</b> يتطلب تشغيل نصوص الجمع في بيئة الخادم/الخلفية (<code>backend/collect-*.mjs</code>) عبر مهام مجدولة لجلب أحدث التقييمات والتفاعلات من واجهات المنصات وتحديث ملف السجلات.</li>
+        </ul>
+      </div>
 
       <p class="muted" style="margin:.75rem 0">تسجيل شركة لا يفعّل مجمّعها. يجب توثيق الحسابات والفروع والصلاحيات لكل شركة. لا توجد محاكاة تحول بيانات مختلقة إلى سجلات حقيقية.</p>
       <ol style="padding-inline-start:1.2rem;font-size:.86rem;line-height:1.9">

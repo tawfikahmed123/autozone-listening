@@ -1,0 +1,65 @@
+{
+  "_notice": "سجلات غير موثقة ومحفوظة كمسودات مرجعية فقط. تم استبعادها بالكامل من السجلات الموثقة (Live) في لوحة القيادة لعدم جمعها برمجياً عبر Places API المعتمد.",
+  "unverified_drafts": [
+    {
+      "id": "draft-autozone-dammam-01",
+      "company_id": "autozone",
+      "source": "google_places",
+      "branch": "dammam_khobar",
+      "author": "مسودة مرجعية غير موثقة برمجياً",
+      "url": "https://maps.app.goo.gl/cES6ZbqFCDw2z7JL6",
+      "text": "المعرض واسع والسيارات متوفرة للشراء الفوري، لكن إجراءات الفحص واستلام اللوحات استغرقت 3 أيام عمل.",
+      "rating": 3,
+      "topic": "إجراءات التسليم واللوحات",
+      "status": "unverified"
+    },
+    {
+      "id": "draft-apico-01",
+      "company_id": "apico",
+      "source": "google_places",
+      "branch": "jeddah_industrial",
+      "author": "مسودة مرجعية غير موثقة برمجياً",
+      "url": "https://www.apico.com.sa/",
+      "text": "جودة تصنيع عبوات البلاستيك الحراري وتطابق المعايير الغذائية ممتازة، ومواعيد التسليم التزمت بالجدول.",
+      "rating": 5,
+      "topic": "جودة الإنتاج الصناعي",
+      "status": "unverified"
+    },
+    {
+      "id": "draft-apico-02",
+      "company_id": "apico",
+      "source": "google_places",
+      "branch": "jeddah_industrial",
+      "author": "مسودة مرجعية غير موثقة برمجياً",
+      "url": "https://www.apico.com.sa/",
+      "text": "تأخرت شحنة قوالب الحقن البلاستيكية 4 أيام عن موعد وصول المصنع بسبب إجراءات الجمارك والشحن.",
+      "rating": 2,
+      "topic": "سلاسل الإمداد والشحن",
+      "status": "unverified"
+    },
+    {
+      "id": "draft-parts-01",
+      "company_id": "balubaid_parts",
+      "source": "google_places",
+      "branch": "jeddah_central",
+      "author": "مسودة مرجعية غير موثقة برمجياً",
+      "url": "https://www.balubaidparts.com.sa/",
+      "text": "قطع غيار AC Delco الأصلية وفلاتر الزيوت متوفرة دائماً وبأسعار منافسة مقارنة بالسوق.",
+      "rating": 5,
+      "topic": "توفر القطع الأصلية",
+      "status": "unverified"
+    },
+    {
+      "id": "draft-parts-02",
+      "company_id": "balubaid_parts",
+      "source": "google_places",
+      "branch": "riyadh_parts",
+      "author": "مسودة مرجعية غير موثقة برمجياً",
+      "url": "https://www.balubaidparts.com.sa/",
+      "text": "صعوبة في الحصول على قطع غيار المحركات للطرازات الأقدم من 2018 والحاجة للطلب المسبق من المستودع المركزي.",
+      "rating": 2,
+      "topic": "توفر قطع الموديلات القديمة",
+      "status": "unverified"
+    }
+  ]
+}
