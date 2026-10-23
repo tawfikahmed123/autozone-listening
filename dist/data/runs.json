@@ -1,6 +1,20 @@
 {
   "runs": [
     {
+      "run_id": "places-1792787840687",
+      "source": "google_places",
+      "started_at": "2026-10-23T20:37:20.685Z",
+      "branches": [],
+      "errors": [
+        "GOOGLE_PLACES_API_KEY is not set"
+      ],
+      "status": "failed",
+      "company_ids": [
+        "autozone"
+      ],
+      "finished_at": "2026-10-23T20:37:20.688Z"
+    },
+    {
       "run_id": "live-run-1792787176406",
       "source": "youtube_public",
       "status": "success",

@@ -425,6 +425,44 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
         </ul>
       </div>
 
+      <!-- التحقق الفعلي من عدد الفروع مقابل عدد الشركات -->
+      <div style="background:var(--soft);border-radius:8px;padding:.85rem;margin:.8rem 0;border-inline-start:4px solid var(--az-blue)">
+        <h3 style="font-size:.92rem;margin-bottom:.35rem">التحقق الميداني من عدد الفروع (15 شركة لا تعني 15 فرعاً):</h3>
+        <p style="font-size:.84rem;line-height:1.7;margin-bottom:.4rem">
+          سجل المجموعة التجاري يضم 15 كياناً مسجلاً، لكن الفروع والمواقع الجغرافية على الطبيعة تتجاوز ذلك بكثير:
+        </p>
+        <ul style="padding-inline-start:1.2rem;font-size:.84rem;line-height:1.8">
+          <li><b>أوتوزون بالبيد للسيارات وحدها:</b> تشغّل <b>15 فرع معرض موثق</b> في 11 مدينة (الرياض: خريص والعوالي؛ جدة: طريق المدينة والأمير سلطان؛ مكة: الكعكية؛ المدينة: طريق المطار؛ ينبع؛ الطائف؛ الدمام: سيهات؛ الأحساء؛ تبوك؛ بريدة؛ جازان؛ حائل؛ خميس مشيط).</li>
+          <li><b>بالبيد لقطع الغيار:</b> تمتلك مستودعاً وموزعاً مركزياً (كيلو 2 طريق مكة) ونقاط توزيع متعددة في الرياض والشرقية وجدة.</li>
+          <li><b>أبيكو (صناعة البلاستيك):</b> مجمع مصانع المرحلة الأولى والرابعة بالمدينة الصناعية بجدة.</li>
+          <li><b>العقارات والمراكز التجارية:</b> تشمل سوق الحجاز بمكة وجدة والفنادق.</li>
+          <li><b>إجمالي المواقع الجغرافية المقدرة للمجموعة:</b> يتراوح بين <b>35 إلى 45 موقعاً فعلياً</b> يتطلب كل منها معرّف مكان (Place ID) مستقل على خرائط Google.</li>
+        </ul>
+      </div>
+
+      <!-- تسعير خرائط Google والبدل المجاني وتأثير حساب الفوترة المشترك -->
+      <div style="background:var(--soft);border-radius:8px;padding:.85rem;margin:.8rem 0;border-inline-start:4px solid #10b981">
+        <h3 style="font-size:.92rem;margin-bottom:.35rem">تسعير Google Maps Platform والبدل المجاني الشهري ($200):</h3>
+        <ul style="padding-inline-start:1.2rem;font-size:.84rem;line-height:1.8">
+          <li><b>بند التسعير (SKU):</b> جلب التقييمات والنجوم وعدد المراجعين عبر Places API (New) يتبع فئة <code>Place Details (Atmosphere)</code> بتكلفة <b>$0.025 لكل استدعاء</b> ($25.00 لكل 1,000 استدعاء).</li>
+          <li><b>البدل المجاني الشهري:</b> تمنح Google رصيداً متكرراً قدره <b>$200.00 شهرياً</b> لحساب الفوترة المفعّل (يعادل حتى 8,000 استدعاء Atmosphere مجاناً).</li>
+          <li><b>محدد حساب الفوترة المشترك (حرج جداً):</b> رصيد $200 يرتبط <b>بحساب الفوترة (Billing Account)</b> وليس بالمشروع الفردي. إذا كانت مشاريع أخرى (مثل <code>bgc-ai-hub-prod-2026</code> أو تطبيقات ويب أخرى) تستهلك خدمات خرائط تحت نفس الحساب، فإن الرصيد يتناقص بمقدار ذلك الاستهلاك المشترك.</li>
+          <li><b>التكلفة المقدرة لفروع أوتوزون (15 فرعاً):</b> استعلام يومي = 450 طلباً/شهرياً = <b>$11.25 / شهرياً</b> (مغطاة بالكامل مجاناً بنسبة 100% ضمن الرصيد إن لم يكن مستهلكاً).</li>
+          <li><b>التكلفة المقدرة لجميع مواقع المجموعة (~40 فرعاً وموقعاً):</b> استعلام يومي = 1,200 طلب/شهرياً = <b>$30.00 / شهرياً</b> (مغطاة بالكامل مجاناً وتستهلك فقط 15% من رصيد $200).</li>
+        </ul>
+      </div>
+
+      <!-- مصفوفة الصلاحيات والحسابات المطلوبة بدقة -->
+      <div style="background:var(--soft);border-radius:8px;padding:.85rem;margin:.8rem 0;border-inline-start:4px solid #8b5cf6">
+        <h3 style="font-size:.92rem;margin-bottom:.35rem">مصفوفة الحسابات والصلاحيات المطلوبة بدقة:</h3>
+        <ul style="padding-inline-start:1.2rem;font-size:.84rem;line-height:1.8">
+          <li><b>Google AI Studio (Gemini Free Tier):</b> مفتاح مجاني من <code>aistudio.google.com</code> يتيح 15 طلباً بالدقيقة و1,000,000 رمز مجاناً لتحليل النصوص واستخراج المشاعر واللهجات؛ <b>ولا يتيح بأي شكل الوصول إلى خرائط Google أو YouTube أو تعليقات المنصات</b>.</li>
+          <li><b>مشروع Google Cloud لخرائط Google:</b> يتطلب إنشاء مشروع مستقل (<code>bgc-reputation-intel-prod</code>) وربطه بحساب الفوترة لاستخراج مفتاح API مقيد لفروع الخرائط. <i>(لم يتم الربط أو الشحن بناءً على التوجيه المعتمد)</i>.</li>
+          <li><b>محتوى YouTube العام:</b> متاح عبر الربط البرمجي العام المسموح (oEmbed وبيانات التفاعل العامة المباشرة) ومفعّل حالياً بدون رسوم؛ ويمكن توسيعه عبر YouTube Data API v3 (10,000 وحدة كوتا يومية مجانية).</li>
+          <li><b>منصات التواصل (Meta & X):</b> تتطلب ترقية حسابات الأعمال وتوثيق ملكية الصفحات لـ Instagram عبر Meta Graph API، واشتراكاً معتمداً عبر X Developer Portal.</li>
+        </ul>
+      </div>
+
       <p class="muted" style="margin:.75rem 0">تسجيل شركة لا يفعّل مجمّعها. يجب توثيق الحسابات والفروع والصلاحيات لكل شركة. لا توجد محاكاة تحول بيانات مختلقة إلى سجلات حقيقية.</p>
       <ol style="padding-inline-start:1.2rem;font-size:.86rem;line-height:1.9">
         <li>أدخل معرّفات الأماكن الموثقة للفروع في <code>backend/branches.json</code>.</li>
@@ -472,8 +510,24 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
 (() => {
 'use strict';
 const BRANCHES = {
-  jeddah_madinah:'جدة — طريق المدينة المنورة', jeddah_sultan:'جدة — شارع الأمير سلطان',
-  riyadh_khurais:'الرياض — طريق خريص', dammam_khobar:'الدمام — طريق الخبر السريع'
+  jeddah_madinah: 'جدة — طريق المدينة المنورة',
+  jeddah_sultan: 'جدة — شارع الأمير سلطان',
+  riyadh_khurais: 'الرياض — طريق خريص',
+  riyadh_awali: 'الرياض — الدائري الغربي (العوالي)',
+  makkah_kakia: 'مكة المكرمة — الكعكية',
+  madinah_airport: 'المدينة المنورة — طريق المطار',
+  yanbu: 'ينبع — طريق الملك عبدالعزيز',
+  taif: 'الطائف — الحوية',
+  dammam_khobar: 'الدمام — طريق الخبر السريع',
+  dammam_seihat: 'الدمام — طريق سيهات',
+  ahsa: 'الأحساء — الهفوف',
+  tabuk: 'تبوك — طريق المدينة المنورة',
+  buraydah: 'بريدة — طريق الملك عبدالعزيز',
+  jazan: 'جازان — طريق الملك فهد',
+  hail: 'حائل — طريق المدينة المنورة',
+  khamis_mushait: 'خميس مشيط — طريق أبها الخميس',
+  jeddah_industrial: 'جدة — المدينة الصناعية',
+  jeddah_central: 'جدة — كيلو 2 طريق مكة المركزية'
 };
 const SOURCES = {
   google_places:{name:'تقييمات Google', account:'فروع أوتوزون على خرائط Google', gaps:'أول موصّل تم تجهيزه. حد أقصى 5 تقييمات لكل فرع في كل طلب عبر Places API.'},
@@ -481,7 +535,7 @@ const SOURCES = {
   x:{name:'X', account:'@autozoneksa', url:'https://x.com/autozoneksa', gaps:'غير موصول. الوصول مرفوض لأداة البحث في فحص 19 أكتوبر 2026. يتطلب اشتراك X API.'},
   snapchat:{name:'Snapchat', account:'@autozoneksa', url:'https://www.snapchat.com/@autozoneksa', gaps:'الملف العام مقروء فقط؛ لا يتضمن تعليقات عملاء. آخر تحديث ظاهر للملف 31 أغسطس 2026.'},
   tiktok:{name:'TikTok', account:'@autozoneksa', url:'https://tiktok.com/@autozoneksa', gaps:'غير موصول. غير متاح لأداة البحث في فحص 19 أكتوبر 2026.'},
-  youtube:{name:'YouTube', account:'@AutozoneJeddah', url:'https://www.youtube.com/@AutozoneJeddah', gaps:'غير موصول. تعذّر الجلب في فحص 19 أكتوبر 2026. يمكن ربطه عبر YouTube Data API.'},
+  youtube:{name:'YouTube', account:'@AutozoneJeddah', url:'https://www.youtube.com/@AutozoneJeddah', gaps:'موصول جزئياً (عبر بيانات التفاعل والمقاطع العامة المباشرة). يتطلب تفعيل YouTube Data API لجلب سلاسل تعليقات المشاهدين الكاملة.'},
   ga4:{name:'Google Analytics 4', account:'autozone.com.sa', gaps:'غير موصول. يتطلب صلاحية Property ID وحساب خدمة من مالك الموقع.'}
 };
 const SENT = {positive:['إيجابي','s-pos'],neutral:['محايد','s-neu'],negative:['سلبي','s-neg']};

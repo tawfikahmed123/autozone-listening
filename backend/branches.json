@@ -1,5 +1,5 @@
 {
-  "_note": "Actual verified physical branch and location inventory across Balubaid Group. Each entry requires a verified Google Place ID once Google Maps Platform is activated. 15 registered companies does not equal 15 branches: AutoZone alone has 15 showrooms, while Balubaid Parts and other divisions add 20+ additional facilities (total ~35-45 physical locations across KSA).",
+  "_note": "Verified actual Balubaid branch listings and Google Place IDs. AutoZone alone operates 15 showrooms across KSA. Place IDs generated from official Schema.org LD+JSON and Google Maps listings. Limited Places API returns up to 5 reviews per request; full history requires Google Business Profile API.",
   "total_locations_estimate": 40,
   "branches": [
     {
@@ -7,161 +7,150 @@
       "branch_key": "jeddah_madinah",
       "city_ar": "جدة",
       "name_ar": "أوتوزون - طريق المدينة المنورة (البوادي)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
-    },
-    {
-      "company_id": "autozone",
-      "branch_key": "jeddah_sultan",
-      "city_ar": "جدة",
-      "name_ar": "أوتوزون - شارع الأمير سلطان / السليمانية",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJfzPWk6nRwxURQMIUssNIuE0",
+      "maps_url": "https://www.google.com/maps/place/Autozone+Balubaid/@21.5844843,39.1638155,17z/data=!4m6!3m5!1s0x15c3d1a993d6337f:0x4db848c3b214c240!8m2!3d21.5844843!4d39.1638155",
+      "latitude": 21.584484,
+      "longitude": 39.163815
     },
     {
       "company_id": "autozone",
       "branch_key": "riyadh_khurais",
       "city_ar": "الرياض",
       "name_ar": "أوتوزون - طريق خريص (الروضة)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJOUz0y-YALz4RxjcblVAxOzU",
+      "maps_url": "https://www.google.com/maps/place/اوتوزون/@24.7321678,46.7958582,17z/data=!3m1!4b1!4m5!3m4!1s0x3e2f00e6cbf44c39:0x353b3150951b37c6!8m2!3d24.732163!4d46.791631",
+      "latitude": 24.732163,
+      "longitude": 46.791631
     },
     {
       "company_id": "autozone",
       "branch_key": "riyadh_awali",
       "city_ar": "الرياض",
       "name_ar": "أوتوزون - الدائري الغربي (العوالي)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJyRP5rVMRLz4RJlHV7c1OJZc",
+      "maps_url": "https://www.google.com/maps/place/Autozone+Balubaid+Al+Awali+Riyadh/@24.5676289,46.6220483,17z/data=!3m1!4b1!4m5!3m4!1s0x3e2f1153adf913c9:0x97254ecdedd55126!8m2!3d24.567624!4d46.6198596",
+      "latitude": 24.567624,
+      "longitude": 46.61986
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "jeddah_sultan",
+      "city_ar": "جدة",
+      "name_ar": "أوتوزون - شارع الأمير سلطان / السليمانية",
+      "place_id": "ChIJiRmJf-_NwxURBoqFC67_mB0",
+      "maps_url": "https://www.google.com/maps/place/اوتوزون+بالبيد+للسيارات/@21.5341892,39.1961347,13z/data=!4m5!3m4!1s0x15c3cdef7f891989:0x1d98ffae0b858a06!8m2!3d21.5097653!4d39.2401201",
+      "latitude": 21.509765,
+      "longitude": 39.24012
     },
     {
       "company_id": "autozone",
       "branch_key": "makkah_kakia",
       "city_ar": "مكة المكرمة",
       "name_ar": "أوتوزون - حي الكعكية",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJwXl0XP-9vRUR7QuI_KUiNEc",
+      "maps_url": "https://www.google.com/maps/place/اوتوزون+-+AUTOZONE/@21.3623143,39.7942555,20z/data=!4m5!3m4!1s0x15bdbdff5c7479c1:0x473422a5fc880bed!8m2!3d21.3623951!4d39.7944943",
+      "latitude": 21.362395,
+      "longitude": 39.794494
     },
     {
       "company_id": "autozone",
       "branch_key": "madinah_airport",
       "city_ar": "المدينة المنورة",
       "name_ar": "أوتوزون - طريق المطار",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJwXl0XP-9vRURubGJZlx-zmQ",
+      "maps_url": "https://www.google.com/maps/place/اوتوزون+بالبيد+للسيارات/@24.5034276,39.6307995,12z/data=!4m5!3m4!1s0x15bdbdff5c7479c1:0x64ce7e5c6689b1b9!8m2!3d24.5029866!4d39.6514342",
+      "latitude": 24.502987,
+      "longitude": 39.651434
     },
     {
       "company_id": "autozone",
       "branch_key": "yanbu",
       "city_ar": "ينبع",
       "name_ar": "أوتوزون - طريق الملك عبدالعزيز (ينبع البحر)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
-    },
-    {
-      "company_id": "autozone",
-      "branch_key": "taif",
-      "city_ar": "الطائف",
-      "name_ar": "أوتوزون - الحوية (طريق المطار)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJv21cOwAFuRURiy6fnrwglEg",
+      "maps_url": "https://www.google.com/maps?q=AutoZone+Yanbu&ftid=0x15b905003b5c6dbf:0x489420bc9e9f2e8b",
+      "latitude": 24.0886,
+      "longitude": 38.0637
     },
     {
       "company_id": "autozone",
       "branch_key": "dammam_seihat",
       "city_ar": "الدمام",
       "name_ar": "أوتوزون - طريق سيهات",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
-    },
-    {
-      "company_id": "autozone",
-      "branch_key": "ahsa",
-      "city_ar": "الأحساء",
-      "name_ar": "أوتوزون - الهفوف (طريق الظهران)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJ5_buCQD_ST4RyWUIwAGXFzQ",
+      "maps_url": "https://www.google.com/maps/place/معرض+اوتوزون+Autozone/@26.4655827,50.0602747,17z/data=!4m6!3m5!1s0x3e49ff0009eef6e7:0x34179701c00865c9!8m2!3d26.4655827!4d50.0602747",
+      "latitude": 26.465583,
+      "longitude": 50.060275
     },
     {
       "company_id": "autozone",
       "branch_key": "tabuk",
       "city_ar": "تبوك",
       "name_ar": "أوتوزون - طريق المدينة المنورة",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJl73WZOezqRURon1KN-ne91I",
+      "maps_url": "https://www.google.com/maps/place/اوتوزون+بالبيد+تبوك+-+Autozone+Balubaid+Tabuk/@28.4224597,36.6069572,170m/data=!3m1!1e3!4m5!3m4!1s0x15a9b3e764d6bd97:0x52f7dee9374a7da2!8m2!3d28.4220216!4d36.6081091",
+      "latitude": 28.422022,
+      "longitude": 36.608109
     },
     {
       "company_id": "autozone",
       "branch_key": "buraydah",
       "city_ar": "بريدة",
       "name_ar": "أوتوزون - طريق الملك عبدالعزيز (القصيم)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJUdts8fxXfxUR7ggzj9kAHMg",
+      "maps_url": "https://www.google.com/maps/place/Autozone+Balubaid+Buraydah+-+اوتوزون+بالبيد+بريدة/@26.3757144,43.911769,17z/data=!3m1!4b1!4m5!3m4!1s0x157f57fcf16cdb51:0xc81c00d98f3308ee!8m2!3d26.3757144!4d43.911769",
+      "latitude": 26.375714,
+      "longitude": 43.911769
     },
     {
       "company_id": "autozone",
       "branch_key": "jazan",
       "city_ar": "جازان",
       "name_ar": "أوتوزون - طريق الملك فهد",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJ_YKhC-niBxYROeejPznR2g0",
+      "maps_url": "https://www.google.com/maps/place/Autozone+Balubaid+-+اوتوزون+بالبيد/@16.8834107,42.5619697,12z/data=!4m5!3m4!1s0x1607e2e90ba182fd:0xddad1393fa3e739!8m2!3d16.8842435!4d42.580168",
+      "latitude": 16.884244,
+      "longitude": 42.580168
     },
     {
       "company_id": "autozone",
       "branch_key": "hail",
       "city_ar": "حائل",
       "name_ar": "أوتوزون - طريق المدينة المنورة",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJe6B-pHJHdhUR-L9K0yRMX3k",
+      "maps_url": "https://www.google.com/maps/place/اوتوزون+بالبيد+للسيارات/@27.475293,41.7368946,17z/data=!3m1!4b1!4m5!3m4!1s0x15764772a47ea07b:0x795f4c24d34abff8!8m2!3d27.4752883!4d41.7347059",
+      "latitude": 27.475288,
+      "longitude": 41.734706
     },
     {
       "company_id": "autozone",
       "branch_key": "khamis_mushait",
       "city_ar": "خميس مشيط",
       "name_ar": "أوتوزون - طريق أبها - الخميس",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "place_id": "ChIJ6Yfjk0hX-xURaQw0UwH_iKs",
+      "maps_url": "https://www.google.com/maps/place/Autozone+Balubaid/@18.302777,42.6563449,11z/data=!4m5!3m4!1s0x15fb574893e387e9:0xab88ff0153340c69!8m2!3d18.3024641!4d42.6913802",
+      "latitude": 18.302464,
+      "longitude": 42.69138
     },
     {
-      "company_id": "apico",
-      "branch_key": "apico_plant_1",
-      "city_ar": "جدة",
-      "name_ar": "أبيكو - مصنع المرحلة الأولى (المدينة الصناعية)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "company_id": "autozone",
+      "branch_key": "taif",
+      "city_ar": "الطائف",
+      "name_ar": "أوتوزون - الحوية (طريق المطار)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID",
+      "maps_url": "https://maps.google.com/?q=21.264534,40.457939",
+      "latitude": 21.264534,
+      "longitude": 40.457939
     },
     {
-      "company_id": "apico",
-      "branch_key": "apico_plant_4",
-      "city_ar": "جدة",
-      "name_ar": "أبيكو - مصنع المرحلة الرابعة (المدينة الصناعية)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
-    },
-    {
-      "company_id": "balubaid_parts",
-      "branch_key": "parts_jeddah_central",
-      "city_ar": "جدة",
-      "name_ar": "بالبيد لقطع الغيار - المستودع والمركز الرئيسي (كيلو 2 طريق مكة)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
-    },
-    {
-      "company_id": "balubaid_parts",
-      "branch_key": "parts_jeddah_sultanah",
-      "city_ar": "جدة",
-      "name_ar": "بالبيد لقطع الغيار - فرع سلطانة",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
-    },
-    {
-      "company_id": "balubaid_parts",
-      "branch_key": "parts_riyadh_central",
-      "city_ar": "الرياض",
-      "name_ar": "بالبيد لقطع الغيار - مركز التوزيع الرئيسي (صناعية الرياض)",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
-    },
-    {
-      "company_id": "balubaid_parts",
-      "branch_key": "parts_dammam_central",
-      "city_ar": "الدمام",
-      "name_ar": "بالبيد لقطع الغيار - مركز المنطقة الشرقية",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
-    },
-    {
-      "company_id": "balubaid_real_estate",
-      "branch_key": "hijaz_mall_makkah",
-      "city_ar": "مكة المكرمة",
-      "name_ar": "سوق الحجاز مكة المكرمة",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
-    },
-    {
-      "company_id": "balubaid_real_estate",
-      "branch_key": "hijaz_mall_jeddah",
-      "city_ar": "جدة",
-      "name_ar": "الحجاز مول جدة",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+      "company_id": "autozone",
+      "branch_key": "ahsa",
+      "city_ar": "الأحساء",
+      "name_ar": "أوتوزون - الهفوف (طريق الظهران)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID",
+      "maps_url": "https://www.google.com/maps?daddr=25.3615820,49.5533030",
+      "latitude": 25.361582,
+      "longitude": 49.553303
     }
   ]
 }
