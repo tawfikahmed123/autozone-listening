@@ -472,8 +472,24 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
 (() => {
 'use strict';
 const BRANCHES = {
-  jeddah_madinah:'جدة — طريق المدينة المنورة', jeddah_sultan:'جدة — شارع الأمير سلطان',
-  riyadh_khurais:'الرياض — طريق خريص', dammam_khobar:'الدمام — طريق الخبر السريع'
+  jeddah_madinah: 'جدة — طريق المدينة المنورة',
+  jeddah_sultan: 'جدة — شارع الأمير سلطان',
+  riyadh_khurais: 'الرياض — طريق خريص',
+  riyadh_awali: 'الرياض — الدائري الغربي (العوالي)',
+  makkah_kakia: 'مكة المكرمة — الكعكية',
+  madinah_airport: 'المدينة المنورة — طريق المطار',
+  yanbu: 'ينبع — طريق الملك عبدالعزيز',
+  taif: 'الطائف — الحوية',
+  dammam_khobar: 'الدمام — طريق الخبر السريع',
+  dammam_seihat: 'الدمام — طريق سيهات',
+  ahsa: 'الأحساء — الهفوف',
+  tabuk: 'تبوك — طريق المدينة المنورة',
+  buraydah: 'بريدة — طريق الملك عبدالعزيز',
+  jazan: 'جازان — طريق الملك فهد',
+  hail: 'حائل — طريق المدينة المنورة',
+  khamis_mushait: 'خميس مشيط — طريق أبها الخميس',
+  jeddah_industrial: 'جدة — المدينة الصناعية',
+  jeddah_central: 'جدة — كيلو 2 طريق مكة المركزية'
 };
 const SOURCES = {
   google_places:{name:'تقييمات Google', account:'فروع أوتوزون على خرائط Google', gaps:'أول موصّل تم تجهيزه. حد أقصى 5 تقييمات لكل فرع في كل طلب عبر Places API.'},
