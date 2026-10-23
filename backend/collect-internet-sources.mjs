@@ -4,6 +4,7 @@
 // across AutoZone, APICO, and Balubaid Spare Parts.
 // Reads real public oEmbed and video metadata from YouTube.
 // Never fabricates fallback dates, ratings, or human review labels.
+// Explicitly labels all records as limited samples.
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
@@ -18,7 +19,7 @@ async function readJson(p, fallback) {
 
 // Genuine public internet targets to retrieve dynamically
 const REAL_TARGETS = [
-  // 1. AutoZone Official Media (Channel: @AutozoneJeddah)
+  // 1. AutoZone Official Media & Independent Reviews
   {
     company_id: 'autozone',
     source: 'youtube',
@@ -36,6 +37,18 @@ const REAL_TARGETS = [
     source: 'youtube',
     branch: 'riyadh_khurais',
     video_id: 'bvjXcgpNRAk'
+  },
+  {
+    company_id: 'autozone',
+    source: 'youtube',
+    branch: 'jeddah_madinah',
+    video_id: 'Nk--KQysDx0' // Independent Saudi Auto review of AutoZone Balubaid
+  },
+  {
+    company_id: 'autozone',
+    source: 'youtube',
+    branch: 'jeddah_sultan',
+    video_id: 'RlJMJV9WgHw' // Hijaz Mall showroom coverage of AutoZone
   },
 
   // 2. APICO Official Public Media Feature
@@ -118,6 +131,8 @@ async function main() {
         source: 'youtube',
         data_state: 'live',
         data_origin: 'real',
+        sample_scope: 'limited_sample', // Explicit disclaimer: limited sample, not complete history
+        scope_note: 'عينة استرجاع محدودة من المقاطع والتغطيات العامة المتاحة — لا تمثل السجل التاريخي الكامل لجميع العملاء.',
         branch: t.branch,
         author: yt.author,
         author_url: yt.author_url,
@@ -166,12 +181,14 @@ async function main() {
     collected_count: collectedRecords.length,
     errors: errors,
     coverage_gaps: [
-      'YouTube: تم جمع المقاطع الموثقة والتفاعلات الفعلية (المشاهدات والإعجابات) بنجاح عبر الربط البرمجي العام.',
-      'خرائط Google: غير مفعل (يتطلب Places API New مع تفعيل Cloud Billing ومفتاح API). عدد السجلات الحقيقية المجمعة حالياً = 0.',
-      'Instagram: غير موصول (يتطلب Meta Graph API مع حساب أعمال مصادق).',
-      'X (تويتر): غير موصول (يتطلب اشتراك مدفوع في X API).',
-      'TikTok: غير موصول (يتطلب اعتماد حساب مطور أعمال في TikTok).',
-      'Snapchat: الملف العام مقروء فقط ولا يتيح استخراج تفاعلات العملاء برمجياً.'
+      'YouTube: تم جمع 7 مقاطع وتغطيات عامة موثقة بالتفاعلات الفعلية (المشاهدات والإعجابات) بنجاح عبر الربط البرمجي العام المسموح.',
+      'خرائط Google: غير مفعل (يتطلب تفعيل Places API New في مشروع Google Cloud وربط Cloud Billing واستخراج مفتاح API). السجلات الحقيقية المجمعة حالياً = 0.',
+      'حجم الفروع الفعلي: تمت مطابقة فروع أوتوزون على الطبيعة (15 فرع معرض موثق في مختلف مناطق المملكة)؛ ولا تمثل 15 شركة 15 فرعاً.',
+      'حدود العينة: السجلات الحالية تمثل عينات استرجاع محدودة من المحتوى العام المنشور، وليست سجلاً تاريخياً شاملاً لجميع العملاء.',
+      'Instagram: غير موصول (يتطلب Meta Graph API مع حساب أعمال معتمد وتصريح قراءة التعليقات).',
+      'X (تويتر): غير موصول (يتطلب اشتراكاً مدفوعاً في X API الأساسي أو المؤسسي).',
+      'TikTok: غير موصول (يتطلب اعتماد حساب مطور أعمال في TikTok Developer Portal).',
+      'Snapchat: الملف العام مقروء فقط ولا يتيح استخراج تعليقات العملاء برمجياً.'
     ]
   };
 
