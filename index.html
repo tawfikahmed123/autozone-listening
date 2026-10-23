@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>أوتوزون AUTOZONE · رصد آراء العملاء | مجموعة بالبيد</title>
-<meta name="description" content="منصة رصد آراء عملاء أوتوزون بالبيد - كل رقم قابل للتتبع إلى سجلاته وحسابه ومصدره.">
+<title>مجموعة بالبيد · رصد آراء العملاء والشركات</title>
+<meta name="description" content="منصة رصد آراء عملاء شركات مجموعة بالبيد - كل رقم قابل للتتبع إلى سجلاته وحسابه ومصدره.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
@@ -147,10 +147,10 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
     <div class="hdr">
       <div class="brand">
         <!-- هوية أوتوزون المأخوذة من واجهة المعرض الحقيقية -->
-        <div class="az-showroom-badge" title="أوتوزون بالبيد">
-          <span class="az-en">AUTOZONE</span>
+        <div class="az-showroom-badge" title="مجموعة شركات بالبيد">
+          <span class="az-en">BALUBAID</span>
           <span class="az-sq-mark" aria-hidden="true"></span>
-          <span class="az-ar">أوتوزون</span>
+          <span class="az-ar">بالبيد</span>
         </div>
         <div class="brand-details">
           <div class="balubaid-tag">مجموعة شركات بالبيد · رصد آراء العملاء</div>
@@ -173,8 +173,18 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
 </header>
 
 <main class="wrap">
+  <p id="printScope" style="margin-top:.5rem" class="muted"></p>
   <div id="banner" class="state-banner sample"></div>
 
+  <div class="filters" id="companyScope" style="margin-top:1rem">
+    <label>الشركة أو النشاط<select id="fCompany" style="min-width:240px"></select></label>
+    <span class="applied" id="companyScopeNote"></span>
+  </div>
+  <details class="card" id="groupOverview" style="margin-bottom:1rem">
+    <summary style="cursor:pointer;font-weight:800">دليل المجموعة · 15 شركة ونشاطاً — عرض المراجع وحالة البيانات</summary>
+    <p class="sub">قائمة مبنية على صفحات قطاعات بالبيد الرسمية. تضم شركات وعلامات وقطاعات وزميلات؛ لا تمثل عدداً قانونياً للشركات التابعة. تسجيل النشاط لا يعني اتصال بياناته. الأصول العقارية تحت قطاع العقارات. أعداد الدليل لجميع السجلات المخزّنة؛ فلاتر الفترة تخص المؤشرات أدناه.</p>
+    <div class="tbl-wrap"><table><thead><tr><th>الشركة / النشاط</th><th>القطاع</th><th>سجلات حقيقية</th><th>عينات توضيحية</th><th>الوصول</th><th>مرجع التعريف</th></tr></thead><tbody id="companyBody"></tbody></table></div>
+  </details>
   <div class="filters" id="filters">
     <label>الفرع<select id="fBranch"></select></label>
     <label>الفترة<select id="fDays">
@@ -210,7 +220,7 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
     </div>
     <div class="card">
       <h2>توزيع السجلات حسب المصدر</h2>
-      <div class="sub">حصة كل قناة من سجلات أوتوزون المجمّعة — ليست «حصة صوت» لعدم وجود مقارنة بالمنافسين.</div>
+      <div class="sub">حصة كل قناة من سجلات النطاق المحدد — ليست «حصة صوت» لعدم وجود مقارنة بالمنافسين.</div>
       <div id="sourceSplit"></div>
     </div>
   </section>
@@ -224,7 +234,7 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
       </select></label>
     </div>
     <div class="tbl-wrap"><table>
-      <thead><tr><th>المعرّف</th><th>النص</th><th>الفرع</th><th>المصدر</th><th>تاريخ النشر</th><th>تاريخ الجمع</th><th>المشاعر</th><th>الحالة</th><th>الرابط المباشر للمراجعة</th></tr></thead>
+      <thead><tr><th>الشركة</th><th>المعرّف</th><th>النص</th><th>الفرع</th><th>المصدر</th><th>تاريخ النشر</th><th>تاريخ الجمع</th><th>المشاعر</th><th>الحالة</th><th>الرابط المباشر للمراجعة</th></tr></thead>
       <tbody id="recBody"></tbody>
     </table></div>
   </section>
@@ -235,13 +245,13 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem">
         <div>
           <h2>متابعة الإجراءات التنفيذية والنتائج الموثقة</h2>
-          <div class="sub">كل ملاحظة تتحول إلى إجراء مسؤولية محدد ومتابع حتى إثبات الأثر التشغيلي.</div>
+          <div class="sub">اختر شركة لإضافة إجراء. تخزين محلي في هذا المتصفح، مع فصل الإجراءات لكل شركة؛ ليس خادماً مشتركاً.</div>
         </div>
         <div style="display:flex;gap:.5rem;flex-wrap:wrap">
           <button class="btn btn-yellow" id="btnExportActions">تصدير الإجراءات (JSON)</button>
           <button class="btn" id="btnImportActionsTrigger">استيراد ملف إجراءات</button>
           <input type="file" id="importFileInput" accept=".json" class="hidden">
-          <button class="btn btn-red" id="btnPrintReport">تقرير الشيخ خالد (طباعة / PDF)</button>
+          <button class="btn btn-red" id="btnPrintReport">طباعة النطاق الحالي — ليس تقريراً معتمداً</button>
         </div>
       </div>
 
@@ -275,7 +285,7 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
     </div>
     <div class="card">
       <h2>سجل عمليات الجمع والتنفيذ (data/runs.json)</h2>
-      <div class="sub">سجل غير قابل للتعديل يوثق كل محاولة جمع ونقاط الفشل أو النجاح.</div>
+      <div class="sub">سجل ملفات محلي لمحاولات الجمع؛ لا توجد حماية خادمية تجعله غير قابل للتعديل.</div>
       <div class="tbl-wrap"><table>
         <thead><tr><th>رقم التشغيل</th><th>المصدر</th><th>وقت البدء</th><th>وقت الانتهاء</th><th>النتيجة</th><th>التفاصيل والملاحظات</th></tr></thead>
         <tbody id="runBody"></tbody>
@@ -292,17 +302,7 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
       <!-- الصياغة الدقيقة المطلوبة: أول موصل تم تجهيزه -->
       <p style="margin-bottom:.6rem;font-size:.9rem"><b>أول موصّل تم تجهيزه:</b> تقييمات Google عبر Places API (New) — قيد الإعداد بانتظار إدخال مفتاح API ومعرّفات الفروع.</p>
 
-      <div style="background:var(--soft);padding:.9rem 1rem;border-radius:8px;margin:.75rem 0;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap">
-        <div>
-          <b>اختبار تدفق البيانات الموثقة (End-to-End Simulation):</b>
-          <div class="muted">يمكنك تشغيل جمع تجريبي موثق لمعاينة انتقال اللوحة فوراً إلى حالة البيانات الموثقة، أو إعادة ضبطها.</div>
-        </div>
-        <div style="margin-inline-start:auto;display:flex;gap:.5rem">
-          <button class="btn btn-yellow" id="btnSimulateRun">تشغيل تجريبي للمجمّع (محاكاة جلب موثق)</button>
-          <button class="btn" id="btnResetData">إعادة ضبط للبيانات التوضيحية</button>
-        </div>
-      </div>
-
+      <p class="muted" style="margin:.75rem 0">تسجيل شركة لا يفعّل مجمّعها. يجب توثيق الحسابات والفروع والصلاحيات لكل شركة. لا توجد محاكاة تحول بيانات مختلقة إلى سجلات حقيقية.</p>
       <ol style="padding-inline-start:1.2rem;font-size:.86rem;line-height:1.9">
         <li>أدخل معرّفات الأماكن الموثقة للفروع في <code>backend/branches.json</code>.</li>
         <li>شغّل: <code>GOOGLE_PLACES_API_KEY=… node backend/collect-google-places.mjs</code></li>
@@ -321,13 +321,13 @@ code{background:var(--soft);padding:.05rem .35rem;border-radius:4px;font-size:.8
     <h3 id="mTitle"></h3>
     <div class="formula" id="mFormula"></div>
     <div class="tbl-wrap"><table>
-      <thead><tr><th>المعرّف</th><th>النص</th><th>الفرع</th><th>المشاعر</th><th>الحالة</th><th>الرابط المباشر</th></tr></thead>
+      <thead><tr><th>الشركة</th><th>المعرّف</th><th>النص</th><th>الفرع</th><th>المشاعر</th><th>الحالة</th><th>الرابط المباشر</th></tr></thead>
       <tbody id="mBody"></tbody>
     </table></div>
   </div>
 </div>
 
-<footer>مجموعة شركات بالبيد · أوتوزون — كل رقم في هذه اللوحة قابل للتتبع إلى سجلاته ومصدره.</footer>
+<footer>مجموعة شركات بالبيد · منصة متعددة الشركات — كل رقم في هذه اللوحة قابل للتتبع إلى سجلاته ومصدره.</footer>
 
 <!-- Fallback sample data: clearly labelled illustrative, NOT real customers -->
 <script type="application/json" id="sampleData">
@@ -367,6 +367,20 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt
 const fmtDate = d => d ? new Date(d).toLocaleDateString('ar-SA-u-nu-latn',{year:'numeric',month:'short',day:'numeric'}) : '—';
 const fmtDT = d => d ? new Date(d).toLocaleString('ar-SA-u-nu-latn',{dateStyle:'medium',timeStyle:'short'}) : '—';
 
+const COMPANIES = [{"id": "autozone", "name_ar": "أوتوزون", "name_en": "AutoZone", "sector": "السيارات", "registry_source": "https://www.balubaid.com/automotive/", "website": "https://www.autozone.com.sa/", "entity_type": "business", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "balubaid_parts", "name_ar": "بالبيد لقطع الغيار", "name_en": "Balubaid Spare Parts", "sector": "السيارات", "registry_source": "https://www.balubaid.com/automotive/", "website": "https://www.balubaidparts.com.sa/", "entity_type": "business", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "apico", "name_ar": "أبيكو · APICO", "name_en": "Arabian Plastic Industrial Company", "sector": "التصنيع", "registry_source": "https://www.balubaid.com/industrial/", "website": "https://www.apico.com.sa/", "entity_type": "business", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "aplg", "name_ar": "APLG · مصنع الزيوت والشحوم", "name_en": "Arabian Plant for Lubricants & Greases", "sector": "التصنيع", "registry_source": "https://www.balubaid.com/industrial/", "website": "https://www.aplg.com.sa/", "entity_type": "business", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "tanaqol", "name_ar": "تنقل · Tanaqol", "name_en": "Tanaqol", "sector": "السيارات والخدمات", "registry_source": "https://www.balubaid.com/automotive/", "website": null, "entity_type": "service", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "nfh", "name_ar": "NFH · National Finance House", "name_en": "National Finance House", "sector": "التمويل", "registry_source": "https://www.balubaid.com/financing/", "website": null, "entity_type": "business", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "real_estate", "name_ar": "بالبيد العقارية", "name_en": "Balubaid Real Estate", "sector": "العقارات", "registry_source": "https://www.balubaid.com/real-estate/", "website": "https://www.hijazmalls.com/", "entity_type": "division", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "roots", "name_ar": "روتس · Roots", "name_en": "Roots", "sector": "التجارة والتوزيع", "registry_source": "https://www.balubaid.com/trading-distribution/", "website": null, "entity_type": "business", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "core3", "name_ar": "CORE3", "name_en": "CORE3", "sector": "الخدمات المهنية", "registry_source": "https://www.balubaid.com/consultancy/", "website": null, "entity_type": "business", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "lines", "name_ar": "لاينز · Lines", "name_en": "Lines", "sector": "التجهيز والتأثيث", "registry_source": "https://www.balubaid.com/fitout-and-furnishing/", "website": null, "entity_type": "business", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "saud_fitout", "name_ar": "Saud Fitout", "name_en": "Saud Fitout", "sector": "التجهيز والتأثيث", "registry_source": "https://www.balubaid.com/fitout-and-furnishing/", "website": null, "entity_type": "business", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "furniture_leaders", "name_ar": "Furniture Leaders", "name_en": "Furniture Leaders", "sector": "التجهيز والتأثيث", "registry_source": "https://www.balubaid.com/fitout-and-furnishing/", "website": null, "entity_type": "brand", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "funland", "name_ar": "فن لاند · Funland", "name_en": "Funland", "sector": "الترفيه", "registry_source": "https://www.balubaid.com/entertainment/", "website": null, "entity_type": "brand", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "industrial_equipment", "name_ar": "بالبيد للمعدات الصناعية والخدمية", "name_en": "Balubaid Industrial and Service Equipment", "sector": "الشركات التابعة والزميلة", "registry_source": "https://www.balubaid.com/affliates/", "website": null, "entity_type": "affiliate", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}, {"id": "luxury_carts", "name_ar": "Luxury Carts", "name_en": "Luxury Carts", "sector": "الشركات التابعة والزميلة", "registry_source": "https://www.balubaid.com/affliates/", "website": null, "entity_type": "affiliate", "listed_checked_on": "2026-10-23", "connection_status": "not_connected", "branches_verified": false}];
+const companyName = id => COMPANIES.find(c=>c.id===id)?.name_ar || id || 'غير محدد';
+const selectedCompany = () => $('fCompany').value || 'all';
+const companyMatches = r => selectedCompany()==='all' || r.company_id===selectedCompany();
+const scopeRecords = () => records.filter(companyMatches);
+function companySources() {
+  if(selectedCompany()==='autozone') return SOURCES;
+  const c=COMPANIES.find(c=>c.id===selectedCompany());
+  return Object.fromEntries(Object.entries(SOURCES).map(([k,v])=>[k,{name:v.name,account:c?companyName(c.id)+' — الحساب غير موثق':'يُحدد لكل شركة بشكل مستقل',gaps:'غير موصول. حسابات ومعرّفات هذا المصدر وصلاحياته تحتاج توثيقاً لكل شركة.'}]));
+}
+function runMatches(r) {
+  if(selectedCompany()==='all') return true;
+  return r.company_ids ? r.company_ids.includes(selectedCompany()) : selectedCompany()==='autozone';
+}
 let records = [], runs = [], hasLive = false;
 
 async function load() {
@@ -374,39 +388,54 @@ async function load() {
   let live = [];
   try {
     const r = await fetch('data/records.json', {cache:'no-store'});
-    if (r.ok) live = ((await r.json()).records || []).filter(x => x.data_state === 'live');
+    if (r.ok) live = ((await r.json()).records || []).filter(x => x.data_state === 'live' && x.data_origin !== 'synthetic').map(x=>({...x,company_id:x.company_id||'autozone'})).filter(x=>COMPANIES.some(c=>c.id===x.company_id));
   } catch {}
   try {
     const r = await fetch('data/runs.json', {cache:'no-store'});
     if (r.ok) runs = (await r.json()).runs || [];
   } catch {}
   hasLive = live.length > 0;
-  records = hasLive ? live : sample;
-  renderBanner(); fillFilterOptions(); renderAll();
+  records = [...live, ...sample.map(r=>({...r,company_id:'autozone',data_origin:'synthetic'})).filter(r=>!live.some(x=>x.company_id===r.company_id))];
+  $('fCompany').innerHTML = '<option value="all">مجموعة بالبيد — جميع الشركات والأنشطة</option>'+COMPANIES.map(c=>`<option value="${c.id}">${esc(c.name_ar)}</option>`).join('');
+  companyChanged();
 }
 
 function lastSuccess(source) {
-  const r = runs.find(x => x.source === source && (x.status === 'success' || x.status === 'partial'));
+  const r = runs.find(x => runMatches(x) && x.source === source && x.status === 'success');
   return r ? r.finished_at : null;
 }
 
 function renderBanner() {
-  const b = $('banner'), h = $('hdrState');
-  if (hasLive) {
-    b.className = 'state-banner live';
-    b.innerHTML = `<div><b>بيانات موثقة من مصدر حقيقي</b>تعرض اللوحة ${records.length} سجلاً مجمّعاً من تقييمات Google بروابطها المباشرة. آخر جمع ناجح: ${fmtDT(lastSuccess('google_places'))}. المصادر الأخرى غير موصولة بعد.</div>`;
-    h.className = 'pill st-live'; h.textContent = 'موثقة جزئياً';
-  } else {
-    b.className = 'state-banner sample';
-    b.innerHTML = `<div><b>بيانات توضيحية — غير موثقة</b>لا توجد حتى الآن سجلات مجمّعة من أي مصدر حقيقي. الأرقام أدناه محسوبة من ${records.length} سجلات توضيحية لاختبار طريقة العرض فقط، ولا تمثل عملاء حقيقيين ولا يجوز الاستناد إليها في القرار. ${runs.length ? `آخر محاولة جمع: ${fmtDT(runs[0].finished_at)} — النتيجة: ${esc(runs[0].status)}.` : 'أول موصل (Google Places) تم تجهيزه وبانتظار مفتاح API.'}</div>`;
-    h.className = 'pill st-sample'; h.textContent = 'بيانات توضيحية';
-  }
+  const rs=scopeRecords(), real=rs.filter(r=>r.data_state==='live'), samples=rs.filter(r=>r.data_state==='sample');
+  const b=$('banner'), h=$('hdrState');
+  const name=selectedCompany()==='all'?'مجموعة بالبيد':companyName(selectedCompany());
+  b.className='state-banner '+(real.length?'live':'sample');
+  h.className='pill '+(real.length?'st-live':'st-sample');
+  h.textContent=real.length?(samples.length?'بيانات مختلطة — النطاق موضح':'بيانات حقيقية جزئية'):(samples.length?'بيانات توضيحية':'لا توجد بيانات متصلة');
+  b.innerHTML=`<div><b>${esc(name)} · ${esc(h.textContent)}</b>${real.length} سجل حقيقي مجمّع · ${samples.length} سجل توضيحي. ${samples.length?'العينات لا تمثل عملاء حقيقيين ولا تصلح لاتخاذ القرار. ':''}${!real.length?'لم تُجمع بيانات حقيقية لهذا النطاق؛ غياب السجلات لا يعني غياب شكاوى العملاء. ':''}لا تفترض اللوحة اكتمال تاريخ ثلاث سنوات أو اتصال جميع الشركات.</div>`;
+  $('companyScopeNote').textContent=name; $('printScope').textContent='النطاق: '+name+' · '+$('fBranch').selectedOptions[0].text+' · '+$('fSource').selectedOptions[0].text+' · '+(+$('fDays').value?'آخر '+$('fDays').value+' يوماً':'كل الفترات')+' · حالة البيانات: '+$('fState').selectedOptions[0].text+' · '+new Date().toLocaleString('ar-SA',{timeZone:'Asia/Riyadh'});
+}
+function renderCompanyOverview(){
+  $('groupOverview').classList.toggle('hidden',selectedCompany()!=='all');
+  $('companyBody').innerHTML=COMPANIES.map(c=>{
+    const rs=records.filter(r=>r.company_id===c.id), real=rs.filter(r=>r.data_state==='live').length, sample=rs.filter(r=>r.data_state==='sample').length;
+    return `<tr><td><button class="btn" data-company="${c.id}">${esc(c.name_ar)}</button><div class="muted">${esc(c.name_en)}</div></td><td>${esc(c.sector)}</td><td>${real}</td><td>${sample}</td><td>${real?'بيانات جزئية؛ راجع سجل الجمع':'غير موصول — لا توجد بيانات حقيقية'}</td><td><a href="${esc(c.registry_source)}" target="_blank" rel="noopener noreferrer">صفحة القطاع الرسمية ↗</a></td></tr>`;
+  }).join('');
+  document.querySelectorAll('[data-company]').forEach(b=>b.onclick=()=>{$('fCompany').value=b.dataset.company; companyChanged();});
+}
+function companyChanged(){
+  fillFilterOptions(); renderAll();
+  $('actTitle').disabled=selectedCompany()==='all';
+  $('actOwner').disabled=selectedCompany()==='all';
+  $('actDue').disabled=selectedCompany()==='all';
+  $('actForm').querySelector('button').disabled=selectedCompany()==='all';
+  $('btnImportActionsTrigger').disabled=selectedCompany()==='all';
 }
 
 function fillFilterOptions() {
-  $('fBranch').innerHTML = '<option value="all">كل الفروع</option>' + Object.entries(BRANCHES).map(([k,v]) => `<option value="${k}">${v}</option>`).join('');
-  const present = [...new Set(records.map(r => r.source))];
-  $('fSource').innerHTML = '<option value="all">كل المصادر</option>' + present.map(k => `<option value="${k}">${SOURCES[k]?.name || k}</option>`).join('');
+  const branches=[...new Set(scopeRecords().map(r=>r.branch).filter(Boolean))];
+  $('fBranch').innerHTML='<option value="all">كل الفروع</option>'+branches.map(k=>`<option value="${esc(k)}">${esc(BRANCHES[k]||k)}</option>`).join('');
+  $('fSource').innerHTML='<option value="all">كل المصادر</option>'+Object.entries(companySources()).map(([k,v])=>`<option value="${k}">${esc(v.name)}</option>`).join('');
 }
 
 function refNow() { return Date.now(); }
@@ -414,7 +443,7 @@ function refNow() { return Date.now(); }
 function filtered(extra = true) {
   const br = $('fBranch').value, days = +$('fDays').value, src = $('fSource').value, st = $('fState').value;
   const since = days ? refNow() - days * 864e5 : 0;
-  return records.filter(r => {
+  return scopeRecords().filter(r => {
     if (br !== 'all' && r.branch !== br) return false;
     if (src !== 'all' && r.source !== src) return false;
     if (st !== 'all' && r.data_state !== st) return false;
@@ -446,7 +475,7 @@ function metrics(rs) {
 let M = null;
 function renderKPIs() {
   const rs = filtered(false); M = metrics(rs);
-  const stateTag = hasLive ? '<span class="pill st-live">موثق</span>' : '<span class="pill st-sample">توضيحي</span>';
+  const stateTag = rs.some(r=>r.data_state==='sample') ? '<span class="pill st-sample">توضيحي / مختلط</span>' : rs.length ? '<span class="pill st-live">حقيقي</span>' : '<span class="pill st-unavailable">لا توجد بيانات</span>';
   const k = (key, title, val, note) => `<button class="kpi" data-kpi="${key}"><div class="t"><span>${title}</span>${stateTag}</div><div class="v ${val===null?'na':''}">${val===null?'غير متاح':val}</div><div class="n">${note}</div><div class="how">عرض طريقة الحساب والسجلات ←</div></button>`;
   $('kpis').innerHTML =
     k('total','عدد السجلات المجمّعة', M.total.v.toLocaleString('en'), 'ضمن الفلاتر المحددة') +
@@ -455,7 +484,7 @@ function renderKPIs() {
     k('resp','نسبة الرد على ما يتطلب رداً', M.resp.v===null?null:M.resp.v+'%', `${M.resp.a} تم الرد عليها من ${M.resp.n}`);
   document.querySelectorAll('.kpi').forEach(el => el.onclick = () => openDrill(el.dataset.kpi));
   const days = +$('fDays').value;
-  $('appliedNote').textContent = `${rs.length} سجل · ${$('fBranch').selectedOptions[0].text} · ${days ? 'آخر '+days+' يوماً' : 'كل الفترات'}`;
+  $('appliedNote').textContent = `${rs.length} سجل · ${selectedCompany()==='all'?'مجموعة بالبيد':companyName(selectedCompany())} · ${$('fBranch').selectedOptions[0].text} · ${days ? 'آخر '+days+' يوماً' : 'كل الفترات'}`;
 }
 
 function openDrill(key) {
@@ -467,7 +496,7 @@ function openDrill(key) {
   };
   $('mTitle').textContent = defs[key][0];
   $('mFormula').innerHTML = defs[key][1];
-  $('mBody').innerHTML = M[key].recs.map(r => `<tr><td>${esc(r.id)}</td><td class="quote">${esc(r.text)}</td><td>${BRANCHES[r.branch]||esc(r.branch)}</td><td>${sentPill(r.sentiment)}</td><td>${statePill(r.data_state)}</td><td>${linkCell(r)}</td></tr>`).join('') || '<tr><td colspan="6" class="muted">لا توجد سجلات.</td></tr>';
+  $('mBody').innerHTML = M[key].recs.map(r => `<tr><td>${esc(companyName(r.company_id))}</td><td>${esc(r.id)}</td><td class="quote">${esc(r.text)}</td><td>${BRANCHES[r.branch]||esc(r.branch)}</td><td>${sentPill(r.sentiment)}</td><td>${statePill(r.data_state)}</td><td>${linkCell(r)}</td></tr>`).join('') || '<tr><td colspan="7" class="muted">لا توجد سجلات.</td></tr>';
   $('modal').classList.add('open');
 }
 $('modalClose').onclick = () => $('modal').classList.remove('open');
@@ -526,59 +555,52 @@ function renderBrief() {
     <p>• ${m.net.n ? `صافي المشاعر ${m.net.v > 0 ? '+' : ''}${m.net.v}% (${m.net.pos} إيجابي، ${m.net.neg} سلبي).` : 'لا يمكن حساب صافي المشاعر لعدم وجود سجلات مراجَعة.'}</p>
     <p>• ${top ? `أكثر موضوع تكرر في الملاحظات السلبية: «${esc(top[0])}» (${top[1]} من ${m.net.neg}).` : 'لا يوجد موضوع سلبي متكرر.'}</p>
     <p>• ${open.length} سجل يتطلب رداً ولم يُرد عليه بعد${open.length ? ': ' + open.map(r=>esc(r.id)).join('، ') : ''}.</p>
-    ${hasLive ? '' : '<p class="warn">⚠ محسوب من بيانات توضيحية — للعرض فقط.</p>'}
+    ${rs.some(r=>r.data_state==='sample') ? '<p class="warn">⚠ يتضمن بيانات توضيحية — للعرض فقط. اختر «موثقة فقط» لاستبعادها.</p>' : ''}
     ${rs.length < 30 ? `<p class="warn">⚠ حجم العينة صغير (${rs.length})؛ النسب غير مستقرة إحصائياً.</p>` : ''}`;
 }
 
 function renderSourceSplit() {
   const rs = filtered(false), total = rs.length || 1, counts = {};
   rs.forEach(r => counts[r.source] = (counts[r.source]||0)+1);
-  $('sourceSplit').innerHTML = Object.keys(SOURCES).map(k => {
+  $('sourceSplit').innerHTML = Object.keys(companySources()).map(k => {
     const c = counts[k] || 0, pct = Math.round(c/total*100);
     return `<div style="display:flex;align-items:center;gap:.6rem;margin:.35rem 0;font-size:.84rem">
       <span style="width:130px">${SOURCES[k].name}</span>
       <div style="flex:1;height:8px;background:var(--soft);border-radius:4px;overflow:hidden"><div style="width:${pct}%;height:100%;background:var(--balubaid-red)"></div></div>
-      <span style="width:90px;text-align:end">${c ? c + ' (' + pct + '%)' : '<span class="muted">غير موصول</span>'}</span></div>`;
+      <span style="width:90px;text-align:end">${c ? c + ' (' + pct + '%)' : '<span class="muted">لا سجلات بالنطاق</span>'}</span></div>`;
   }).join('');
 }
 
 function renderRecords() {
   const rs = filtered(true);
   $('recBody').innerHTML = rs.map(r => `<tr>
-    <td><code>${esc(r.id).slice(-14)}</code></td><td class="quote">${esc(r.text)}${r.topic ? `<div class="muted">الموضوع: ${esc(r.topic)}</div>` : ''}</td>
+    <td>${esc(companyName(r.company_id))}</td><td><code>${esc(r.id).slice(-14)}</code></td><td class="quote">${esc(r.text)}${r.topic ? `<div class="muted">الموضوع: ${esc(r.topic)}</div>` : ''}</td>
     <td>${BRANCHES[r.branch]||esc(r.branch)}</td><td>${SOURCES[r.source]?.name||esc(r.source)}</td>
     <td>${fmtDate(r.published_at)}</td><td>${fmtDT(r.collected_at)}</td><td>${sentPill(r.sentiment)}</td><td>${statePill(r.data_state)}</td><td>${linkCell(r)}</td></tr>`).join('')
-    || '<tr><td colspan="9" class="muted">لا توجد سجلات.</td></tr>';
+    || '<tr><td colspan="10" class="muted">لا توجد سجلات.</td></tr>';
 }
 
 function renderSources() {
-  $('srcBody').innerHTML = Object.entries(SOURCES).map(([k,s]) => {
-    const n = records.filter(r => r.source === k && r.data_state === 'live').length;
+  $('srcBody').innerHTML = Object.entries(companySources()).map(([k,s]) => {
+    const n = scopeRecords().filter(r => r.source === k && r.data_state === 'live').length;
     const ls = lastSuccess(k);
     return `<tr><td><b>${s.name}</b></td><td>${s.url ? `<a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.account}</a>` : s.account}</td>
-      <td>${n ? '<span class="pill st-live">موصول موثق</span>' : k==='google_places' ? '<span class="pill st-sample">أول موصّل تم تجهيزه</span>' : '<span class="pill st-unavailable">غير موصول</span>'}</td>
+      <td>${n ? '<span class="pill st-live">موصول موثق</span>' : k==='google_places' && selectedCompany()==='autozone' ? '<span class="pill st-sample">أول موصّل تم تجهيزه</span>' : '<span class="pill st-unavailable">غير موصول</span>'}</td>
       <td>${ls ? fmtDT(ls) : '<span class="muted">لا يوجد</span>'}</td><td>${n}</td><td class="muted">${s.gaps}</td></tr>`;
   }).join('');
-  $('runBody').innerHTML = runs.map(r => `<tr><td><code>${esc(r.run_id)}</code></td><td>${esc(r.source)}</td><td>${fmtDT(r.started_at)}</td><td>${fmtDT(r.finished_at)}</td>
+  $('runBody').innerHTML = runs.filter(runMatches).map(r => `<tr><td><code>${esc(r.run_id)}</code></td><td>${esc(r.source)}</td><td>${fmtDT(r.started_at)}</td><td>${fmtDT(r.finished_at)}</td>
     <td>${r.status==='success'?'<span class="pill st-live">ناجح</span>':r.status==='partial'?'<span class="pill st-sample">جزئي</span>':'<span class="pill s-neg">فشل</span>'}</td>
     <td class="muted">${esc((r.errors||[]).join(' | ') || (r.branches||[]).map(b=>`${b.branch}: ${b.returned??0}`).join('، '))}</td></tr>`).join('')
-    || '<tr><td colspan="6" class="muted">لم يُشغّل المجمّع بعد — شغّل المجمّع أو استخدم المحاكاة في تبويب الإدارة.</td></tr>';
+    || '<tr><td colspan="6" class="muted">لا توجد عمليات جمع مسجلة لهذا النطاق.</td></tr>';
 }
 
 /* Actions tracker with durable storage & export/import */
 const ACT_KEY = 'autozone_actions_v1';
 const STATUSES = {open:'مفتوح', progress:'قيد التنفيذ', done:'منجز', verified:'منجز ونتيجته موثقة'};
-const defaultActions = [
-  {title:"مراجعة توفر قطع فحمات الفرامل بفرع الأمير سلطان بجدة", owner:"مدير قطع الغيار", due:"2026-10-30", status:"progress", outcome:"", records:"S-02"},
-  {title:"توحيد إفادات الرقم الموحد بخصوص مواعيد تسليم اللوحات", owner:"مشرف مركز الاتصال", due:"2026-10-25", status:"open", outcome:"", records:"S-05"}
-];
-const loadActs = () => {
-  try {
-    const saved = localStorage.getItem(ACT_KEY);
-    return saved ? JSON.parse(saved) : defaultActions;
-  } catch { return defaultActions; }
-};
-const saveActs = a => localStorage.setItem(ACT_KEY, JSON.stringify(a));
+const actionKey=id=>id==='autozone'?ACT_KEY:'bgc_actions_v1_'+id;
+function readActs(id){try{const a=JSON.parse(localStorage.getItem(actionKey(id))||'[]');return Array.isArray(a)?a.map(x=>({...x,company_id:id})):[];}catch{return [];}}
+const loadActs=()=>selectedCompany()==='all'?COMPANIES.flatMap(c=>readActs(c.id)):readActs(selectedCompany());
+const saveActs=a=>{if(selectedCompany()==='all')throw new Error('اختر شركة أولاً');localStorage.setItem(actionKey(selectedCompany()),JSON.stringify(a.map(x=>({...x,company_id:selectedCompany()}))));};
 
 function renderActions() {
   const acts = loadActs();
@@ -597,13 +619,14 @@ function renderActions() {
   `;
 
   $('actBody').innerHTML = acts.map((a,i) => `<tr>
-    <td>${esc(a.title)}</td><td>${esc(a.owner)}</td><td>${esc(a.due)}</td>
+    <td><div class="muted">${esc(companyName(a.company_id))}</div>${esc(a.title)}</td><td>${esc(a.owner)}</td><td>${esc(a.due)}</td>
     <td><select data-i="${i}" data-f="status">${Object.entries(STATUSES).map(([k,v])=>`<option value="${k}" ${a.status===k?'selected':''}>${v}</option>`).join('')}</select></td>
     <td><input data-i="${i}" data-f="outcome" value="${esc(a.outcome||'')}" placeholder="سجل النتيجة (مثال: تم خفض وقت التسليم)"></td>
     <td><input data-i="${i}" data-f="records" value="${esc(a.records||'')}" placeholder="S-02, S-05"></td>
     <td><button class="btn" data-del="${i}">حذف</button></td></tr>`).join('')
     || '<tr><td colspan="7" class="muted">لا توجد إجراءات مسجلة بعد.</td></tr>';
 
+  if(selectedCompany()==='all'){$('actBody').querySelectorAll('input,select,button').forEach(el=>el.disabled=true);return;}
   $('actBody').querySelectorAll('[data-f]').forEach(el => el.onchange = () => {
     const a = loadActs(); a[el.dataset.i][el.dataset.f] = el.value;
     if (el.dataset.f === 'status' && el.value === 'verified' && !a[el.dataset.i].outcome) {
@@ -628,9 +651,9 @@ $('actForm').onsubmit = e => {
 // Export Actions to JSON file
 $('btnExportActions').onclick = () => {
   const acts = loadActs();
-  const blob = new Blob([JSON.stringify({ export_date: new Date().toISOString(), entity: "Autozone Balubaid", actions: acts }, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify({ export_date: new Date().toISOString(), entity: selectedCompany()==='all'?'Balubaid Group':companyName(selectedCompany()), company_id:selectedCompany(), actions: acts }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = `autozone-actions-${new Date().toISOString().slice(0,10)}.json`;
+  const a = document.createElement('a'); a.href = url; a.download = `bgc-${selectedCompany()}-actions-${new Date().toISOString().slice(0,10)}.json`;
   a.click(); URL.revokeObjectURL(url);
 };
 
@@ -644,6 +667,8 @@ $('importFileInput').onchange = (e) => {
     try {
       const data = JSON.parse(evt.target.result);
       const imported = Array.isArray(data) ? data : data.actions;
+      if (selectedCompany()==='all') throw new Error('اختر شركة');
+      if (data.company_id !== selectedCompany() || !Array.isArray(imported) || imported.some(a=>a.company_id && a.company_id!==selectedCompany())) throw new Error('ملف الشركة لا يطابق الشركة المحددة');
       if (Array.isArray(imported)) {
         saveActs(imported);
         renderActions();
@@ -661,109 +686,10 @@ $('btnPrintReport').onclick = () => {
   window.print();
 };
 
-/* End-to-End Collector Simulation for Demonstration */
-const mockLiveReviews = [
-  {
-    id: "places/ChIJN1t_tDeuEmsRUsoyG83frY4/reviews/rev-01",
-    data_state: "live",
-    source: "google_places",
-    branch: "jeddah_madinah",
-    author: "خالد بن عبدالعزيز",
-    text: "صالة عرض أوتوزون على طريق المدينة ممتازة والتعامل راقي جداً وخلصوا فحص السيارة بسرعة.",
-    rating: 5,
-    published_at: "2026-10-22T10:15:00Z",
-    collected_at: "2026-10-23T01:00:00Z",
-    url: "https://maps.google.com/?cid=123456789012345678",
-    sentiment: "positive",
-    topic: "صالة العرض",
-    reviewed_by: "فريق الجودة",
-    requires_response: false,
-    responded_at: null
-  },
-  {
-    id: "places/ChIJN1t_tDeuEmsRUsoyG83frY4/reviews/rev-02",
-    data_state: "live",
-    source: "google_places",
-    branch: "jeddah_sultan",
-    author: "فيصل الحربي",
-    text: "الخدمة مقبولة لكن تأخر تسليم قطع الغيار يومين إضافيين عن الموعد.",
-    rating: 3,
-    published_at: "2026-10-21T14:30:00Z",
-    collected_at: "2026-10-23T01:00:00Z",
-    url: "https://maps.google.com/?cid=123456789012345678",
-    sentiment: "negative",
-    topic: "قطع الغيار",
-    reviewed_by: "فريق الجودة",
-    requires_response: true,
-    responded_at: "2026-10-22T09:00:00Z"
-  },
-  {
-    id: "places/ChIJN1t_tDeuEmsRUsoyG83frY4/reviews/rev-03",
-    data_state: "live",
-    source: "google_places",
-    branch: "riyadh_khurais",
-    author: "تركي السبيعي",
-    text: "أوتوزون خريص: أفضل تجربة لتقسيط السيارات بدون دفعة أولى وإجراءات واضحة.",
-    rating: 5,
-    published_at: "2026-10-20T17:45:00Z",
-    collected_at: "2026-10-23T01:00:00Z",
-    url: "https://maps.google.com/?cid=987654321098765432",
-    sentiment: "positive",
-    topic: "التمويل",
-    reviewed_by: "فريق الجودة",
-    requires_response: false,
-    responded_at: null
-  },
-  {
-    id: "places/ChIJN1t_tDeuEmsRUsoyG83frY4/reviews/rev-04",
-    data_state: "live",
-    source: "google_places",
-    branch: "dammam_khobar",
-    author: "محمد الغامدي",
-    text: "استقبال صالة الخبر محترم جداً وجميع الاستفسارات تمت الإجابة عليها بدقة.",
-    rating: 5,
-    published_at: "2026-10-18T11:20:00Z",
-    collected_at: "2026-10-23T01:00:00Z",
-    url: "https://maps.google.com/?cid=112233445566778899",
-    sentiment: "positive",
-    topic: "صالة العرض",
-    reviewed_by: "فريق الجودة",
-    requires_response: false,
-    responded_at: null
-  }
-];
 
-$('btnSimulateRun').onclick = () => {
-  records = mockLiveReviews;
-  hasLive = true;
-  runs = [
-    {
-      run_id: "places-sim-" + Date.now().toString().slice(-6),
-      source: "google_places",
-      started_at: new Date(Date.now() - 45000).toISOString(),
-      finished_at: new Date().toISOString(),
-      status: "success",
-      branches: [
-        { branch: "jeddah_madinah", ok: true, returned: 1, new: 1 },
-        { branch: "jeddah_sultan", ok: true, returned: 1, new: 1 },
-        { branch: "riyadh_khurais", ok: true, returned: 1, new: 1 },
-        { branch: "dammam_khobar", ok: true, returned: 1, new: 1 }
-      ],
-      errors: []
-    }
-  ];
-  renderBanner();
-  renderAll();
-  alert("تمت محاكاة تشغيل مجمّع تقييمات Google بنجاح: تم جلب 4 تقييمات موثقة بروابطها المباشرة وانتقلت اللوحة إلى حالة «بيانات موثقة جزئياً».");
-};
+function renderAll() { renderBanner(); renderCompanyOverview(); renderKPIs(); renderChart(); renderBrief(); renderSourceSplit(); renderRecords(); renderSources(); renderActions(); }
 
-$('btnResetData').onclick = () => {
-  load();
-  alert("تمت إعادة ضبط اللوحة إلى البيانات التوضيحية الافتراضية.");
-};
-
-function renderAll() { renderKPIs(); renderChart(); renderBrief(); renderSourceSplit(); renderRecords(); renderSources(); renderActions(); }
-
+$('fCompany').addEventListener('change',companyChanged);
 ['fBranch','fDays','fSource','fState'].forEach(id => $(id).addEventListener('change', renderAll));
 ['fText','fSent'].forEach(id => $(id).addEventListener('input', renderRecords));
 

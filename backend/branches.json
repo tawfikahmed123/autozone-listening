@@ -1,9 +1,25 @@
 {
-  "_note": "Replace each place_id with the verified Google Place ID of the Autozone (Balubaid) branch. Entries starting with REPLACE are skipped.",
+  "_note": "Verified Google Place IDs only, each with company_id matching dist/data/companies.json. Existing AutoZone placeholders remain disabled. Other companies have no verified branch bindings yet.",
   "branches": [
-    { "branch_key": "jeddah_madinah", "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID" },
-    { "branch_key": "jeddah_sultan", "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID" },
-    { "branch_key": "riyadh_khurais", "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID" },
-    { "branch_key": "dammam_khobar", "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID" }
+    {
+      "branch_key": "jeddah_madinah",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID",
+      "company_id": "autozone"
+    },
+    {
+      "branch_key": "jeddah_sultan",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID",
+      "company_id": "autozone"
+    },
+    {
+      "branch_key": "riyadh_khurais",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID",
+      "company_id": "autozone"
+    },
+    {
+      "branch_key": "dammam_khobar",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID",
+      "company_id": "autozone"
+    }
   ]
 }

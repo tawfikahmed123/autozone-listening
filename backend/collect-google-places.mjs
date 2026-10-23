@@ -31,9 +31,20 @@ async function main() {
     run.errors.push('No verified place_id in backend/branches.json');
   }
 
+  const registry = await readJson(join(dataDir, 'companies.json'), {companies:[]});
+  const knownCompanies = new Set(registry.companies.map(c=>c.id));
+  const places = new Map();
+  for (const b of branches) {
+    if (!knownCompanies.has(b.company_id)) throw new Error('Branch has missing or unknown company_id');
+    if (places.has(b.place_id) && places.get(b.place_id)!==b.company_id) throw new Error('Ambiguous place_id shared across companies');
+    places.set(b.place_id,b.company_id);
+  }
+  run.company_ids = [...new Set(branches.map(b=>b.company_id))];
+  if (!run.company_ids.length) run.company_ids=['autozone'];
+
   await mkdir(dataDir, { recursive: true });
   const store = await readJson(join(dataDir, 'records.json'), { records: [], place_summaries: [] });
-  const byId = new Map(store.records.map(r => [r.id, r]));
+  const byId = new Map(store.records.map(r => [`${r.company_id||'autozone'}:${r.id}`, {...r,company_id:r.company_id||'autozone'}]));
   const summaries = new Map((store.place_summaries || []).map(s => [s.place_id, s]));
 
   if (!run.status) {
@@ -46,19 +57,22 @@ async function main() {
         if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 200)}`);
         const p = await res.json();
         summaries.set(b.place_id, {
-          place_id: b.place_id, branch: b.branch_key, name: p.displayName?.text,
+          company_id:b.company_id, place_id: b.place_id, branch: b.branch_key, name: p.displayName?.text,
           rating: p.rating ?? null, rating_count: p.userRatingCount ?? null,
           maps_url: p.googleMapsUri, collected_at: collectedAt
         });
         let added = 0;
         for (const rv of p.reviews || []) {
           const id = rv.name; // stable resource name: places/{id}/reviews/{id}
-          if (!byId.has(id)) added++;
-          const prev = byId.get(id) || {};
-          byId.set(id, {
+          const key = `${b.company_id}:${id}`;
+          if (!byId.has(key)) added++;
+          const prev = byId.get(key) || {};
+          byId.set(key, {
             ...prev,
             id,
             data_state: 'live',
+            data_origin:'real',
+            company_id:b.company_id,
             source: 'google_places',
             branch: b.branch_key,
             author: rv.authorAttribution?.displayName || 'Google user',
@@ -77,9 +91,9 @@ async function main() {
             responded_at: prev.responded_at ?? null
           });
         }
-        run.branches.push({ branch: b.branch_key, ok: true, returned: (p.reviews || []).length, new: added });
+        run.branches.push({ company_id:b.company_id, branch: b.branch_key, ok: true, returned: (p.reviews || []).length, new: added });
       } catch (e) {
-        run.branches.push({ branch: b.branch_key, ok: false, error: String(e.message || e) });
+        run.branches.push({ company_id:b.company_id, branch: b.branch_key, ok: false, error: String(e.message || e) });
         run.errors.push(`${b.branch_key}: ${e.message || e}`);
       }
     }
