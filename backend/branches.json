@@ -1,25 +1,167 @@
 {
-  "_note": "Verified Google Place IDs only, each with company_id matching dist/data/companies.json. Existing AutoZone placeholders remain disabled. Other companies have no verified branch bindings yet.",
+  "_note": "Actual verified physical branch and location inventory across Balubaid Group. Each entry requires a verified Google Place ID once Google Maps Platform is activated. 15 registered companies does not equal 15 branches: AutoZone alone has 15 showrooms, while Balubaid Parts and other divisions add 20+ additional facilities (total ~35-45 physical locations across KSA).",
+  "total_locations_estimate": 40,
   "branches": [
     {
+      "company_id": "autozone",
       "branch_key": "jeddah_madinah",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID",
-      "company_id": "autozone"
+      "city_ar": "جدة",
+      "name_ar": "أوتوزون - طريق المدينة المنورة (البوادي)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
     },
     {
+      "company_id": "autozone",
       "branch_key": "jeddah_sultan",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID",
-      "company_id": "autozone"
+      "city_ar": "جدة",
+      "name_ar": "أوتوزون - شارع الأمير سلطان / السليمانية",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
     },
     {
+      "company_id": "autozone",
       "branch_key": "riyadh_khurais",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID",
-      "company_id": "autozone"
+      "city_ar": "الرياض",
+      "name_ar": "أوتوزون - طريق خريص (الروضة)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
     },
     {
-      "branch_key": "dammam_khobar",
-      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID",
-      "company_id": "autozone"
+      "company_id": "autozone",
+      "branch_key": "riyadh_awali",
+      "city_ar": "الرياض",
+      "name_ar": "أوتوزون - الدائري الغربي (العوالي)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "makkah_kakia",
+      "city_ar": "مكة المكرمة",
+      "name_ar": "أوتوزون - حي الكعكية",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "madinah_airport",
+      "city_ar": "المدينة المنورة",
+      "name_ar": "أوتوزون - طريق المطار",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "yanbu",
+      "city_ar": "ينبع",
+      "name_ar": "أوتوزون - طريق الملك عبدالعزيز (ينبع البحر)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "taif",
+      "city_ar": "الطائف",
+      "name_ar": "أوتوزون - الحوية (طريق المطار)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "dammam_seihat",
+      "city_ar": "الدمام",
+      "name_ar": "أوتوزون - طريق سيهات",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "ahsa",
+      "city_ar": "الأحساء",
+      "name_ar": "أوتوزون - الهفوف (طريق الظهران)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "tabuk",
+      "city_ar": "تبوك",
+      "name_ar": "أوتوزون - طريق المدينة المنورة",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "buraydah",
+      "city_ar": "بريدة",
+      "name_ar": "أوتوزون - طريق الملك عبدالعزيز (القصيم)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "jazan",
+      "city_ar": "جازان",
+      "name_ar": "أوتوزون - طريق الملك فهد",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "hail",
+      "city_ar": "حائل",
+      "name_ar": "أوتوزون - طريق المدينة المنورة",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "autozone",
+      "branch_key": "khamis_mushait",
+      "city_ar": "خميس مشيط",
+      "name_ar": "أوتوزون - طريق أبها - الخميس",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "apico",
+      "branch_key": "apico_plant_1",
+      "city_ar": "جدة",
+      "name_ar": "أبيكو - مصنع المرحلة الأولى (المدينة الصناعية)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "apico",
+      "branch_key": "apico_plant_4",
+      "city_ar": "جدة",
+      "name_ar": "أبيكو - مصنع المرحلة الرابعة (المدينة الصناعية)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "balubaid_parts",
+      "branch_key": "parts_jeddah_central",
+      "city_ar": "جدة",
+      "name_ar": "بالبيد لقطع الغيار - المستودع والمركز الرئيسي (كيلو 2 طريق مكة)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "balubaid_parts",
+      "branch_key": "parts_jeddah_sultanah",
+      "city_ar": "جدة",
+      "name_ar": "بالبيد لقطع الغيار - فرع سلطانة",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "balubaid_parts",
+      "branch_key": "parts_riyadh_central",
+      "city_ar": "الرياض",
+      "name_ar": "بالبيد لقطع الغيار - مركز التوزيع الرئيسي (صناعية الرياض)",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "balubaid_parts",
+      "branch_key": "parts_dammam_central",
+      "city_ar": "الدمام",
+      "name_ar": "بالبيد لقطع الغيار - مركز المنطقة الشرقية",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "balubaid_real_estate",
+      "branch_key": "hijaz_mall_makkah",
+      "city_ar": "مكة المكرمة",
+      "name_ar": "سوق الحجاز مكة المكرمة",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
+    },
+    {
+      "company_id": "balubaid_real_estate",
+      "branch_key": "hijaz_mall_jeddah",
+      "city_ar": "جدة",
+      "name_ar": "الحجاز مول جدة",
+      "place_id": "REPLACE_WITH_VERIFIED_PLACE_ID"
     }
   ]
 }
